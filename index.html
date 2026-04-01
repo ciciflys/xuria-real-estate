@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xuria Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:   #f5f0e8;
+      --cream:  #faf8f4;
+      --dark:   #1a1a18;
+      --gold:   #c9a96e;
+      --mid:    #6b6b60;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 60px;
+      background: transparent;
+      mix-blend-mode: normal;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250,248,244,0.96);
+      backdrop-filter: blur(10px);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--dark); }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(26,26,24,0.35) 0%, rgba(26,26,24,0.55) 100%),
+        url('images/hero.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    .hero:hover .hero-bg { transform: scale(1); }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hero-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      margin-bottom: 52px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 16px 44px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .hero-cta:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 120px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .intro-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .intro-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+
+    .intro-text {
+      font-size: 0.8rem;
+      line-height: 1.9;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .intro-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      border-top: 1px solid rgba(201,169,110,0.3);
+      padding-top: 40px;
+      margin-top: 40px;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 6px;
+    }
+
+    /* ── MARKETS ── */
+    .markets {
+      background: var(--dark);
+      color: #fff;
+      padding: 100px 60px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .market-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      cursor: pointer;
+    }
+
+    .market-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+      filter: brightness(0.75);
+    }
+    .market-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.6);
+    }
+
+    .market-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,26,24,0.85) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 44px 40px;
+    }
+
+    .market-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .market-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .market-desc {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 300px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .market-card:hover .market-desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy {
+      padding: 120px 60px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .philosophy-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--dark);
+      margin-bottom: 40px;
+    }
+
+    .philosophy-rule {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 24px;
+    }
+
+    .philosophy-attr {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--sand);
+      padding: 100px 60px;
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left .section-header { text-align: left; margin-bottom: 32px; }
+    .contact-text {
+      font-size: 0.78rem;
+      color: var(--mid);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .contact-detail-item span:first-child {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .contact-detail-item span:last-child {
+      font-size: 0.78rem;
+      color: var(--dark);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(26,26,24,0.2);
+      padding: 10px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group textarea { resize: none; height: 80px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 18px 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--gold); }
+    .form-submit::after {
+      content: '→';
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.35);
+      padding: 48px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-copy {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+
+      .intro, .contact-inner {
+        grid-template-columns: 1fr;
+        padding: 80px 24px;
+        gap: 48px;
+      }
+
+      .markets { padding: 80px 24px; }
+      .market-grid { grid-template-columns: 1fr; }
+
+      .philosophy { padding: 80px 24px; }
+
+      .contact { padding: 80px 24px; }
+
+      footer {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+        padding: 40px 24px;
+      }
+      .footer-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">Xuria</a>
+    <ul class="nav-links">
+      <li><a href="#markets">Markets</a></li>
+      <li><a href="#contact">Enquire</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Ibiza &nbsp;·&nbsp; Miami</p>
+      <h1 class="hero-title">Xuria<br><em>Real Estate</em></h1>
+      <p class="hero-sub">Curated luxury residences in the world's most coveted destinations</p>
+      <a href="#contact" class="hero-cta">Enquire Now</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro" id="about">
+    <div class="intro-copy">
+      <p class="intro-label">Our Philosophy</p>
+      <h2 class="intro-heading">Where lifestyle meets legacy.</h2>
+      <p class="intro-text">
+        Xuria was founded on the conviction that exceptional property transcends bricks and mortar.
+        We connect discerning clients with extraordinary residences — villas that command the Ibizan sea,
+        and penthouses that define the Miami skyline.
+      </p>
+      <p class="intro-text">
+        Our approach is personal, discreet, and unhurried. Every client relationship is handled with
+        the same care we bring to every detail of the properties we represent.
+      </p>
+      <div class="intro-stat-grid">
+        <div>
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years of expertise</div>
+        </div>
+        <div>
+          <div class="stat-num">€2B+</div>
+          <div class="stat-label">In transactions</div>
+        </div>
+        <div>
+          <div class="stat-num">2</div>
+          <div class="stat-label">Premier markets</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Discretion assured</div>
+        </div>
+      </div>
+    </div>
+    <div class="intro-visual">
+      <img
+        src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=900&q=80"
+        alt="Luxury villa"
+        style="width:100%;display:block;filter:brightness(0.9);"
+      />
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section class="markets" id="markets">
+    <div class="section-header">
+      <p class="section-label">Our Markets</p>
+      <h2 class="section-heading">Two islands. Two worlds.</h2>
+    </div>
+    <div class="market-grid">
+      <div class="market-card">
+        <img
+          src="images/ibiza.jpg"
+          alt="Ibiza"
+        />
+        <div class="market-overlay">
+          <p class="market-tag">Spain</p>
+          <h3 class="market-name">Ibiza</h3>
+          <p class="market-desc">
+            Cliffside villas, private coves, and terraced estates overlooking the deep blue of the Balearic Sea.
+            A sanctuary for those who seek beauty above all else.
+          </p>
+        </div>
+      </div>
+      <div class="market-card">
+        <img
+          src="images/miami.jpg"
+          alt="Miami"
+        />
+        <div class="market-overlay">
+          <p class="market-tag">Florida, USA</p>
+          <h3 class="market-name">Miami</h3>
+          <p class="market-desc">
+            Waterfront estates, sky-high residences, and design-forward homes across Miami's
+            most sought-after neighbourhoods and barrier islands.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY QUOTE -->
+  <section class="philosophy">
+    <span class="philosophy-rule"></span>
+    <p class="philosophy-quote">
+      "The finest properties are never simply found — they are sought, understood, and ultimately lived."
+    </p>
+    <span class="philosophy-rule"></span>
+    <p class="philosophy-attr">Xuria Real Estate</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="section-header">
+          <p class="section-label">Get in Touch</p>
+          <h2 class="section-heading" style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;">
+            Begin your search.
+          </h2>
+        </div>
+        <p class="contact-text">
+          Whether you are looking for a private escape in Ibiza or a statement residence in Miami,
+          our team is here to guide you with expertise, discretion, and complete dedication.
+        </p>
+        <div class="contact-detail">
+          <div class="contact-detail-item">
+            <span>Ibiza Office</span>
+            <span>Calle de la Marina, Ibiza Town, Spain</span>
+          </div>
+          <div class="contact-detail-item">
+            <span>Miami Office</span>
+            <span>Collins Avenue, Miami Beach, FL 33140</span>
+          </div>
+          <div class="contact-detail-item">
+            <span>Email</span>
+            <span>xuriare@gmail.com</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" id="enquiry-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="market">Market of Interest</label>
+          <select id="market" name="market" required>
+            <option value="" disabled selected>Select a destination</option>
+            <option>Ibiza</option>
+            <option>Miami</option>
+            <option>Both</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about what you're looking for…"></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submit-btn">Send Enquiry</button>
+        <p id="form-status" style="margin-top:16px;font-size:0.75rem;letter-spacing:0.1em;display:none;"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Xuria</div>
+    <p class="footer-copy">© 2026 Xuria Real Estate. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Legal</a></li>
+      <li><a href="#">Instagram</a></li>
+    </ul>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    // ── NAV scroll ──
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── EmailJS ──
+    // SETUP STEPS (takes ~5 minutes):
+    // 1. Go to https://www.emailjs.com and sign up (free)
+    // 2. Add a Gmail service: Dashboard → Email Services → Add Service → Gmail → connect xuriare@gmail.com
+    //    Copy the Service ID and paste it below as EMAILJS_SERVICE_ID
+    // 3. Create a template: Email Templates → Create Template
+    //    Use these variables in the template: {{name}}, {{email}}, {{market}}, {{message}}
+    //    Set "To Email" to xuriare@gmail.com
+    //    Copy the Template ID and paste it below as EMAILJS_TEMPLATE_ID
+    // 4. Get your Public Key: Account → General → Public Key
+    //    Paste it below as EMAILJS_PUBLIC_KEY
+
+    const EMAILJS_PUBLIC_KEY   = 'OtOMxVtD7z8qdogiD';
+    const EMAILJS_SERVICE_ID   = 'service_seeu75b';
+    const EMAILJS_TEMPLATE_ID  = 'template_dr2p5gc';
+
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+    document.getElementById('enquiry-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const btn    = document.getElementById('submit-btn');
+      const status = document.getElementById('form-status');
+
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      status.style.display = 'none';
+
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+        .then(() => {
+          status.textContent = 'Your enquiry has been sent. We will be in touch shortly.';
+          status.style.color = '#c9a96e';
+          status.style.display = 'block';
+          btn.textContent = 'Sent ✓';
+          this.reset();
+        })
+        .catch(() => {
+          status.textContent = 'Something went wrong. Please email us directly at xuriare@gmail.com';
+          status.style.color = '#a06060';
+          status.style.display = 'block';
+          btn.textContent = 'Send Enquiry';
+          btn.disabled = false;
+        });
+    });
+  </script>
+
+</body>
+</html>

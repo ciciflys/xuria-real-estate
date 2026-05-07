@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Figueretes Beachfront Investment Property — Ibiza | Xuria Real Estate</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Figueretes Beachfront Investment Property — Ibiza" />
+  <meta property="og:description" content="Turnkey 3-bedroom apartment with private 75m² terrace, steps from the sea. €33,943 in 2025 net rental income at 90% occupancy. €499,000." />
+  <!-- OWNER: og:image is set to the relative hero path. For perfect Twitter/Facebook previews replace with the absolute https URL once the page is hosted, e.g. https://xuriare.com/images/figueretes/hero.jpg -->
+  <meta property="og:image" content="images/figueretes/hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:   #f5f0e8;
+      --cream:  #faf8f4;
+      --dark:   #1a1a18;
+      --gold:   #c9a96e;
+      --mid:    #6b6b60;
+      --line:   rgba(26,26,24,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-weight: 300;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 60px;
+      background: transparent;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250,248,244,0.96);
+      backdrop-filter: blur(10px);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--dark); }
+
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      border: 1px solid rgba(201,169,110,0.6);
+      padding: 10px 22px;
+      color: var(--gold) !important;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(26,26,24,0.40) 0%, rgba(26,26,24,0.65) 100%),
+        url('images/figueretes/hero.jpg');
+      background-size: cover;
+      background-position: center 50%;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    .hero:hover .hero-bg { transform: scale(1); }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+      max-width: 1000px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .hero-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.8;
+      margin: 0 auto 40px;
+      max-width: 640px;
+    }
+
+    .hero-price {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.2vw, 3rem);
+      letter-spacing: 0.06em;
+      color: #fff;
+      padding: 14px 0;
+      border-top: 1px solid rgba(201,169,110,0.5);
+      border-bottom: 1px solid rgba(201,169,110,0.5);
+      margin-bottom: 40px;
+    }
+    .hero-price small {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      padding: 16px 40px;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      transition: background 0.3s, color 0.3s;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+    }
+    .btn-primary { background: var(--gold); color: var(--dark); }
+    .btn-primary:hover { background: transparent; color: var(--gold); }
+    .btn-secondary { color: var(--gold); background: transparent; }
+    .btn-secondary:hover { background: var(--gold); color: var(--dark); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    }
+
+    /* ── SECTION SHARED ── */
+    .section {
+      padding: 110px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section.dark { background: var(--dark); color: #fff; max-width: none; padding-left: 0; padding-right: 0; }
+    .section.sand { background: var(--sand); max-width: none; padding: 110px 60px; }
+    .section.dark .inner, .section.sand .inner { max-width: 1200px; margin: 0 auto; padding: 0 0; }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .section-lede {
+      font-size: 0.85rem;
+      line-height: 1.85;
+      color: var(--mid);
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+    .section.dark .section-lede { color: rgba(255,255,255,0.65); }
+
+    /* ── STATS BAND ── */
+    .stats-band {
+      background: var(--sand);
+      padding: 60px 60px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .stats-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 16px;
+    }
+    .stat {
+      text-align: center;
+      padding: 8px 6px;
+      border-right: 1px solid rgba(26,26,24,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    /* ── SNAPSHOT ── */
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .snapshot-list {
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .snapshot-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.82rem;
+    }
+    .snapshot-list li span:first-child {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      flex-shrink: 0;
+    }
+    .snapshot-list li span:last-child {
+      color: var(--dark);
+      text-align: right;
+    }
+    .snapshot-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--sand) url('images/figueretes/snapshot.jpg') center / cover no-repeat;
+      filter: brightness(0.95);
+    }
+
+    /* ── LOCATION ── */
+    .location { background: var(--cream); }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      align-items: stretch;
+    }
+    .location-copy .address {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      color: var(--dark);
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .location-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .location-list li {
+      font-size: 0.82rem;
+      color: var(--mid);
+      line-height: 1.6;
+      padding-left: 22px;
+      position: relative;
+    }
+    .location-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 12px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .location-map {
+      width: 100%;
+      min-height: 420px;
+      background: var(--sand);
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .location-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* ── THESIS CARDS ── */
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.08);
+    }
+    .thesis-card {
+      background: var(--dark);
+      padding: 56px 48px;
+      transition: background 0.3s;
+    }
+    .thesis-card:hover { background: #232320; }
+    .thesis-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .thesis-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+    .thesis-body {
+      font-size: 0.78rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── FINANCIAL TABLES ── */
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 72px;
+    }
+    .finance-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 40px;
+    }
+    .finance-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+    .finance-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.82rem;
+    }
+    .finance-row:last-child { border-bottom: none; }
+    .finance-row span:first-child { color: var(--mid); }
+    .finance-row.deduct span:last-child { color: #b08855; }
+    .finance-row.total {
+      border-top: 1px solid var(--gold);
+      border-bottom: none;
+      padding-top: 18px;
+      margin-top: 6px;
+    }
+    .finance-row.total span:first-child {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+    .finance-row.total span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+    .finance-callout {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: rgba(201,169,110,0.1);
+      border-left: 2px solid var(--gold);
+      font-size: 0.72rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── RATE CARD TABLE ── */
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .rate-table th, .rate-table td {
+      text-align: left;
+      padding: 18px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .rate-table th {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .rate-table td.amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--dark);
+      text-align: right;
+    }
+
+    /* ── BOOKINGS LIST ── */
+    .bookings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .booking-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      font-size: 0.82rem;
+    }
+    .booking-row:first-of-type {
+      border-top: 1px solid var(--line);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 14px 0;
+    }
+    .booking-row.summary {
+      border-top: 1px solid var(--gold);
+      border-bottom: none;
+      padding-top: 22px;
+    }
+    .booking-row.summary span:first-child {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .booking-row.summary span:not(:first-child) {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+    }
+    .booking-status {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .booking-status.completed { color: #6b8a55; }
+    .booking-status.current { color: var(--gold); }
+    .booking-amount { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+    .booking-amount.net { color: var(--dark); }
+    .booking-amount.gross { color: var(--mid); }
+
+    /* ── PERSONAL USE ── */
+    .personal-use {
+      background: var(--sand);
+      padding: 80px 60px;
+    }
+    .personal-use-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .personal-use-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .personal-use-body p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--dark);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .personal-use-body p strong {
+      font-style: normal;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      color: var(--gold);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      background: var(--cream);
+      padding: 110px 60px;
+    }
+    .gallery-inner { max-width: 1280px; margin: 0 auto; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      gap: 12px;
+      margin-top: 56px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      background: var(--sand);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease, filter 0.4s ease;
+      filter: brightness(0.96);
+    }
+    .gallery-item:hover img { transform: scale(1.04); filter: brightness(1); }
+    .gallery-item.span-2 { grid-column: span 2; }
+    .gallery-item.row-2 { grid-row: span 2; }
+    .gallery-caption {
+      position: absolute;
+      left: 0; bottom: 0;
+      padding: 14px 18px;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(to top, rgba(26,26,24,0.6), transparent);
+      width: 100%;
+    }
+    @media (max-width: 980px) {
+      .gallery { padding: 80px 24px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+      .gallery-item.span-2 { grid-column: span 2; }
+      .gallery-item.row-2 { grid-row: span 1; }
+    }
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+      .gallery-item.span-2 { grid-column: span 1; }
+    }
+
+    /* ── INCLUDED ── */
+    .included-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px 56px;
+      list-style: none;
+    }
+    .included-list li {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--dark);
+      position: relative;
+      padding-left: 32px;
+    }
+    .included-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews-stats {
+      display: flex;
+      gap: 56px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 56px;
+    }
+    .reviews-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--dark);
+    }
+    .reviews-stat-num small {
+      font-size: 0.95rem;
+      color: var(--mid);
+      margin-left: 4px;
+    }
+    .reviews-stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 6px;
+    }
+    .reviews-airbnb-link {
+      margin-left: auto;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 4px;
+    }
+    .reviews-airbnb-link:hover { color: var(--dark); border-color: var(--dark); }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .review-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .review-stars {
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      font-size: 0.85rem;
+    }
+    .review-body {
+      font-size: 0.82rem;
+      line-height: 1.85;
+      color: var(--dark);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      flex-grow: 1;
+    }
+    .review-attr {
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .review-attr strong {
+      display: block;
+      color: var(--dark);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      margin-bottom: 4px;
+      font-size: 0.65rem;
+    }
+
+    .reviews-more {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--mid);
+    }
+
+    /* ── LEAD CAPTURE ── */
+    .lead {
+      background: var(--dark);
+      color: #fff;
+      padding: 110px 60px;
+    }
+    .lead-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .lead-left .section-label { color: var(--gold); }
+    .lead-left .section-heading { color: #fff; margin-bottom: 24px; }
+    .lead-left p {
+      font-size: 0.85rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 28px;
+    }
+    .lead-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 26px;
+      border: 1px solid rgba(201,169,110,0.5);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
+    }
+    .lead-whatsapp:hover { background: var(--gold); color: var(--dark); }
+    .lead-whatsapp::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .lead-whatsapp:hover::before { background: var(--dark); }
+
+    .lead-form {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      background: rgba(255,255,255,0.03);
+      padding: 40px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .lead-form .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lead-form label {
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .lead-form input,
+    .lead-form select,
+    .lead-form textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding: 10px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+    .lead-form input:focus,
+    .lead-form select:focus,
+    .lead-form textarea:focus { border-color: var(--gold); }
+    .lead-form input::placeholder, .lead-form textarea::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+    .lead-form textarea { resize: none; height: 88px; }
+    .lead-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .lead-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      cursor: pointer;
+    }
+    .lead-checkbox input {
+      width: auto;
+      margin-top: 4px;
+      accent-color: var(--gold);
+    }
+    .lead-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      padding: 18px 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      margin-top: 8px;
+      align-self: flex-start;
+    }
+    .lead-submit:hover { background: #fff; color: var(--dark); }
+    .lead-submit::after { content: '→'; font-size: 0.9rem; }
+
+    /* ── FOOTER ── */
+    .footer-regulatory {
+      background: var(--dark);
+      color: rgba(255,255,255,0.4);
+      padding: 0 60px 32px;
+      font-size: 0.65rem;
+      line-height: 1.7;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      font-style: italic;
+    }
+    footer.site-footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.35);
+      padding: 32px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+    }
+    .footer-copy { font-size: 0.58rem; letter-spacing: 0.15em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 980px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 32px 16px; }
+      .stat { border-right: none; }
+      .snapshot-grid, .location-grid, .finance-grid, .lead-inner, .personal-use-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .thesis-grid { grid-template-columns: 1fr; }
+      .review-grid { grid-template-columns: repeat(2, 1fr); }
+      .booking-row { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; }
+      .booking-row:first-of-type { display: none; }
+      .booking-status { order: -1; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links li:not(:last-child) { display: none; }
+
+      .section { padding: 80px 24px; }
+      .section.dark, .section.sand { padding-left: 0; padding-right: 0; }
+      .section.dark .inner, .section.sand .inner { padding: 0 24px; }
+      .stats-band { padding: 48px 24px; }
+      .lead { padding: 80px 24px; }
+      .personal-use { padding: 64px 24px; }
+      .personal-use-inner { grid-template-columns: 1fr; gap: 24px; }
+      .footer-regulatory { padding: 0 24px 24px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .review-grid { grid-template-columns: 1fr; }
+      .lead-form { padding: 28px 24px; }
+      .lead-form .form-row { grid-template-columns: 1fr; }
+      .reviews-stats { gap: 28px; }
+      .reviews-airbnb-link { margin-left: 0; }
+      footer.site-footer { flex-direction: column; gap: 16px; padding: 32px 24px; text-align: center; }
+      .included-list { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">Xuria</a>
+    <ul class="nav-links">
+      <li><a href="#thesis">Thesis</a></li>
+      <li><a href="#performance">Performance</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#enquire" class="nav-cta">Investor Pack</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <!-- Hero photo: terrace wide shot (FIGUERETAS 32-31), optimised to 2400px and saved as images/figueretes/hero.jpg -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Ibiza &nbsp;·&nbsp; Investment Property</p>
+      <h1 class="hero-title">Figueretes <em>Beachfront</em><br>Investment Property</h1>
+      <p class="hero-sub">
+        Turnkey 3-bedroom apartment with private 75m² terrace, steps from the sea.
+        €33,943 in 2025 net rental income at 90% occupancy.
+      </p>
+      <div class="hero-price">
+        <small>Asking Price</small>
+        €499,000
+      </div>
+      <div class="hero-actions">
+        <a href="#enquire" class="btn-primary">Request Investor Pack</a>
+        <a href="#performance" class="btn-secondary">View Performance</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- INVESTOR STATS BAND -->
+  <section class="stats-band">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">€499K</div>
+        <div class="stat-label">Asking Price</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8.0%</div>
+        <div class="stat-label">Gross Yield</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">~5.6%</div>
+        <div class="stat-label">Net Yield</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">2025 Occupancy</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">2026 Bookings</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5.0★</div>
+        <div class="stat-label">13 Airbnb Reviews</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2022</div>
+        <div class="stat-label">Fully Renovated</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPERTY SNAPSHOT -->
+  <section class="section" id="snapshot">
+    <p class="section-label">The Property</p>
+    <h2 class="section-heading">A turnkey ground-floor apartment, two minutes from the Balearic Sea.</h2>
+    <div class="snapshot-grid">
+      <div>
+        <ul class="snapshot-list">
+          <li><span>Interior</span><span>94 m²</span></li>
+          <li><span>Private Deeded Terrace</span><span>75 m²</span></li>
+          <li><span>Bedrooms</span><span>3 (one en-suite)</span></li>
+          <li><span>Bathrooms</span><span>2</span></li>
+          <li><span>Floor</span><span>Ground floor</span></li>
+          <li><span>Renovation</span><span>Fully renovated 2022</span></li>
+          <li><span>Furniture</span><span>Fully furnished &amp; turnkey</span></li>
+          <li><span>Climate</span><span>A-rated heating &amp; cooling</span></li>
+          <li><span>Compliance</span><span>Seasonal rental (32-night min, LAU)</span></li>
+        </ul>
+      </div>
+      <!-- Snapshot photo: living room with terrace doors (FIGUERETAS 32-3) at images/figueretes/snapshot.jpg -->
+      <div class="snapshot-image" role="img" aria-label="Figueretes apartment living room with terrace doors"></div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="section location" id="location">
+    <p class="section-label">Location</p>
+    <h2 class="section-heading">Figueretes, Ibiza.</h2>
+    <div class="location-grid">
+      <div class="location-copy">
+        <p class="address">
+          Avenida Pedro Matutes Noguera 16<br>
+          Figueretes, Ibiza, Spain
+        </p>
+        <ul class="location-list">
+          <li>Across from Figueretes Beach and the Paseo Marítimo</li>
+          <li>Seaside promenade with restaurants and cafés at the doorstep</li>
+          <li>Walking distance to Ibiza Town, Dalt Vila and Marina Botafoch</li>
+          <li>Year-round neighbourhood — drives extended-stay demand outside summer</li>
+          <li>8 minutes by car to Ibiza Airport</li>
+          <li>5 minutes to Talamanca Beach</li>
+        </ul>
+      </div>
+      <div class="location-map">
+        <!-- OWNER: chose Google Maps embed with q= text query — swap to a long/lat or a Maps Embed API key version if you prefer; place exact pin if needed -->
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Avenida+Pedro+Matutes+Noguera+16,+Ibiza,+Spain&output=embed"
+          title="Map of Figueretes, Ibiza"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT THESIS -->
+  <section class="section dark" id="thesis">
+    <div class="inner" style="padding: 0 60px;">
+      <p class="section-label">Investment Thesis</p>
+      <h2 class="section-heading">Four reasons this asset works.</h2>
+      <p class="section-lede">
+        A turnkey, remote-managed apartment with a regulatory tailwind and a low-headache
+        operating model — built for owners who want returns without on-island presence.
+      </p>
+    </div>
+    <div class="inner" style="padding: 0 60px;">
+      <div class="thesis-grid">
+        <div class="thesis-card">
+          <p class="thesis-num">01</p>
+          <h3 class="thesis-title">Turnkey from day one.</h3>
+          <p class="thesis-body">
+            Fully furnished apartment: sofa, dining for four, complete kitchen with washer-dryer
+            combo, dishwasher, oven, microwave; three double beds (one a Murphy bed that converts
+            to a desk); terrace furniture and decor throughout. Established cleaning vendor
+            (€150 / turnover) and Murphy pickup delivery (€85 / turnover) continue with new ownership.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">02</p>
+          <h3 class="thesis-title">Remote operations.</h3>
+          <p class="thesis-body">
+            Smart keypad check-in lets the new owner operate from anywhere in the world.
+            Existing systems already proven over multiple seasons. No on-island presence required.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">03</p>
+          <h3 class="thesis-title">Regulatory tailwind.</h3>
+          <p class="thesis-body">
+            Operates under Spain's seasonal-rental regime (32-night minimum, governed by Spanish
+            Urban Lease Law). Fully compliant with current Balearic regulation. New owner can
+            re-register the National Rental Registration (NRA) at closing — a straightforward
+            administrative process.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">04</p>
+          <h3 class="thesis-title">Lower-headache operating model.</h3>
+          <p class="thesis-body">
+            50-night average guest stays mean roughly 6 turnovers per year, vs. the 30–50 of
+            a nightly let. Higher-quality long-stay tenants — executives, remote-working families —
+            choose months, not weekends. Lower wear, fewer cleaning cycles, predictable cashflow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2025 PERFORMANCE + OPERATING COSTS -->
+  <section class="section" id="performance">
+    <p class="section-label">2025 Performance</p>
+    <h2 class="section-heading">€33,943 net rental income at 90% occupancy.</h2>
+    <p class="section-lede">
+      Verified by full booking history and operating-cost ledger. A complete rental-performance
+      dossier transfers with the sale.
+    </p>
+
+    <div class="finance-grid">
+      <!-- 2025 P&L -->
+      <div class="finance-card">
+        <h3>2025 Income Statement</h3>
+        <div class="finance-row"><span>Gross revenue</span><span>€39,933</span></div>
+        <div class="finance-row deduct"><span>Less Airbnb commission (~15%)</span><span>−€5,990</span></div>
+        <div class="finance-row"><span>Net rental income</span><span>€33,943</span></div>
+        <div class="finance-row deduct"><span>Less operating costs</span><span>−€6,150</span></div>
+        <div class="finance-row total"><span>Net Operating Income</span><span>~€27,789</span></div>
+      </div>
+
+      <!-- Operating costs -->
+      <div class="finance-card">
+        <h3>Operating Costs (Annual)</h3>
+        <div class="finance-row"><span>Electricity</span><span>€2,027</span></div>
+        <div class="finance-row"><span>Water</span><span>€320</span></div>
+        <div class="finance-row"><span>Alarm (monitored)</span><span>€624</span></div>
+        <div class="finance-row"><span>Property insurance</span><span>€427</span></div>
+        <div class="finance-row"><span>Internet</span><span>€565</span></div>
+        <div class="finance-row"><span>Community fees (HOA)</span><span>€300</span></div>
+        <div class="finance-row"><span>IBI + basura (property tax + waste)</span><span>€481</span></div>
+        <div class="finance-row"><span>Cleaning + laundry (~6 turnovers / yr)</span><span>€1,410</span></div>
+        <div class="finance-row total"><span>Total</span><span>~€6,150</span></div>
+        <div class="finance-callout">
+          HOA at €300 / year — among the lowest in Ibiza apartment stock.
+        </div>
+      </div>
+    </div>
+
+    <!-- Seasonal rate card -->
+    <p class="section-label" style="margin-top: 32px;">Seasonal Rate Card</p>
+    <h2 class="section-heading">Monthly rates by season.</h2>
+    <table class="rate-table" style="margin-top: 32px;">
+      <thead>
+        <tr>
+          <th>Season</th>
+          <th>Months</th>
+          <th style="text-align:right;">Monthly Rate (Gross)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Peak summer</td><td>Jul – Aug</td><td class="amount">€7,000 – €7,500</td></tr>
+        <tr><td>High shoulder</td><td>Jun, Sep</td><td class="amount">€5,500 – €6,000</td></tr>
+        <tr><td>Late winter shoulder</td><td>Mar – early May</td><td class="amount">€4,000 – €4,700</td></tr>
+        <tr><td>Shoulder</td><td>May, Oct</td><td class="amount">€4,200 – €5,000</td></tr>
+        <tr><td>Off-season</td><td>Nov – Feb</td><td class="amount">€2,000 – €2,500</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 2026 CONFIRMED BOOKINGS -->
+  <section class="section sand" id="bookings">
+    <div class="inner">
+      <p class="section-label">2026 Already-Confirmed Bookings</p>
+      <h2 class="section-heading">Five bookings already on the books for 2026.</h2>
+      <p class="section-lede">
+        Income transfers to the new owner per closing date. Plus typical winter rental performance
+        of €2,000–€2,500 / month from November through February.
+      </p>
+
+      <div class="bookings-grid">
+        <div class="booking-row">
+          <span>Period</span>
+          <span>Status</span>
+          <span style="text-align:right;">Gross</span>
+          <span style="text-align:right;">Net</span>
+        </div>
+        <div class="booking-row">
+          <span>Mar 14 – Apr 30</span>
+          <span class="booking-status completed">Completed</span>
+          <span class="booking-amount gross" style="text-align:right;">€4,681</span>
+          <span class="booking-amount net" style="text-align:right;">€3,979</span>
+        </div>
+        <div class="booking-row">
+          <span>Apr 29 – May 31</span>
+          <span class="booking-status current">Current</span>
+          <span class="booking-amount gross" style="text-align:right;">€4,508</span>
+          <span class="booking-amount net" style="text-align:right;">€3,832</span>
+        </div>
+        <div class="booking-row">
+          <span>May 31 – Jul 2</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="booking-amount gross" style="text-align:right;">€5,981</span>
+          <span class="booking-amount net" style="text-align:right;">€5,084</span>
+        </div>
+        <div class="booking-row">
+          <span>Jul 20 – Aug 27</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="booking-amount gross" style="text-align:right;">€7,128</span>
+          <span class="booking-amount net" style="text-align:right;">€6,059</span>
+        </div>
+        <div class="booking-row">
+          <span>Aug 29 – Oct 3</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="booking-amount gross" style="text-align:right;">€6,579</span>
+          <span class="booking-amount net" style="text-align:right;">€5,592</span>
+        </div>
+        <div class="booking-row summary">
+          <span>Total Confirmed 2026</span>
+          <span></span>
+          <span style="text-align:right;">~€28,876</span>
+          <span style="text-align:right;">€24,545</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL USE -->
+  <section class="personal-use">
+    <div class="personal-use-inner">
+      <div class="personal-use-mark">"</div>
+      <div class="personal-use-body">
+        <p>
+          <strong>A 17-Day Window for the New Owner</strong>
+          This year, July 2–19 sits open in the calendar — a window between confirmed bookings
+          that can't be filled given the 32-night minimum. The new owner can take possession in
+          time to enjoy 17 days at peak Ibiza summer and collect rental income through October 3rd
+          and beyond.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="gallery-inner">
+      <p class="section-label">Gallery</p>
+      <h2 class="section-heading">Inside the apartment.</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item span-2 row-2">
+          <img src="images/figueretes/gallery-living.jpg" alt="Living room with sofa and terrace view" loading="lazy" />
+          <span class="gallery-caption">Living Room</span>
+        </div>
+        <div class="gallery-item">
+          <img src="images/figueretes/gallery-kitchen.jpg" alt="Kitchen with dining table" loading="lazy" />
+          <span class="gallery-caption">Kitchen &amp; Dining</span>
+        </div>
+        <div class="gallery-item">
+          <img src="images/figueretes/gallery-kitchen-detail.jpg" alt="Kitchen detail with subway tile and shelving" loading="lazy" />
+          <span class="gallery-caption">Kitchen Detail</span>
+        </div>
+        <div class="gallery-item">
+          <img src="images/figueretes/gallery-master.jpg" alt="Master bedroom" loading="lazy" />
+          <span class="gallery-caption">Master Bedroom</span>
+        </div>
+        <div class="gallery-item">
+          <img src="images/figueretes/gallery-bath.jpg" alt="En-suite bathroom" loading="lazy" />
+          <span class="gallery-caption">En-Suite Bathroom</span>
+        </div>
+        <div class="gallery-item span-2">
+          <img src="images/figueretes/gallery-terrace-2.jpg" alt="Private 75m² terrace" loading="lazy" />
+          <span class="gallery-caption">Private Terrace · 75m²</span>
+        </div>
+        <div class="gallery-item">
+          <img src="images/figueretes/gallery-terrace-detail.jpg" alt="Terrace detail with wine and grapes" loading="lazy" />
+          <span class="gallery-caption">Terrace Detail</span>
+        </div>
+        <div class="gallery-item">
+          <img src="images/figueretes/gallery-beach.jpg" alt="Figueretes Beach across the street" loading="lazy" />
+          <span class="gallery-caption">Figueretes Beach · Across the Street</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section class="section" id="included">
+    <p class="section-label">What's Included With the Sale</p>
+    <h2 class="section-heading">Everything needed to operate from day one.</h2>
+    <ul class="included-list">
+      <li>Fully furnished and equipped (full inventory available on request)</li>
+      <li>Established cleaning &amp; laundry vendors (warm introduction)</li>
+      <li>Smart keypad lock system</li>
+      <li>5 confirmed 2026 bookings (income transfers per closing date)</li>
+      <li>Rental-performance dossier with full booking history</li>
+      <li>Complete review portfolio</li>
+    </ul>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section sand" id="reviews">
+    <div class="inner">
+      <p class="section-label">Guest Reviews</p>
+      <h2 class="section-heading">5.0 across 13 Airbnb stays.</h2>
+
+      <div class="reviews-stats">
+        <div>
+          <div class="reviews-stat-num">5.0<small>/5.0</small></div>
+          <div class="reviews-stat-label">Average Rating</div>
+        </div>
+        <div>
+          <div class="reviews-stat-num">100%</div>
+          <div class="reviews-stat-label">5-Star Reviews</div>
+        </div>
+        <div>
+          <div class="reviews-stat-num">13</div>
+          <div class="reviews-stat-label">Reviews</div>
+        </div>
+        <div>
+          <div class="reviews-stat-num" style="font-size:1.4rem;">May 2023 – Present</div>
+          <div class="reviews-stat-label">Continuous Track Record</div>
+        </div>
+        <a class="reviews-airbnb-link" href="https://www.airbnb.com/rooms/799794154536630071" target="_blank" rel="noopener">
+          View on Airbnb →
+        </a>
+      </div>
+
+      <!-- Reviews extracted from /Marketing/Reviews/ via Tesseract OCR.
+           Display order matches the brief: Sophia, Quattroemme, Dan, Shelley, Marie Luisa, Nathan.
+           Light editing applied to fix OCR artefacts and trim to card length while preserving voice. -->
+
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-body">
+            "This rental was absolutely perfect! The location is fantastic — a 3-minute walk to the beach,
+            8 minutes to the marina, and just 20 minutes to the city center. The apartment is fantastic
+            with its new renovation and equipped with a dishwasher, washer, and dryer. Chaise was so
+            incredibly helpful, kind, and quick to respond. We were given a walkthrough tour when we
+            first arrived which made it very easy to settle into. I cannot recommend this place enough —
+            it's perfect!"
+          </blockquote>
+          <div class="review-attr">
+            <strong>Sophia</strong>
+            Escondido, California &nbsp;·&nbsp; May 2023
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-body">
+            "We stayed in this house for one month in August. Chaise and her husband were very helpful
+            in anticipating check-in time. The house was clean, in a great location, and easy to access.
+            The sea is a short walk away and the port can be reached on foot in 20 minutes. The spaces
+            were spacious, efficient bathrooms, and super air conditioning. Really just good things —
+            thank you for the beautiful stay!"
+          </blockquote>
+          <div class="review-attr">
+            <strong>Quattroemme</strong>
+            September 2023
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-body">
+            "We could not have been happier with our stay at Chaise's beautiful apartment. Every step
+            from initial enquiry to check-out was made easy. The apartment was perfect for a long stay.
+            Everything is recently refurbished and the showers are out of this world. The beds are super
+            comfy and the area is very quiet so we slept really well. Being so close to the beach was
+            great for morning walks and watching the sunrise. We'll definitely be back!"
+          </blockquote>
+          <div class="review-attr">
+            <strong>Dan</strong>
+            March 2024
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-body">
+            "If you're looking for the perfect accommodation in Ibiza — stop looking, you've found it.
+            Chaise's place is in a fab location: across the road to the beach, excellent restaurants,
+            short walk to Ibiza Town. The apartment itself is very comfortable. The beds — so comfortable.
+            I slept better here than I do at home. Chaise and Gabe are one of the best hosts I've had,
+            and I've stayed in Airbnbs all over the world."
+          </blockquote>
+          <div class="review-attr">
+            <strong>Shelley</strong>
+            July 2024
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-body">
+            "The place was impeccable. Everything was just like the photos. Four people can stay here
+            for a month perfectly and very comfortably. The location is amazing, within walking distance
+            of the waterfront and promenade, and very well connected to the airport. Chaise was super
+            attentive and always responded super fast. Honestly, a 100/10."
+          </blockquote>
+          <div class="review-attr">
+            <strong>Marie Luisa</strong>
+            May 2026 &nbsp;·&nbsp; Most Recent
+          </div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <blockquote class="review-body">
+            "Lovely apartment in a prime location. It's only a 2-minute walk from the beach and the
+            grocery store is even closer. The beds are very comfortable — probably the best bed I've
+            ever slept in. On top of that Chaise was a fantastic host. Very friendly and always
+            responded quickly. This smooth communication made our stay a lot better; we really felt
+            right at home. Highly recommended."
+          </blockquote>
+          <div class="review-attr">
+            <strong>Nathan</strong>
+            February 2024
+          </div>
+        </article>
+      </div>
+
+      <p class="reviews-more">
+        Show all 13 reviews →
+        <a href="https://www.airbnb.com/rooms/799794154536630071" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; margin-left: 8px;">on Airbnb</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- LEAD CAPTURE -->
+  <section class="lead" id="enquire">
+    <div class="lead-inner">
+      <div class="lead-left">
+        <p class="section-label">Investor Enquiry</p>
+        <h2 class="section-heading">Request the full investor pack.</h2>
+        <p>
+          Send a short note and we'll reply with the complete investor pack — booking ledger,
+          operating-cost detail, full review portfolio, photo set and inventory — typically within
+          one business day. All enquiries handled with discretion.
+        </p>
+        <!-- OWNER: replace WhatsApp URL placeholder. Format: https://wa.me/E164NUMBER (no plus, no spaces) -->
+        <a class="lead-whatsapp" href="https://wa.me/PLACEHOLDER" target="_blank" rel="noopener">
+          Message on WhatsApp
+        </a>
+      </div>
+
+      <!-- OWNER: chose mailto: form to keep the page truly static (no JS dependency on EmailJS for this off-index page).
+           Replace OWNER_EMAIL with your real address in the action attribute below.
+           If you'd rather route this through the existing EmailJS service used on index.html, swap the form for the
+           same emailjs.sendForm pattern and add a new template — straightforward port. -->
+      <form class="lead-form" id="investor-form"
+            action="mailto:OWNER_EMAIL"
+            method="post" enctype="text/plain">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 555 000 0000" />
+          </div>
+          <div class="form-group">
+            <label for="country">Country of Residence</label>
+            <input type="text" id="country" name="country" placeholder="e.g. United Kingdom" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us a little about your investment timeline…"></textarea>
+        </div>
+        <label class="lead-checkbox">
+          <input type="checkbox" name="send_pack" value="yes" checked />
+          <span>Send me the full investor pack PDF (booking ledger, operating costs, photo set, inventory)</span>
+        </label>
+        <button type="submit" class="lead-submit">Send Enquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER REGULATORY -->
+  <p class="footer-regulatory">
+    Property operates under Spain's seasonal rental regime (LAU, minimum 32 nights). National rental
+    registration transferable via re-registration on closing. Listed for sale by owner. Information
+    based on owner records; prospective buyers should conduct independent due diligence.
+  </p>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <a class="footer-logo" href="index.html">Xuria</a>
+    <p class="footer-copy">© 2026 Xuria Real Estate. All rights reserved.</p>
+    <span class="footer-copy" style="color:rgba(255,255,255,0.25);">Figueretes · Ibiza</span>
+  </footer>
+
+  <script>
+    // ── NAV scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+</body>
+</html>

@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Figueretes Beachfront Investment Property — Ibiza | Xuria Real Estate</title>
+  <title>Figueretes Investment Property — Ibiza | Xuria Real Estate</title>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Figueretes Beachfront Investment Property — Ibiza" />
-  <meta property="og:description" content="Turnkey 3-bedroom apartment with private 75m² terrace, steps from the sea. €33,943 in 2025 net rental income at 90% occupancy. €499,000." />
-  <!-- OWNER: og:image is set to the relative hero path. For perfect Twitter/Facebook previews replace with the absolute https URL once the page is hosted, e.g. https://xuriare.com/images/figueretes/hero.jpg -->
-  <meta property="og:image" content="images/figueretes/hero.jpg" />
+  <meta property="og:title" content="Figueretes Investment Property — Ibiza" />
+  <meta property="og:description" content="Turnkey 3-bedroom apartment with private 75m² terrace, across from Figueretes Beach. €33,943 in 2025 net rental income at 90% occupancy. €499,000." />
+  <meta property="og:image" content="https://xuriare.com/images/figueretes/hero.jpg" />
+  <meta property="og:url" content="https://xuriare.com/figueretes.html" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -104,7 +104,7 @@
       inset: 0;
       background-image:
         linear-gradient(to bottom, rgba(26,26,24,0.40) 0%, rgba(26,26,24,0.65) 100%),
-        url('images/figueretes/hero.jpg');
+        url('images/figueretes/hero.jpg?v=2');
       background-size: cover;
       background-position: center 50%;
       transform: scale(1.04);
@@ -275,6 +275,13 @@
       line-height: 1;
       margin-bottom: 8px;
     }
+    .stat-num small {
+      font-size: 0.5em;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+      margin-left: 4px;
+      font-weight: 400;
+    }
     .stat-label {
       font-size: 0.55rem;
       letter-spacing: 0.22em;
@@ -322,7 +329,41 @@
     }
 
     /* ── LOCATION ── */
-    .location { background: var(--cream); }
+    .location { background: var(--cream); padding-bottom: 70px; }
+
+    /* Bridge from Location → Thesis: subtle "continues" cue */
+    #thesis {
+      padding-top: 0;
+      position: relative;
+    }
+    #thesis::before {
+      content: '';
+      position: absolute;
+      top: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 72px;
+      background: linear-gradient(to bottom, var(--gold) 0%, var(--gold) 50%, var(--dark) 100%);
+      z-index: 2;
+    }
+    #thesis .inner:first-of-type {
+      padding-top: 80px !important;
+      position: relative;
+    }
+    #thesis .inner:first-of-type::before {
+      content: 'Continued';
+      position: absolute;
+      top: 32px;
+      left: 60px;
+      font-size: 0.55rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    @media (max-width: 640px) {
+      #thesis .inner:first-of-type::before { left: 24px; }
+    }
     .location-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -369,7 +410,23 @@
       position: relative;
       overflow: hidden;
     }
-    .location-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .location-map iframe { width: 100%; height: 100%; border: 0; display: block; min-height: 420px; }
+    .location-map .map-open {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(26,26,24,0.92);
+      color: var(--gold);
+      padding: 10px 18px;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(201,169,110,0.4);
+      transition: background 0.3s, color 0.3s;
+      z-index: 2;
+    }
+    .location-map .map-open:hover { background: var(--gold); color: var(--dark); }
 
     /* ── THESIS CARDS ── */
     .thesis-grid {
@@ -539,43 +596,92 @@
     .booking-amount.net { color: var(--dark); }
     .booking-amount.gross { color: var(--mid); }
 
-    /* ── PERSONAL USE ── */
+    /* ── PERSONAL USE (FEATURED CALLOUT) ── */
     .personal-use {
-      background: var(--sand);
-      padding: 80px 60px;
+      background: var(--dark);
+      color: #fff;
+      padding: 130px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .personal-use::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 40px;
+      background: var(--gold);
     }
     .personal-use-inner {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 56px;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 80px;
       align-items: center;
     }
-    .personal-use-mark {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 4rem;
+    .personal-use-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
       color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .personal-use-dates {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 6vw, 5rem);
       line-height: 1;
+      color: #fff;
+      letter-spacing: 0.02em;
     }
-    .personal-use-body p {
-      font-size: 0.95rem;
-      line-height: 1.85;
-      color: var(--dark);
+    .personal-use-dates em {
       font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-    }
-    .personal-use-body p strong {
-      font-style: normal;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 500;
       color: var(--gold);
+      display: block;
+      font-size: 0.55em;
+      margin-top: 8px;
+      letter-spacing: 0.04em;
+    }
+    .personal-use-tag {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 8px 16px;
+      border: 1px solid rgba(201,169,110,0.4);
       font-size: 0.55rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      display: block;
-      margin-bottom: 12px;
+      color: var(--gold);
+    }
+    .personal-use-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .personal-use-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .personal-use-body p {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 14px;
+    }
+    .personal-use-body p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 980px) {
+      .personal-use { padding: 90px 40px; }
+      .personal-use-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 640px) {
+      .personal-use { padding: 70px 24px; }
     }
 
     /* ── GALLERY ── */
@@ -607,6 +713,196 @@
     .gallery-item:hover img { transform: scale(1.04); filter: brightness(1); }
     .gallery-item.span-2 { grid-column: span 2; }
     .gallery-item.row-2 { grid-row: span 2; }
+    .gallery-item { cursor: zoom-in; }
+    .gallery-item.lightbox-only { display: none; }
+
+    .gallery-more {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .gallery-more strong {
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    /* ── CONFIRMATION MODAL ── */
+    .confirm-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 8, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1100;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .confirm-modal.open { display: flex; opacity: 1; }
+    .confirm-card {
+      background: var(--cream);
+      max-width: 480px;
+      width: 100%;
+      padding: 56px 48px 44px;
+      text-align: center;
+      position: relative;
+      border: 1px solid rgba(201,169,110,0.35);
+      transform: translateY(12px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .confirm-modal.open .confirm-card { transform: translateY(0); opacity: 1; }
+    .confirm-mark {
+      width: 64px;
+      height: 64px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+    .confirm-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .confirm-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: var(--dark);
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+    .confirm-body {
+      font-size: 0.85rem;
+      line-height: 1.85;
+      color: var(--mid);
+      margin-bottom: 32px;
+    }
+    .confirm-body strong {
+      color: var(--dark);
+      font-weight: 400;
+    }
+    .confirm-close {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .confirm-close:hover { background: var(--gold); color: var(--dark); }
+    .confirm-x {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      color: var(--mid);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .confirm-x:hover { color: var(--dark); }
+    @media (max-width: 640px) {
+      .confirm-card { padding: 44px 28px 32px; }
+      .confirm-title { font-size: 1.6rem; }
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 8, 0.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 40px;
+      cursor: zoom-out;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .lightbox.open { display: flex; opacity: 1; }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: transparent;
+      border: 1px solid rgba(201,169,110,0.4);
+      color: var(--gold);
+      width: 44px;
+      height: 44px;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .lightbox-close:hover { background: var(--gold); color: var(--dark); }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: 1px solid rgba(201,169,110,0.3);
+      color: var(--gold);
+      width: 52px;
+      height: 52px;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .lightbox-nav:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+    .lightbox-nav.prev { left: 28px; }
+    .lightbox-nav.next { right: 28px; }
+    @media (max-width: 640px) {
+      .lightbox { padding: 16px; }
+      .lightbox-nav { width: 40px; height: 40px; }
+      .lightbox-nav.prev { left: 8px; }
+      .lightbox-nav.next { right: 8px; }
+      .lightbox-close { top: 12px; right: 12px; width: 36px; height: 36px; }
+    }
     .gallery-caption {
       position: absolute;
       left: 0; bottom: 0;
@@ -961,11 +1257,11 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Ibiza &nbsp;·&nbsp; Investment Property</p>
-      <h1 class="hero-title">Figueretes <em>Beachfront</em><br>Investment Property</h1>
+      <p class="hero-eyebrow">Figueretes &nbsp;·&nbsp; Ibiza</p>
+      <h1 class="hero-title">Ibiza<br><em>Investment Property</em></h1>
       <p class="hero-sub">
-        Turnkey 3-bedroom apartment with private 75m² terrace, steps from the sea.
-        €33,943 in 2025 net rental income at 90% occupancy.
+        Turnkey 3-bedroom apartment with private 75m² terrace, across the street
+        from Figueretes Beach. €33,943 in 2025 net rental income at 90% occupancy.
       </p>
       <div class="hero-price">
         <small>Asking Price</small>
@@ -987,11 +1283,11 @@
         <div class="stat-label">Asking Price</div>
       </div>
       <div class="stat">
-        <div class="stat-num">8.0%</div>
+        <div class="stat-num">7.0%</div>
         <div class="stat-label">Gross Yield</div>
       </div>
       <div class="stat">
-        <div class="stat-num">~5.6%</div>
+        <div class="stat-num">5.6%</div>
         <div class="stat-label">Net Yield</div>
       </div>
       <div class="stat">
@@ -999,254 +1295,16 @@
         <div class="stat-label">2025 Occupancy</div>
       </div>
       <div class="stat">
-        <div class="stat-num">5</div>
-        <div class="stat-label">2026 Bookings</div>
+        <div class="stat-num">137<small>nights</small></div>
+        <div class="stat-label">Upcoming Bookings</div>
       </div>
       <div class="stat">
         <div class="stat-num">5.0★</div>
-        <div class="stat-label">13 Airbnb Reviews</div>
+        <div class="stat-label">Airbnb Reviews</div>
       </div>
       <div class="stat">
         <div class="stat-num">2022</div>
         <div class="stat-label">Fully Renovated</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROPERTY SNAPSHOT -->
-  <section class="section" id="snapshot">
-    <p class="section-label">The Property</p>
-    <h2 class="section-heading">A turnkey ground-floor apartment, two minutes from the Balearic Sea.</h2>
-    <div class="snapshot-grid">
-      <div>
-        <ul class="snapshot-list">
-          <li><span>Interior</span><span>94 m²</span></li>
-          <li><span>Private Deeded Terrace</span><span>75 m²</span></li>
-          <li><span>Bedrooms</span><span>3 (one en-suite)</span></li>
-          <li><span>Bathrooms</span><span>2</span></li>
-          <li><span>Floor</span><span>Ground floor</span></li>
-          <li><span>Renovation</span><span>Fully renovated 2022</span></li>
-          <li><span>Furniture</span><span>Fully furnished &amp; turnkey</span></li>
-          <li><span>Climate</span><span>A-rated heating &amp; cooling</span></li>
-          <li><span>Compliance</span><span>Seasonal rental (32-night min, LAU)</span></li>
-        </ul>
-      </div>
-      <!-- Snapshot photo: living room with terrace doors (FIGUERETAS 32-3) at images/figueretes/snapshot.jpg -->
-      <div class="snapshot-image" role="img" aria-label="Figueretes apartment living room with terrace doors"></div>
-    </div>
-  </section>
-
-  <!-- LOCATION -->
-  <section class="section location" id="location">
-    <p class="section-label">Location</p>
-    <h2 class="section-heading">Figueretes, Ibiza.</h2>
-    <div class="location-grid">
-      <div class="location-copy">
-        <p class="address">
-          Avenida Pedro Matutes Noguera 16<br>
-          Figueretes, Ibiza, Spain
-        </p>
-        <ul class="location-list">
-          <li>Across from Figueretes Beach and the Paseo Marítimo</li>
-          <li>Seaside promenade with restaurants and cafés at the doorstep</li>
-          <li>Walking distance to Ibiza Town, Dalt Vila and Marina Botafoch</li>
-          <li>Year-round neighbourhood — drives extended-stay demand outside summer</li>
-          <li>8 minutes by car to Ibiza Airport</li>
-          <li>5 minutes to Talamanca Beach</li>
-        </ul>
-      </div>
-      <div class="location-map">
-        <!-- OWNER: chose Google Maps embed with q= text query — swap to a long/lat or a Maps Embed API key version if you prefer; place exact pin if needed -->
-        <iframe
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Avenida+Pedro+Matutes+Noguera+16,+Ibiza,+Spain&output=embed"
-          title="Map of Figueretes, Ibiza"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- INVESTMENT THESIS -->
-  <section class="section dark" id="thesis">
-    <div class="inner" style="padding: 0 60px;">
-      <p class="section-label">Investment Thesis</p>
-      <h2 class="section-heading">Four reasons this asset works.</h2>
-      <p class="section-lede">
-        A turnkey, remote-managed apartment with a regulatory tailwind and a low-headache
-        operating model — built for owners who want returns without on-island presence.
-      </p>
-    </div>
-    <div class="inner" style="padding: 0 60px;">
-      <div class="thesis-grid">
-        <div class="thesis-card">
-          <p class="thesis-num">01</p>
-          <h3 class="thesis-title">Turnkey from day one.</h3>
-          <p class="thesis-body">
-            Fully furnished apartment: sofa, dining for four, complete kitchen with washer-dryer
-            combo, dishwasher, oven, microwave; three double beds (one a Murphy bed that converts
-            to a desk); terrace furniture and decor throughout. Established cleaning vendor
-            (€150 / turnover) and Murphy pickup delivery (€85 / turnover) continue with new ownership.
-          </p>
-        </div>
-        <div class="thesis-card">
-          <p class="thesis-num">02</p>
-          <h3 class="thesis-title">Remote operations.</h3>
-          <p class="thesis-body">
-            Smart keypad check-in lets the new owner operate from anywhere in the world.
-            Existing systems already proven over multiple seasons. No on-island presence required.
-          </p>
-        </div>
-        <div class="thesis-card">
-          <p class="thesis-num">03</p>
-          <h3 class="thesis-title">Regulatory tailwind.</h3>
-          <p class="thesis-body">
-            Operates under Spain's seasonal-rental regime (32-night minimum, governed by Spanish
-            Urban Lease Law). Fully compliant with current Balearic regulation. New owner can
-            re-register the National Rental Registration (NRA) at closing — a straightforward
-            administrative process.
-          </p>
-        </div>
-        <div class="thesis-card">
-          <p class="thesis-num">04</p>
-          <h3 class="thesis-title">Lower-headache operating model.</h3>
-          <p class="thesis-body">
-            50-night average guest stays mean roughly 6 turnovers per year, vs. the 30–50 of
-            a nightly let. Higher-quality long-stay tenants — executives, remote-working families —
-            choose months, not weekends. Lower wear, fewer cleaning cycles, predictable cashflow.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2025 PERFORMANCE + OPERATING COSTS -->
-  <section class="section" id="performance">
-    <p class="section-label">2025 Performance</p>
-    <h2 class="section-heading">€33,943 net rental income at 90% occupancy.</h2>
-    <p class="section-lede">
-      Verified by full booking history and operating-cost ledger. A complete rental-performance
-      dossier transfers with the sale.
-    </p>
-
-    <div class="finance-grid">
-      <!-- 2025 P&L -->
-      <div class="finance-card">
-        <h3>2025 Income Statement</h3>
-        <div class="finance-row"><span>Gross revenue</span><span>€39,933</span></div>
-        <div class="finance-row deduct"><span>Less Airbnb commission (~15%)</span><span>−€5,990</span></div>
-        <div class="finance-row"><span>Net rental income</span><span>€33,943</span></div>
-        <div class="finance-row deduct"><span>Less operating costs</span><span>−€6,150</span></div>
-        <div class="finance-row total"><span>Net Operating Income</span><span>~€27,789</span></div>
-      </div>
-
-      <!-- Operating costs -->
-      <div class="finance-card">
-        <h3>Operating Costs (Annual)</h3>
-        <div class="finance-row"><span>Electricity</span><span>€2,027</span></div>
-        <div class="finance-row"><span>Water</span><span>€320</span></div>
-        <div class="finance-row"><span>Alarm (monitored)</span><span>€624</span></div>
-        <div class="finance-row"><span>Property insurance</span><span>€427</span></div>
-        <div class="finance-row"><span>Internet</span><span>€565</span></div>
-        <div class="finance-row"><span>Community fees (HOA)</span><span>€300</span></div>
-        <div class="finance-row"><span>IBI + basura (property tax + waste)</span><span>€481</span></div>
-        <div class="finance-row"><span>Cleaning + laundry (~6 turnovers / yr)</span><span>€1,410</span></div>
-        <div class="finance-row total"><span>Total</span><span>~€6,150</span></div>
-        <div class="finance-callout">
-          HOA at €300 / year — among the lowest in Ibiza apartment stock.
-        </div>
-      </div>
-    </div>
-
-    <!-- Seasonal rate card -->
-    <p class="section-label" style="margin-top: 32px;">Seasonal Rate Card</p>
-    <h2 class="section-heading">Monthly rates by season.</h2>
-    <table class="rate-table" style="margin-top: 32px;">
-      <thead>
-        <tr>
-          <th>Season</th>
-          <th>Months</th>
-          <th style="text-align:right;">Monthly Rate (Gross)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Peak summer</td><td>Jul – Aug</td><td class="amount">€7,000 – €7,500</td></tr>
-        <tr><td>High shoulder</td><td>Jun, Sep</td><td class="amount">€5,500 – €6,000</td></tr>
-        <tr><td>Late winter shoulder</td><td>Mar – early May</td><td class="amount">€4,000 – €4,700</td></tr>
-        <tr><td>Shoulder</td><td>May, Oct</td><td class="amount">€4,200 – €5,000</td></tr>
-        <tr><td>Off-season</td><td>Nov – Feb</td><td class="amount">€2,000 – €2,500</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- 2026 CONFIRMED BOOKINGS -->
-  <section class="section sand" id="bookings">
-    <div class="inner">
-      <p class="section-label">2026 Already-Confirmed Bookings</p>
-      <h2 class="section-heading">Five bookings already on the books for 2026.</h2>
-      <p class="section-lede">
-        Income transfers to the new owner per closing date. Plus typical winter rental performance
-        of €2,000–€2,500 / month from November through February.
-      </p>
-
-      <div class="bookings-grid">
-        <div class="booking-row">
-          <span>Period</span>
-          <span>Status</span>
-          <span style="text-align:right;">Gross</span>
-          <span style="text-align:right;">Net</span>
-        </div>
-        <div class="booking-row">
-          <span>Mar 14 – Apr 30</span>
-          <span class="booking-status completed">Completed</span>
-          <span class="booking-amount gross" style="text-align:right;">€4,681</span>
-          <span class="booking-amount net" style="text-align:right;">€3,979</span>
-        </div>
-        <div class="booking-row">
-          <span>Apr 29 – May 31</span>
-          <span class="booking-status current">Current</span>
-          <span class="booking-amount gross" style="text-align:right;">€4,508</span>
-          <span class="booking-amount net" style="text-align:right;">€3,832</span>
-        </div>
-        <div class="booking-row">
-          <span>May 31 – Jul 2</span>
-          <span class="booking-status">Confirmed</span>
-          <span class="booking-amount gross" style="text-align:right;">€5,981</span>
-          <span class="booking-amount net" style="text-align:right;">€5,084</span>
-        </div>
-        <div class="booking-row">
-          <span>Jul 20 – Aug 27</span>
-          <span class="booking-status">Confirmed</span>
-          <span class="booking-amount gross" style="text-align:right;">€7,128</span>
-          <span class="booking-amount net" style="text-align:right;">€6,059</span>
-        </div>
-        <div class="booking-row">
-          <span>Aug 29 – Oct 3</span>
-          <span class="booking-status">Confirmed</span>
-          <span class="booking-amount gross" style="text-align:right;">€6,579</span>
-          <span class="booking-amount net" style="text-align:right;">€5,592</span>
-        </div>
-        <div class="booking-row summary">
-          <span>Total Confirmed 2026</span>
-          <span></span>
-          <span style="text-align:right;">~€28,876</span>
-          <span style="text-align:right;">€24,545</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERSONAL USE -->
-  <section class="personal-use">
-    <div class="personal-use-inner">
-      <div class="personal-use-mark">"</div>
-      <div class="personal-use-body">
-        <p>
-          <strong>A 17-Day Window for the New Owner</strong>
-          This year, July 2–19 sits open in the calendar — a window between confirmed bookings
-          that can't be filled given the 32-night minimum. The new owner can take possession in
-          time to enjoy 17 days at peak Ibiza summer and collect rental income through October 3rd
-          and beyond.
-        </p>
       </div>
     </div>
   </section>
@@ -1289,6 +1347,342 @@
           <img src="images/figueretes/gallery-beach.jpg" alt="Figueretes Beach across the street" loading="lazy" />
           <span class="gallery-caption">Figueretes Beach · Across the Street</span>
         </div>
+
+        <!-- Lightbox-only photos: hidden from grid, surfaced when the lightbox opens.
+             Click any visible photo above and use the arrows or arrow keys to walk through the full set. -->
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-3.jpg" alt="Living room with terrace doors" loading="lazy" />
+          <span class="gallery-caption">Living Room · Open Plan</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-2.jpg" alt="Living room detail with plants and books" loading="lazy" />
+          <span class="gallery-caption">Living Room · Detail</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-4.jpg" alt="Dining area" loading="lazy" />
+          <span class="gallery-caption">Dining</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-12.jpg" alt="Dining and entryway" loading="lazy" />
+          <span class="gallery-caption">Dining · Entryway</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-8.jpg" alt="Kitchen and dining alternate angle" loading="lazy" />
+          <span class="gallery-caption">Kitchen · Open Layout</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-9.jpg" alt="Kitchen with shelving" loading="lazy" />
+          <span class="gallery-caption">Kitchen · Shelving</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-11.jpg" alt="Kitchen counters and details" loading="lazy" />
+          <span class="gallery-caption">Kitchen · Counters</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-14.jpg" alt="Master bedroom detail" loading="lazy" />
+          <span class="gallery-caption">Master Bedroom · Detail</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-15.jpg" alt="Master bedroom pillows" loading="lazy" />
+          <span class="gallery-caption">Master Bedroom · Pillows</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-16.jpg" alt="Master bedroom alternate angle" loading="lazy" />
+          <span class="gallery-caption">Master Bedroom · Alt View</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-17.jpg" alt="Master bedroom with mirror" loading="lazy" />
+          <span class="gallery-caption">Master Bedroom · Mirror</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-18.jpg" alt="Bathroom doorway" loading="lazy" />
+          <span class="gallery-caption">Bathroom · Entry</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-20.jpg" alt="Second bedroom" loading="lazy" />
+          <span class="gallery-caption">Second Bedroom</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-21.jpg" alt="Second bedroom with art" loading="lazy" />
+          <span class="gallery-caption">Second Bedroom · Detail</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-23.jpg" alt="Second bedroom alternate angle" loading="lazy" />
+          <span class="gallery-caption">Second Bedroom · Alt</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-24.jpg" alt="Second bathroom" loading="lazy" />
+          <span class="gallery-caption">Second Bathroom</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-25.jpg" alt="Third bedroom" loading="lazy" />
+          <span class="gallery-caption">Third Bedroom</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-27.jpg" alt="Third bedroom with desk and chair" loading="lazy" />
+          <span class="gallery-caption">Third Bedroom · Workspace</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-22.jpg" alt="In-room safe" loading="lazy" />
+          <span class="gallery-caption">In-Room Safe</span>
+        </div>
+        <div class="gallery-item lightbox-only">
+          <img src="images/figueretes/extras/FIGUERETAS-32-34.jpg" alt="Figueretes Beach wider view" loading="lazy" />
+          <span class="gallery-caption">Figueretes Beach · Promenade</span>
+        </div>
+      </div>
+
+      <p class="gallery-more">
+        <strong>28 photos total</strong> &nbsp;·&nbsp; Click any image above to view the full set
+      </p>
+    </div>
+  </section>
+
+  <!-- PROPERTY SNAPSHOT -->
+  <section class="section" id="snapshot">
+    <p class="section-label">The Property</p>
+    <h2 class="section-heading">A turnkey ground-floor apartment, two minutes from the Balearic Sea.</h2>
+    <div class="snapshot-grid">
+      <div>
+        <ul class="snapshot-list">
+          <li><span>Interior</span><span>94 m²</span></li>
+          <li><span>Private Deeded Terrace</span><span>75 m²</span></li>
+          <li><span>Bedrooms</span><span>3 (one en-suite)</span></li>
+          <li><span>Bathrooms</span><span>2</span></li>
+          <li><span>Floor</span><span>Ground floor</span></li>
+          <li><span>Renovation</span><span>Fully renovated 2022</span></li>
+          <li><span>Furniture</span><span>Fully furnished &amp; turnkey</span></li>
+          <li><span>Climate</span><span>A-rated heating &amp; cooling</span></li>
+          <li><span>Compliance</span><span>Seasonal rental (32-night min, LAU)</span></li>
+        </ul>
+      </div>
+      <!-- Snapshot photo: living room with terrace doors (FIGUERETAS 32-3) at images/figueretes/snapshot.jpg -->
+      <div class="snapshot-image" role="img" aria-label="Figueretes apartment living room with terrace doors"></div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="section location" id="location">
+    <p class="section-label">Location</p>
+    <h2 class="section-heading">Figueretes, Ibiza.</h2>
+    <div class="location-grid">
+      <div class="location-copy">
+        <p class="address">
+          Avenida Pedro Matutes Noguera 16
+        </p>
+        <ul class="location-list">
+          <li>Across from Figueretes Beach and the Paseo Marítimo</li>
+          <li>Seaside promenade with restaurants and cafés at the doorstep</li>
+          <li>Walking distance to Ibiza Town, Dalt Vila and Marina Botafoch</li>
+          <li>Year-round neighbourhood — drives extended-stay demand outside summer</li>
+          <li>8 minutes by car to Ibiza Airport</li>
+        </ul>
+      </div>
+      <div class="location-map">
+        <!-- Map pin at exact apartment coordinates. The "Open in Maps" overlay always works
+             (including in localhost preview where the embedded iframe's click-through is blocked). -->
+        <a class="map-open" href="https://www.google.com/maps/search/?api=1&query=38.903587,1.419060" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=38.903587,1.419060&z=17&output=embed"
+          title="Map of Figueretes apartment, Ibiza"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT THESIS -->
+  <section class="section dark" id="thesis">
+    <div class="inner" style="padding: 0 60px;">
+      <p class="section-label">Investment Thesis</p>
+      <h2 class="section-heading">Four reasons this asset works.</h2>
+      <p class="section-lede">
+        A turnkey, remote-managed apartment — fully equipped and built for owners who want
+        returns without on-island presence.
+      </p>
+    </div>
+    <div class="inner" style="padding: 0 60px;">
+      <div class="thesis-grid">
+        <div class="thesis-card">
+          <p class="thesis-num">01</p>
+          <h3 class="thesis-title">Turnkey from day one.</h3>
+          <p class="thesis-body">
+            Fully furnished apartment: sofa with TV, dining for four, complete kitchen with
+            dishwasher, oven/stove, microwave, washer/dryer combo; three double beds (one a
+            Murphy bed that converts to a desk); terrace furniture and decor throughout.
+            Established cleaning vendor (€150 / turnover) and laundry pickup (€85 / turnover)
+            continue with new ownership.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">02</p>
+          <h3 class="thesis-title">Remote operations.</h3>
+          <p class="thesis-body">
+            Smart keypad check-in lets the new owner operate from anywhere in the world.
+            Existing systems already proven over multiple seasons. No on-island presence required.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">03</p>
+          <h3 class="thesis-title">Registered and transferable.</h3>
+          <p class="thesis-body">
+            Holds Spain's seasonal-rental registration (32-night minimum, governed by the Spanish
+            Urban Lease Law) and operates in full compliance with current Balearic regulation. The
+            National Rental Registration (NRA) re-registers to the new owner at closing through a
+            straightforward administrative process — a meaningful advantage in a tightening market
+            where new registrations are increasingly hard to obtain.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">04</p>
+          <h3 class="thesis-title">Built for long stays.</h3>
+          <p class="thesis-body">
+            50-night average guest stays mean roughly 6 turnovers per year, vs. the 30–50 of
+            a nightly let. Higher-quality long-stay tenants — executives, remote-working families —
+            choose months, not weekends. Lower wear, fewer cleaning cycles, predictable cashflow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2025 PERFORMANCE + OPERATING COSTS -->
+  <section class="section" id="performance">
+    <p class="section-label">2025 Performance</p>
+    <h2 class="section-heading">€33,943 net rental income at 90% occupancy.</h2>
+    <p class="section-lede">
+      Verified by full booking history and operating-cost ledger. A complete rental-performance
+      dossier transfers with the sale.
+    </p>
+
+    <div class="finance-grid">
+      <!-- 2025 P&L -->
+      <div class="finance-card">
+        <h3>2025 Income Statement</h3>
+        <div class="finance-row"><span>Gross revenue</span><span>€34,994</span></div>
+        <div class="finance-row deduct"><span>Less Airbnb host fee (3%)</span><span>−€1,051</span></div>
+        <div class="finance-row"><span>Net rental income</span><span>€33,943</span></div>
+        <div class="finance-row deduct"><span>Less operating costs</span><span>−€6,150</span></div>
+        <div class="finance-row total"><span>Net Operating Income</span><span>€27,793</span></div>
+      </div>
+
+      <!-- Operating costs -->
+      <div class="finance-card">
+        <h3>Operating Costs (Annual)</h3>
+        <div class="finance-row"><span>Electricity</span><span>€2,027</span></div>
+        <div class="finance-row"><span>Water</span><span>€320</span></div>
+        <div class="finance-row"><span>Alarm (monitored)</span><span>€624</span></div>
+        <div class="finance-row"><span>Property insurance</span><span>€427</span></div>
+        <div class="finance-row"><span>Internet</span><span>€565</span></div>
+        <div class="finance-row"><span>Community fees (HOA)</span><span>€300</span></div>
+        <div class="finance-row"><span>IBI + basura (property tax + waste)</span><span>€481</span></div>
+        <div class="finance-row"><span>Cleaning + laundry (6 turnovers / yr)</span><span>€1,410</span></div>
+        <div class="finance-row total"><span>Total</span><span>€6,150</span></div>
+        <div class="finance-callout">
+          HOA at €300 / year — among the lowest in Ibiza apartment stock.
+        </div>
+      </div>
+    </div>
+
+    <!-- Seasonal rate card -->
+    <p class="section-label" style="margin-top: 32px;">Seasonal Rate Card</p>
+    <h2 class="section-heading">Monthly rates by season.</h2>
+    <table class="rate-table" style="margin-top: 32px;">
+      <thead>
+        <tr>
+          <th>Season</th>
+          <th>Months</th>
+          <th style="text-align:right;">Monthly Rate (Gross)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Peak summer</td><td>Jul – Aug</td><td class="amount">€7,000 – €7,500</td></tr>
+        <tr><td>High shoulder</td><td>Jun, Sep</td><td class="amount">€5,500 – €6,000</td></tr>
+        <tr><td>Late winter shoulder</td><td>April – early May</td><td class="amount">€4,000 – €4,700</td></tr>
+        <tr><td>Shoulder</td><td>May, Oct</td><td class="amount">€4,200 – €5,000</td></tr>
+        <tr><td>Off-season</td><td>Nov – Mar</td><td class="amount">€2,000 – €2,500</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 2026 CONFIRMED BOOKINGS -->
+  <section class="section sand" id="bookings">
+    <div class="inner">
+      <p class="section-label">Calendar</p>
+      <h2 class="section-heading">2026 confirmed summer bookings.</h2>
+      <p class="section-lede">
+        Income transfers to the new owner per closing date. Plus typical winter rental performance
+        of €2,000–€2,500 / month from November through March.
+      </p>
+
+      <div class="bookings-grid">
+        <div class="booking-row">
+          <span>Period</span>
+          <span>Status</span>
+          <span style="text-align:right;">Gross</span>
+          <span style="text-align:right;">Net</span>
+        </div>
+        <div class="booking-row">
+          <span>Apr 29 – May 31</span>
+          <span class="booking-status current">Current</span>
+          <span class="booking-amount gross" style="text-align:right;">€3,951</span>
+          <span class="booking-amount net" style="text-align:right;">€3,832</span>
+        </div>
+        <div class="booking-row">
+          <span>May 31 – Jul 2</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="booking-amount gross" style="text-align:right;">€5,241</span>
+          <span class="booking-amount net" style="text-align:right;">€5,084</span>
+        </div>
+        <div class="booking-row">
+          <span>Jul 20 – Aug 27</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="booking-amount gross" style="text-align:right;">€6,246</span>
+          <span class="booking-amount net" style="text-align:right;">€6,059</span>
+        </div>
+        <div class="booking-row">
+          <span>Aug 29 – Oct 3</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="booking-amount gross" style="text-align:right;">€5,766</span>
+          <span class="booking-amount net" style="text-align:right;">€5,592</span>
+        </div>
+        <div class="booking-row summary">
+          <span>Total Confirmed</span>
+          <span></span>
+          <span style="text-align:right;">€21,204</span>
+          <span style="text-align:right;">€20,567</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL USE / OWNER WINDOW -->
+  <section class="personal-use">
+    <div class="personal-use-inner">
+      <div>
+        <p class="personal-use-eyebrow">A Window for the New Owner</p>
+        <div class="personal-use-dates">
+          July 2 – 19
+          <em>17 days at peak Ibiza summer</em>
+        </div>
+        <span class="personal-use-tag">2026 · Owner Use</span>
+      </div>
+      <div class="personal-use-body">
+        <h3 class="personal-use-headline">
+          Take possession, spend two weeks at peak summer, and let the calendar
+          <em>pay for the year.</em>
+        </h3>
+        <p>
+          A 17-day window sits in the 2026 calendar between confirmed bookings — deliberately
+          held back for the current owner's personal use, and now passing to the new one. Time
+          the closing right and the new owner steps onto the terrace for two weeks of high-season
+          Ibiza, then hands the keys back to a calendar that runs through October 3 with confirmed
+          bookings and rolls into a steady winter let from November onward.
+        </p>
+        <p>
+          It is, in plain terms, a property that hosts you on opening day and earns for the
+          rest of the year.
+        </p>
       </div>
     </div>
   </section>
@@ -1301,9 +1695,9 @@
       <li>Fully furnished and equipped (full inventory available on request)</li>
       <li>Established cleaning &amp; laundry vendors (warm introduction)</li>
       <li>Smart keypad lock system</li>
-      <li>5 confirmed 2026 bookings (income transfers per closing date)</li>
+      <li>Confirmed 2026 summer bookings transfer to the new owner at closing</li>
       <li>Rental-performance dossier with full booking history</li>
-      <li>Complete review portfolio</li>
+      <li>Marketing and listing assets (professional photos, copy, and pricing notes)</li>
     </ul>
   </section>
 
@@ -1330,7 +1724,7 @@
           <div class="reviews-stat-num" style="font-size:1.4rem;">May 2023 – Present</div>
           <div class="reviews-stat-label">Continuous Track Record</div>
         </div>
-        <a class="reviews-airbnb-link" href="https://www.airbnb.com/rooms/799794154536630071" target="_blank" rel="noopener">
+        <a class="reviews-airbnb-link" href="https://airbnb.com/h/xuria-figueretes" target="_blank" rel="noopener">
           View on Airbnb →
         </a>
       </div>
@@ -1433,7 +1827,7 @@
 
       <p class="reviews-more">
         Show all 13 reviews →
-        <a href="https://www.airbnb.com/rooms/799794154536630071" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; margin-left: 8px;">on Airbnb</a>
+        <a href="https://airbnb.com/h/xuria-figueretes" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; margin-left: 8px;">on Airbnb</a>
       </p>
     </div>
   </section>
@@ -1449,19 +1843,16 @@
           operating-cost detail, full review portfolio, photo set and inventory — typically within
           one business day. All enquiries handled with discretion.
         </p>
-        <!-- OWNER: replace WhatsApp URL placeholder. Format: https://wa.me/E164NUMBER (no plus, no spaces) -->
-        <a class="lead-whatsapp" href="https://wa.me/PLACEHOLDER" target="_blank" rel="noopener">
+        <a class="lead-whatsapp" href="https://wa.me/34686108095" target="_blank" rel="noopener">
           Message on WhatsApp
         </a>
       </div>
 
-      <!-- OWNER: chose mailto: form to keep the page truly static (no JS dependency on EmailJS for this off-index page).
-           Replace OWNER_EMAIL with your real address in the action attribute below.
-           If you'd rather route this through the existing EmailJS service used on index.html, swap the form for the
-           same emailjs.sendForm pattern and add a new template — straightforward port. -->
-      <form class="lead-form" id="investor-form"
-            action="mailto:OWNER_EMAIL"
-            method="post" enctype="text/plain">
+      <!-- Routes through the same EmailJS service the main index.html form uses (xuriare@gmail.com).
+           The investor form has more fields than the existing template, so phone / country / send_pack
+           are appended into the {{message}} variable; {{market}} is used as a tag so you can tell
+           which form sent the enquiry. -->
+      <form class="lead-form" id="investor-form" novalidate>
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
@@ -1490,7 +1881,8 @@
           <input type="checkbox" name="send_pack" value="yes" checked />
           <span>Send me the full investor pack PDF (booking ledger, operating costs, photo set, inventory)</span>
         </label>
-        <button type="submit" class="lead-submit">Send Enquiry</button>
+        <button type="submit" class="lead-submit" id="investor-submit">Send Enquiry</button>
+        <p id="investor-form-status" style="margin-top:12px;font-size:0.72rem;letter-spacing:0.05em;display:none;"></p>
       </form>
     </div>
   </section>
@@ -1509,12 +1901,165 @@
     <span class="footer-copy" style="color:rgba(255,255,255,0.25);">Figueretes · Ibiza</span>
   </footer>
 
+  <!-- EmailJS SDK (same account as index.html) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- CONFIRMATION MODAL -->
+  <div class="confirm-modal" id="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <div class="confirm-card">
+      <button class="confirm-x" id="confirm-x" aria-label="Close">×</button>
+      <div class="confirm-mark">✓</div>
+      <p class="confirm-eyebrow">Enquiry Received</p>
+      <h3 class="confirm-title" id="confirm-title">Thank you<span id="confirm-name"></span>.</h3>
+      <p class="confirm-body">
+        Your enquiry has been sent. We'll be in touch within <strong>one business day</strong>
+        — typically with the full investor pack, photo set, and any specific information
+        you've asked for.
+        <br><br>
+        Look out for an email from <strong>xuriare@gmail.com</strong>.
+      </p>
+      <button class="confirm-close" id="confirm-close">Close</button>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lb-close" aria-label="Close">×</button>
+    <button class="lightbox-nav prev" id="lb-prev" aria-label="Previous image">‹</button>
+    <img id="lb-img" alt="" />
+    <button class="lightbox-nav next" id="lb-next" aria-label="Next image">›</button>
+    <span class="lightbox-caption" id="lb-caption"></span>
+  </div>
+
   <script>
     // ── NAV scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
+
+    // ── CONFIRMATION MODAL (close handlers)
+    (() => {
+      const modal = document.getElementById('confirm-modal');
+      const close = () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        // Reset the submit button so the form is reusable for another enquiry.
+        const btn = document.getElementById('investor-submit');
+        if (btn) { btn.textContent = 'Send Enquiry'; btn.disabled = false; }
+      };
+      document.getElementById('confirm-close').addEventListener('click', close);
+      document.getElementById('confirm-x').addEventListener('click', close);
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) close();
+      });
+    })();
+
+    // ── INVESTOR FORM (routes via EmailJS, same account as index.html)
+    (() => {
+      const EMAILJS_PUBLIC_KEY  = 'OtOMxVtD7z8qdogiD';
+      const EMAILJS_SERVICE_ID  = 'service_seeu75b';
+      const EMAILJS_TEMPLATE_ID = 'template_dr2p5gc';
+
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      }
+
+      const form   = document.getElementById('investor-form');
+      const btn    = document.getElementById('investor-submit');
+      const status = document.getElementById('investor-form-status');
+      if (!form) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.name.value.trim() || !form.email.value.trim()) {
+          status.textContent = 'Name and email are required.';
+          status.style.color = '#d8b08c';
+          status.style.display = 'block';
+          return;
+        }
+
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        status.style.display = 'none';
+
+        // Send all fields as their own template variables so the EmailJS template can
+        // render them in dedicated rows (phone, country, send_pack), not stuffed into message.
+        // The template's {{message}} stays clean — just the prospect's words.
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          name:      form.name.value.trim(),
+          email:     form.email.value.trim(),
+          phone:     form.phone.value.trim()   || '—',
+          country:   form.country.value.trim() || '—',
+          market:    'Figueretes Investment Listing',
+          message:   form.message.value.trim() || '(no additional message)',
+          send_pack: form.send_pack.checked ? 'Yes — please send the full investor pack PDF' : 'No',
+          source:    'Figueretes Investment Listing'
+        })
+        .then(() => {
+          // Show the styled confirmation modal instead of inline text.
+          const firstName = (form.name.value.trim().split(/\s+/)[0]) || '';
+          const nameSpan  = document.getElementById('confirm-name');
+          if (nameSpan) nameSpan.textContent = firstName ? ', ' + firstName : '';
+          const modal = document.getElementById('confirm-modal');
+          modal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          status.style.display = 'none';
+          btn.textContent = 'Sent ✓';
+          form.reset();
+        })
+        .catch(() => {
+          status.textContent = 'Something went wrong. Please email us directly at xuriare@gmail.com.';
+          status.style.color = '#d8a07a';
+          status.style.display = 'block';
+          btn.textContent = 'Send Enquiry';
+          btn.disabled = false;
+        });
+      });
+    })();
+
+    // ── LIGHTBOX
+    (() => {
+      const lb        = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lb-img');
+      const lbCaption = document.getElementById('lb-caption');
+      const items     = Array.from(document.querySelectorAll('.gallery-item'));
+      let current     = 0;
+
+      const show = (i) => {
+        current = (i + items.length) % items.length;
+        const item = items[current];
+        const img  = item.querySelector('img');
+        const cap  = item.querySelector('.gallery-caption');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCaption.textContent = cap ? cap.textContent : '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const close = () => {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      };
+
+      items.forEach((item, i) => {
+        item.addEventListener('click', () => show(i));
+      });
+
+      document.getElementById('lb-close').addEventListener('click', close);
+      document.getElementById('lb-prev').addEventListener('click', (e) => { e.stopPropagation(); show(current - 1); });
+      document.getElementById('lb-next').addEventListener('click', (e) => { e.stopPropagation(); show(current + 1); });
+      lb.addEventListener('click', (e) => { if (e.target === lb || e.target === lbImg) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft')   show(current - 1);
+        if (e.key === 'ArrowRight')  show(current + 1);
+      });
+    })();
   </script>
 </body>
 </html>

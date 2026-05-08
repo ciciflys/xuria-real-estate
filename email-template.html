@@ -1,0 +1,167 @@
+<!--
+  XURIA — INVESTOR ENQUIRY EMAIL TEMPLATE
+  =======================================
+  Paste this entire file (or just the <body> block) into:
+  EmailJS dashboard → Email Templates → template_dr2p5gc → Content tab
+  Replace whatever HTML is currently there.
+
+  Settings to keep on the EmailJS template:
+    To Email:    xuriare@gmail.com
+    From Name:   Xuria Real Estate
+    Reply To:    {{email}}     ← important: lets you hit "Reply" and reach the prospect directly
+    Subject:     New Enquiry — {{name}} · {{source}}
+
+  Variables this template uses (all sent by figueretes.html):
+    {{name}} {{email}} {{phone}} {{country}} {{message}} {{market}} {{send_pack}} {{source}}
+
+  The main index.html form sends only {{name}} {{email}} {{market}} {{message}}.
+  Empty rows below render with "—" thanks to defaults, so the same template works
+  cleanly for both forms.
+
+  Notes on email-client compatibility:
+   • Layout uses tables (Outlook-safe).
+   • Styles are inlined (Gmail-safe).
+   • Google Fonts are linked at the top — Apple Mail / iOS Mail / Outlook for Mac
+     will render Cormorant Garamond + Montserrat. Gmail web/Android falls back to
+     Georgia + Helvetica, which is the closest match to the site's typography.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Enquiry — Xuria Real Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#faf8f4;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1a18;-webkit-font-smoothing:antialiased;">
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#faf8f4;padding:40px 16px;">
+    <tr>
+      <td align="center">
+
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border:1px solid #e8e2d6;">
+
+          <!-- Header -->
+          <tr>
+            <td style="padding:44px 50px 30px;border-bottom:1px solid #e8e2d6;">
+              <p style="margin:0 0 14px;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.4em;color:#c9a96e;text-transform:uppercase;">
+                New Investor Enquiry
+              </p>
+              <p style="margin:0;font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-size:34px;font-weight:300;letter-spacing:0.3em;color:#1a1a18;text-transform:uppercase;line-height:1;">
+                Xuria
+              </p>
+              <p style="margin:10px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;font-style:italic;color:#6b6b60;">
+                {{source}}
+              </p>
+            </td>
+          </tr>
+
+          <!-- Prospect identity -->
+          <tr>
+            <td style="padding:36px 50px 8px;">
+              <p style="margin:0 0 6px;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;color:#c9a96e;text-transform:uppercase;">
+                From
+              </p>
+              <p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:300;letter-spacing:0.01em;color:#1a1a18;line-height:1.2;">
+                {{name}}
+              </p>
+              <p style="margin:8px 0 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#6b6b60;">
+                <a href="mailto:{{email}}" style="color:#c9a96e;text-decoration:none;border-bottom:1px solid #c9a96e;padding-bottom:2px;">{{email}}</a>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Details rows -->
+          <tr>
+            <td style="padding:32px 50px 8px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e8e2d6;">
+                <tr>
+                  <td style="padding:16px 0;border-bottom:1px solid #e8e2d6;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.28em;color:#6b6b60;text-transform:uppercase;width:140px;vertical-align:top;">
+                    Phone
+                  </td>
+                  <td style="padding:16px 0;border-bottom:1px solid #e8e2d6;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#1a1a18;vertical-align:top;">
+                    {{phone}}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 0;border-bottom:1px solid #e8e2d6;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.28em;color:#6b6b60;text-transform:uppercase;vertical-align:top;">
+                    Country
+                  </td>
+                  <td style="padding:16px 0;border-bottom:1px solid #e8e2d6;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#1a1a18;vertical-align:top;">
+                    {{country}}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 0;border-bottom:1px solid #e8e2d6;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.28em;color:#6b6b60;text-transform:uppercase;vertical-align:top;">
+                    Market
+                  </td>
+                  <td style="padding:16px 0;border-bottom:1px solid #e8e2d6;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#1a1a18;vertical-align:top;">
+                    {{market}}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:16px 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.28em;color:#6b6b60;text-transform:uppercase;vertical-align:top;">
+                    Investor Pack
+                  </td>
+                  <td style="padding:16px 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#1a1a18;vertical-align:top;">
+                    {{send_pack}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Message block -->
+          <tr>
+            <td style="padding:24px 50px 40px;">
+              <p style="margin:0 0 14px;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.3em;color:#c9a96e;text-transform:uppercase;">
+                Message
+              </p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="padding:26px 30px;background:#f5f0e8;border-left:2px solid #c9a96e;font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-size:17px;font-style:italic;line-height:1.7;color:#1a1a18;">
+                    {{message}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Reply CTA -->
+          <tr>
+            <td style="padding:0 50px 48px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="background:#1a1a18;">
+                    <a href="mailto:{{email}}?subject=Re%3A%20Your%20Xuria%20enquiry" style="display:inline-block;padding:16px 36px;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:#ffffff;text-decoration:none;">
+                      Reply to {{name}}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:18px 0 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#6b6b60;line-height:1.7;">
+                Replying to this email goes directly to <a href="mailto:{{email}}" style="color:#c9a96e;text-decoration:none;">{{email}}</a>.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:32px 50px;background:#1a1a18;text-align:center;">
+              <p style="margin:0;font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-size:16px;font-weight:300;letter-spacing:0.4em;color:rgba(255,255,255,0.78);text-transform:uppercase;">
+                Xuria Real Estate
+              </p>
+              <p style="margin:8px 0 0;font-family:'Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:9px;font-weight:400;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;">
+                Ibiza &nbsp;·&nbsp; Miami
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

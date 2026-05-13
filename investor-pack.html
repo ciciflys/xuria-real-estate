@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Figueretes Investment Property — Investor Pack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:   #f5f0e8;
+      --cream:  #faf8f4;
+      --dark:   #1a1a18;
+      --gold:   #c9a96e;
+      --mid:    #6b6b60;
+      --line:   rgba(26,26,24,0.12);
+    }
+
+    @page { size: A4; margin: 0; }
+
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      font-weight: 300;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+    }
+    .page:last-of-type { page-break-after: auto; }
+    .page.dark { background: var(--dark); color: #fff; }
+    .page.cream { background: var(--cream); }
+    .page.sand { background: var(--sand); }
+
+    .page-inner {
+      padding: 22mm 20mm;
+      height: 100%;
+    }
+
+    .eyebrow {
+      font-size: 7.5pt;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12pt;
+      font-weight: 500;
+    }
+    .heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      letter-spacing: 0.015em;
+      line-height: 1.18;
+      color: var(--dark);
+      margin-bottom: 14pt;
+    }
+    .page.dark .heading { color: #fff; }
+    .h-xl  { font-size: 44pt; }
+    .h-lg  { font-size: 28pt; }
+    .h-md  { font-size: 19pt; }
+
+    .lede {
+      font-size: 10.5pt;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 130mm;
+      margin-bottom: 18pt;
+    }
+    .page.dark .lede { color: rgba(255,255,255,0.7); }
+
+    .rule {
+      width: 36pt;
+      height: 1pt;
+      background: var(--gold);
+      margin: 0 0 18pt;
+    }
+
+    .footer-mark {
+      position: absolute;
+      bottom: 12mm;
+      left: 20mm;
+      right: 20mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .page.dark .footer-mark { color: rgba(255,255,255,0.45); }
+    .footer-mark .brand {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.4em;
+      font-weight: 400;
+      font-size: 9pt;
+    }
+    .page.dark .footer-mark .brand { color: rgba(255,255,255,0.7); }
+
+    /* ─── COVER ─── */
+    .cover {
+      background: var(--dark);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(26,26,24,0.30) 0%, rgba(26,26,24,0.78) 100%),
+        url('images/figueretes/extras/Boho-luxe-stage-+-plants-2.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .cover-content {
+      position: relative;
+      height: 297mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22mm 20mm;
+    }
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .cover-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 300;
+    }
+    .cover-tag {
+      font-size: 7pt;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 6pt 12pt;
+      border: 1px solid rgba(201,169,110,0.5);
+    }
+    .cover-headline {
+      max-width: 150mm;
+    }
+    .cover-eyebrow {
+      font-size: 8pt;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18pt;
+      font-weight: 500;
+    }
+    .cover-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 60pt;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 0.98;
+      color: #fff;
+      margin-bottom: 18pt;
+    }
+    .cover-title em {
+      font-style: italic;
+      color: rgba(255,255,255,0.78);
+    }
+    .cover-subtitle {
+      font-size: 11pt;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.78);
+      max-width: 130mm;
+      margin-bottom: 22pt;
+    }
+    .cover-price {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32pt;
+      color: #fff;
+      padding: 10pt 0;
+      border-top: 1px solid rgba(201,169,110,0.55);
+      border-bottom: 1px solid rgba(201,169,110,0.55);
+    }
+    .cover-price small {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 6.5pt;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4pt;
+    }
+    .cover-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ─── STATS PAGE ─── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 18pt;
+      border-top: 1px solid var(--line);
+    }
+    .stat {
+      padding: 16pt 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .stat:nth-child(odd) { padding-right: 24pt; border-right: 1px solid var(--line); }
+    .stat:nth-child(even) { padding-left: 24pt; }
+    .stat-label {
+      font-size: 7.5pt;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22pt;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 22pt;
+      margin-top: 18pt;
+    }
+    .property-list {
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .property-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12pt 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 9.5pt;
+    }
+    .property-list li span:first-child {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .property-list li span:last-child { color: var(--dark); }
+    .property-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ─── LOCATION ─── */
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24pt;
+      margin-top: 12pt;
+    }
+    .address-block {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15pt;
+      line-height: 1.45;
+      letter-spacing: 0.01em;
+      color: var(--dark);
+      margin-bottom: 18pt;
+      padding-bottom: 14pt;
+      border-bottom: 1px solid var(--line);
+    }
+    .location-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10pt;
+    }
+    .location-list li {
+      font-size: 9.5pt;
+      line-height: 1.6;
+      color: var(--mid);
+      padding-left: 16pt;
+      position: relative;
+    }
+    .location-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9pt;
+      width: 10pt;
+      height: 1pt;
+      background: var(--gold);
+    }
+    .location-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 130mm;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ─── THESIS ─── */
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14pt;
+      margin-top: 14pt;
+    }
+    .thesis-card {
+      padding: 18pt 18pt;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+    }
+    .thesis-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9pt;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 10pt;
+    }
+    .thesis-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16pt;
+      font-weight: 400;
+      line-height: 1.22;
+      color: #fff;
+      margin-bottom: 10pt;
+    }
+    .thesis-body {
+      font-size: 8.8pt;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ─── PERFORMANCE ─── */
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22pt;
+      margin-top: 14pt;
+    }
+    .finance-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 18pt;
+    }
+    .finance-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13pt;
+      font-weight: 400;
+      margin-bottom: 12pt;
+    }
+    .finance-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8pt 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 9pt;
+    }
+    .finance-row:last-child { border-bottom: none; }
+    .finance-row span:first-child { color: var(--mid); }
+    .finance-row.deduct span:last-child { color: #b08855; }
+    .finance-row.total {
+      border-top: 1px solid var(--gold);
+      border-bottom: none;
+      padding-top: 12pt;
+      margin-top: 4pt;
+    }
+    .finance-row.total span:first-child {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    .finance-row.total span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      color: var(--dark);
+    }
+    .callout {
+      margin-top: 12pt;
+      padding: 10pt 12pt;
+      background: rgba(201,169,110,0.12);
+      border-left: 2pt solid var(--gold);
+      font-size: 8.5pt;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ─── RATE CARD ─── */
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 12pt;
+    }
+    .rate-table th, .rate-table td {
+      text-align: left;
+      padding: 11pt 8pt;
+      border-bottom: 1px solid var(--line);
+    }
+    .rate-table th {
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .rate-table td.amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11pt;
+      color: var(--dark);
+      text-align: right;
+    }
+
+    /* ─── BOOKINGS ─── */
+    .bookings {
+      margin-top: 14pt;
+    }
+    .booking-row {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 12pt;
+      padding: 11pt 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      font-size: 9.5pt;
+    }
+    .booking-row.head {
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      padding: 8pt 0;
+    }
+    .booking-row.summary {
+      border-top: 1px solid var(--gold);
+      border-bottom: none;
+      padding-top: 12pt;
+    }
+    .booking-row.summary span:first-child {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .booking-row.summary span:not(:first-child) {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13pt;
+    }
+    .booking-row .gross { color: var(--mid); text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 11pt; }
+    .booking-row .net { color: var(--dark); text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 11pt; }
+    .booking-status {
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .booking-status.current { color: var(--gold); }
+
+    /* ─── PERSONAL USE PAGE ─── */
+    .window-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28pt;
+      align-items: center;
+      margin-top: 12pt;
+      min-height: 200mm;
+    }
+    .window-dates {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 54pt;
+      line-height: 1;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    .window-dates em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+      font-size: 0.3em;
+      margin-top: 12pt;
+      letter-spacing: 0.04em;
+    }
+    .window-tag {
+      display: inline-block;
+      margin-top: 18pt;
+      padding: 5pt 10pt;
+      border: 1px solid rgba(201,169,110,0.4);
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .window-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 22pt;
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 14pt;
+    }
+    .window-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .window-body p {
+      font-size: 9.5pt;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 9pt;
+    }
+
+    /* ─── INCLUDED ─── */
+    .included-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 28pt;
+      list-style: none;
+      margin-top: 12pt;
+    }
+    .included-list li {
+      padding: 11pt 0;
+      padding-left: 22pt;
+      border-bottom: 1px solid var(--line);
+      font-size: 10pt;
+      line-height: 1.5;
+      color: var(--dark);
+      position: relative;
+    }
+    .included-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 11pt;
+      color: var(--gold);
+      font-size: 11pt;
+    }
+
+    /* ─── REVIEWS ─── */
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14pt;
+      margin-top: 14pt;
+    }
+    .review-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 16pt;
+    }
+    .review-stars {
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      font-size: 10pt;
+      margin-bottom: 10pt;
+    }
+    .review-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--dark);
+      margin-bottom: 12pt;
+    }
+    .review-attr {
+      padding-top: 10pt;
+      border-top: 1px solid var(--line);
+      font-size: 7.5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .review-attr strong {
+      display: block;
+      color: var(--dark);
+      font-weight: 500;
+      margin-bottom: 3pt;
+      font-size: 8pt;
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery-page {
+      page-break-after: always;
+    }
+    .gallery-page-inner {
+      padding: 22mm 16mm;
+    }
+    .gallery-grid-a {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8pt;
+      height: 240mm;
+      margin-top: 14pt;
+    }
+    .gallery-grid-a .photo:nth-child(1) { grid-row: span 2; }
+
+    .gallery-grid-b {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 8pt;
+      height: 240mm;
+      margin-top: 14pt;
+    }
+    .gallery-grid-b .photo:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+
+    .gallery-grid-c {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8pt;
+      height: 240mm;
+      margin-top: 14pt;
+    }
+
+    .gallery-grid-d {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8pt;
+      height: 240mm;
+      margin-top: 14pt;
+    }
+
+    .photo {
+      background-size: cover;
+      background-position: center;
+      background-color: var(--sand);
+    }
+
+    /* ─── CLOSING ─── */
+    .closing {
+      background: var(--dark);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .closing-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(26,26,24,0.55) 0%, rgba(26,26,24,0.95) 100%),
+        url('images/figueretes/extras/FIGUERETAS-32-33.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .closing-inner {
+      position: relative;
+      height: 297mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 22mm 20mm;
+    }
+    .closing-mark {
+      width: 36pt;
+      height: 1pt;
+      background: var(--gold);
+      margin: 0 auto 22pt;
+    }
+    .closing-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 24pt;
+      line-height: 1.45;
+      max-width: 150mm;
+      margin-bottom: 22pt;
+    }
+    .closing-quote em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .closing-regulatory {
+      font-size: 7pt;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      max-width: 150mm;
+      font-style: italic;
+      margin-top: 30pt;
+    }
+    .closing-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16pt;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-top: 24pt;
+    }
+    .closing-tag {
+      font-size: 7.5pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 8pt;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ──────────────────────────── COVER ──────────────────────────── -->
+  <section class="page cover">
+    <div class="cover-bg"></div>
+    <div class="cover-content">
+      <div class="cover-top">
+        <p class="cover-brand">Xuria</p>
+        <p class="cover-tag">Investor Pack · 2026</p>
+      </div>
+      <div class="cover-headline">
+        <p class="cover-eyebrow">Figueretes &nbsp;·&nbsp; Ibiza</p>
+        <h1 class="cover-title">Ibiza<br><em>Investment Property</em></h1>
+        <p class="cover-subtitle">
+          Turnkey 3-bedroom apartment with private 75m² terrace, across the street
+          from Figueretes Beach. €33,943 in 2025 net rental income at 90% occupancy.
+        </p>
+        <div class="cover-price">
+          <small>Asking Price</small>
+          €499,000
+        </div>
+      </div>
+      <div class="cover-bottom">
+        <span>Xuria Real Estate</span>
+        <span>Confidential · For Investor Review</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── AT A GLANCE ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">At a Glance</p>
+      <h2 class="heading h-lg">The numbers that define the asset.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        A turnkey, remote-managed Ibiza apartment with a private 75m² terrace, established
+        rental history, and a calendar already populated with confirmed 2026 income.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat"><span class="stat-label">Asking Price</span><span class="stat-value">€499,000</span></div>
+        <div class="stat"><span class="stat-label">Gross Yield</span><span class="stat-value">7.0%</span></div>
+        <div class="stat"><span class="stat-label">Net Yield</span><span class="stat-value">5.6%</span></div>
+        <div class="stat"><span class="stat-label">2025 Occupancy</span><span class="stat-value">90%</span></div>
+        <div class="stat"><span class="stat-label">2026 Booked Nights</span><span class="stat-value">137</span></div>
+        <div class="stat"><span class="stat-label">Airbnb Rating</span><span class="stat-value">5.0 / 5.0</span></div>
+        <div class="stat"><span class="stat-label">Fully Renovated</span><span class="stat-value">2022</span></div>
+        <div class="stat"><span class="stat-label">2025 Net Rental Income</span><span class="stat-value">€33,943</span></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>01</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── PROPERTY ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">The Property</p>
+      <h2 class="heading h-lg">A turnkey ground-floor apartment, two minutes from the Balearic Sea.</h2>
+      <span class="rule"></span>
+
+      <div class="property-grid">
+        <ul class="property-list">
+          <li><span>Interior</span><span>94 m²</span></li>
+          <li><span>Private Deeded Terrace</span><span>75 m²</span></li>
+          <li><span>Bedrooms</span><span>3 (one en-suite)</span></li>
+          <li><span>Bathrooms</span><span>2</span></li>
+          <li><span>Floor</span><span>Ground</span></li>
+          <li><span>Renovation</span><span>Fully renovated 2022</span></li>
+          <li><span>Furniture</span><span>Fully furnished &amp; turnkey</span></li>
+          <li><span>Climate</span><span>A-rated heating &amp; cooling</span></li>
+          <li><span>Compliance</span><span>Seasonal rental (32-night min, LAU)</span></li>
+        </ul>
+        <div class="property-photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-3.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>02</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── LOCATION ──────────────────────────── -->
+  <section class="page cream">
+    <div class="page-inner">
+      <p class="eyebrow">Location</p>
+      <h2 class="heading h-lg">Figueretes, Ibiza.</h2>
+      <span class="rule"></span>
+
+      <div class="location-grid">
+        <div>
+          <p class="address-block">Avenida Pedro Matutes Noguera 16</p>
+          <ul class="location-list">
+            <li>Across from Figueretes Beach and the Paseo Marítimo</li>
+            <li>Seaside promenade with restaurants and cafés at the doorstep</li>
+            <li>Walking distance to Ibiza Town, Dalt Vila and Marina Botafoch</li>
+            <li>Year-round neighbourhood — drives extended-stay demand outside summer</li>
+            <li>8 minutes by car to Ibiza Airport</li>
+          </ul>
+        </div>
+        <div class="location-photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-34.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>03</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── INVESTMENT THESIS ──────────────────────────── -->
+  <section class="page dark">
+    <div class="page-inner">
+      <p class="eyebrow">Investment Thesis</p>
+      <h2 class="heading h-lg">Four reasons this asset works.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        A turnkey, remote-managed apartment — fully equipped and built for owners who want
+        returns without on-island presence.
+      </p>
+
+      <div class="thesis-grid">
+        <div class="thesis-card">
+          <p class="thesis-num">01</p>
+          <h3 class="thesis-title">Turnkey from day one.</h3>
+          <p class="thesis-body">
+            Fully furnished apartment: sofa with TV, dining for four, complete kitchen with
+            dishwasher, oven/stove, microwave, washer/dryer combo; three double beds (one a
+            Murphy bed that converts to a desk); terrace furniture and decor throughout.
+            Established cleaning vendor (€150 / turnover) and laundry pickup (€85 / turnover)
+            continue with new ownership.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">02</p>
+          <h3 class="thesis-title">Remote operations.</h3>
+          <p class="thesis-body">
+            Smart keypad check-in lets the new owner operate from anywhere in the world.
+            Existing systems already proven over multiple seasons. No on-island presence
+            required.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">03</p>
+          <h3 class="thesis-title">Registered and transferable.</h3>
+          <p class="thesis-body">
+            Holds Spain's seasonal-rental registration (32-night minimum, governed by the
+            Spanish Urban Lease Law) and operates in full compliance with current Balearic
+            regulation. The National Rental Registration re-registers to the new owner at
+            closing — a meaningful advantage in a tightening market where new registrations
+            are increasingly hard to obtain.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">04</p>
+          <h3 class="thesis-title">Built for long stays.</h3>
+          <p class="thesis-body">
+            50-night average guest stays mean roughly 6 turnovers per year, vs. the 30–50 of
+            a nightly let. Higher-quality long-stay tenants — executives, remote-working
+            families — choose months, not weekends. Lower wear, fewer cleaning cycles,
+            predictable cashflow.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>04</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── 2025 PERFORMANCE ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">2025 Performance</p>
+      <h2 class="heading h-lg">€33,943 net rental income at 90% occupancy.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        Verified by full booking history and operating-cost ledger. A complete
+        rental-performance dossier transfers with the sale.
+      </p>
+
+      <div class="finance-grid">
+        <div class="finance-card">
+          <h3>2025 Income Statement</h3>
+          <div class="finance-row"><span>Gross revenue</span><span>€34,994</span></div>
+          <div class="finance-row deduct"><span>Less Airbnb host fee (3%)</span><span>−€1,051</span></div>
+          <div class="finance-row"><span>Net rental income</span><span>€33,943</span></div>
+          <div class="finance-row deduct"><span>Less operating costs</span><span>−€6,150</span></div>
+          <div class="finance-row total"><span>Net Operating Income</span><span>€27,793</span></div>
+        </div>
+        <div class="finance-card">
+          <h3>Operating Costs (Annual)</h3>
+          <div class="finance-row"><span>Electricity</span><span>€2,027</span></div>
+          <div class="finance-row"><span>Water</span><span>€320</span></div>
+          <div class="finance-row"><span>Alarm (monitored)</span><span>€624</span></div>
+          <div class="finance-row"><span>Property insurance</span><span>€427</span></div>
+          <div class="finance-row"><span>Internet</span><span>€565</span></div>
+          <div class="finance-row"><span>Community fees (HOA)</span><span>€300</span></div>
+          <div class="finance-row"><span>IBI + basura</span><span>€481</span></div>
+          <div class="finance-row"><span>Cleaning + laundry (6 turnovers / yr)</span><span>€1,410</span></div>
+          <div class="finance-row total"><span>Total</span><span>€6,150</span></div>
+          <div class="callout">HOA at €300 / year — among the lowest in Ibiza apartment stock.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>05</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── SEASONAL RATES ──────────────────────────── -->
+  <section class="page sand">
+    <div class="page-inner">
+      <p class="eyebrow">Seasonal Rate Card</p>
+      <h2 class="heading h-lg">Monthly rates by season.</h2>
+      <span class="rule"></span>
+
+      <table class="rate-table">
+        <thead>
+          <tr>
+            <th>Season</th>
+            <th>Months</th>
+            <th style="text-align:right;">Monthly Rate (Gross)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Peak summer</td><td>Jul – Aug</td><td class="amount">€7,000 – €7,500</td></tr>
+          <tr><td>High shoulder</td><td>Jun, Sep</td><td class="amount">€5,500 – €6,000</td></tr>
+          <tr><td>Late winter shoulder</td><td>April – early May</td><td class="amount">€4,000 – €4,700</td></tr>
+          <tr><td>Shoulder</td><td>May, Oct</td><td class="amount">€4,200 – €5,000</td></tr>
+          <tr><td>Off-season</td><td>Nov – Mar</td><td class="amount">€2,000 – €2,500</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>06</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── 2026 BOOKINGS ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">Calendar</p>
+      <h2 class="heading h-lg">2026 confirmed summer bookings.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        Income transfers to the new owner per closing date. Plus typical winter rental
+        performance of €2,000–€2,500 / month from November through March.
+      </p>
+
+      <div class="bookings">
+        <div class="booking-row head">
+          <span>Period</span>
+          <span>Status</span>
+          <span style="text-align:right;">Gross</span>
+          <span style="text-align:right;">Net</span>
+        </div>
+        <div class="booking-row">
+          <span>Apr 29 – May 31</span>
+          <span class="booking-status current">Current</span>
+          <span class="gross">€3,951</span>
+          <span class="net">€3,832</span>
+        </div>
+        <div class="booking-row">
+          <span>May 31 – Jul 2</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="gross">€5,241</span>
+          <span class="net">€5,084</span>
+        </div>
+        <div class="booking-row">
+          <span>Jul 20 – Aug 27</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="gross">€6,246</span>
+          <span class="net">€6,059</span>
+        </div>
+        <div class="booking-row">
+          <span>Aug 29 – Oct 3</span>
+          <span class="booking-status">Confirmed</span>
+          <span class="gross">€5,766</span>
+          <span class="net">€5,592</span>
+        </div>
+        <div class="booking-row summary">
+          <span>Total Confirmed</span>
+          <span></span>
+          <span style="text-align:right;">€21,204</span>
+          <span style="text-align:right;">€20,567</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>07</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── PERSONAL USE WINDOW ──────────────────────────── -->
+  <section class="page dark">
+    <div class="page-inner">
+      <p class="eyebrow">A Window for the New Owner</p>
+      <span class="rule"></span>
+
+      <div class="window-grid">
+        <div>
+          <div class="window-dates">
+            July 2 – 19
+            <em>17 days at peak Ibiza summer</em>
+          </div>
+          <span class="window-tag">2026 · Owner Use</span>
+        </div>
+        <div>
+          <h3 class="window-headline">
+            Take possession, spend two weeks at peak summer, and let the calendar
+            <em>pay for the year.</em>
+          </h3>
+          <div class="window-body">
+            <p>
+              A 17-day window sits in the 2026 calendar between confirmed bookings —
+              deliberately held back for the current owner's personal use, and now passing
+              to the new one. Time the closing right and the new owner steps onto the
+              terrace for two weeks of high-season Ibiza, then hands the keys back to a
+              calendar that runs through October 3 with confirmed bookings and rolls into
+              a steady winter let from November onward.
+            </p>
+            <p>
+              It is, in plain terms, a property that hosts you on opening day and earns
+              for the rest of the year.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>08</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── WHAT'S INCLUDED ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">What's Included With the Sale</p>
+      <h2 class="heading h-lg">Everything needed to operate from day one.</h2>
+      <span class="rule"></span>
+
+      <ul class="included-list">
+        <li>Fully furnished and equipped (full inventory available on request)</li>
+        <li>Established cleaning &amp; laundry vendors (warm introduction)</li>
+        <li>Smart keypad lock system</li>
+        <li>Confirmed 2026 summer bookings transfer to the new owner at closing</li>
+        <li>Rental-performance dossier with full booking history</li>
+        <li>Marketing and listing assets (professional photos, copy, and pricing notes)</li>
+      </ul>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>09</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── REVIEWS ──────────────────────────── -->
+  <section class="page sand">
+    <div class="page-inner">
+      <p class="eyebrow">Guest Reviews</p>
+      <h2 class="heading h-lg">5.0 across 13 Airbnb stays.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        100% five-star reviews spanning May 2023 to present. Selected testimonials below.
+      </p>
+
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">"This rental was absolutely perfect. The location is fantastic — a 3-minute walk to the beach, 8 minutes to the marina, and just 20 minutes to the city center. I cannot recommend this place enough — it's perfect."</p>
+          <div class="review-attr"><strong>Sophia</strong>Escondido, California · May 2023</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">"We stayed for one month in August. The house was clean, in a great location, easy to access. Spaces were spacious, efficient bathrooms, and super air conditioning. Really just good things — thank you for the beautiful stay."</p>
+          <div class="review-attr"><strong>Quattroemme</strong>September 2023</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">"Could not have been happier with our stay. Every step from initial enquiry to check-out was made easy. The apartment was perfect for a long stay. Beds super comfy and the area very quiet so we slept really well. We'll definitely be back."</p>
+          <div class="review-attr"><strong>Dan</strong>March 2024</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">"If you're looking for the perfect accommodation in Ibiza — stop looking, you've found it. The beds are so comfortable. I slept better here than I do at home. One of the best hosts I've had, and I've stayed in Airbnbs all over the world."</p>
+          <div class="review-attr"><strong>Shelley</strong>July 2024</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">"Impeccable. Everything was just like the photos. Four people can stay here for a month perfectly and very comfortably. The location is amazing, very well connected to the airport. Honestly, a 100/10."</p>
+          <div class="review-attr"><strong>Marie Luisa</strong>May 2026 · Most Recent</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">"Lovely apartment in a prime location. Only a 2-minute walk from the beach. The beds are very comfortable — probably the best bed I've ever slept in. Highly recommended."</p>
+          <div class="review-attr"><strong>Nathan</strong>February 2024</div>
+        </article>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>10</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── GALLERY DIVIDER ──────────────────────────── -->
+  <section class="page dark">
+    <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:297mm;">
+      <p class="eyebrow">Gallery</p>
+      <h2 class="heading h-xl" style="margin-bottom:20pt;">Inside the property.</h2>
+      <span class="rule" style="margin:0 auto 20pt;"></span>
+      <p class="lede" style="text-align:center;max-width:130mm;margin:0 auto;">
+        Twenty-eight frames — interior, terrace, and neighbourhood. The pages that follow
+        walk through each room and the immediate setting.
+      </p>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>11</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── GALLERY PAGES ──────────────────────────── -->
+
+  <!-- Gallery 1 — Living -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Living</p>
+      <div class="gallery-grid-a">
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-1.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-3.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-2.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>12</span>
+    </div>
+  </section>
+
+  <!-- Gallery 2 — Kitchen & Dining -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Kitchen &amp; Dining</p>
+      <div class="gallery-grid-d">
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-5.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-8.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-4.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-12.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>13</span>
+    </div>
+  </section>
+
+  <!-- Gallery 3 — Kitchen detail -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Kitchen Detail</p>
+      <div class="gallery-grid-a">
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-9.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-10.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-11.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>14</span>
+    </div>
+  </section>
+
+  <!-- Gallery 4 — Master bedroom -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Master Bedroom</p>
+      <div class="gallery-grid-d">
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-13.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-14.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-15.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-16.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>15</span>
+    </div>
+  </section>
+
+  <!-- Gallery 5 — Second bedroom -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Second Bedroom</p>
+      <div class="gallery-grid-d">
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-17.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-20.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-21.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-23.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>16</span>
+    </div>
+  </section>
+
+  <!-- Gallery 6 — Third bedroom + workspace -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Third Bedroom &amp; Workspace</p>
+      <div class="gallery-grid-a">
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-25.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-27.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-22.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>17</span>
+    </div>
+  </section>
+
+  <!-- Gallery 7 — Bathrooms -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Bathrooms</p>
+      <div class="gallery-grid-a">
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-19.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-24.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-18.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>18</span>
+    </div>
+  </section>
+
+  <!-- Gallery 8 — Terrace & Neighbourhood -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Terrace &amp; Neighbourhood</p>
+      <div class="gallery-grid-d">
+        <div class="photo" style="background-image:url('images/figueretes/extras/Boho-luxe-stage-+-plants-2.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-29.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-33.jpg');"></div>
+        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-34.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Xuria</span>
+      <span>Figueretes · Ibiza</span>
+      <span>19</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── CLOSING ──────────────────────────── -->
+  <section class="page closing">
+    <div class="closing-bg"></div>
+    <div class="closing-inner">
+      <span class="closing-mark"></span>
+      <p class="closing-quote">
+        "The finest properties are never simply found — they are sought,
+        understood, and ultimately <em>lived.</em>"
+      </p>
+      <span class="closing-mark"></span>
+      <p class="closing-brand">Xuria Real Estate</p>
+      <p class="closing-tag">Ibiza · Miami</p>
+      <p class="closing-regulatory">
+        Property operates under Spain's seasonal rental regime (LAU, minimum 32 nights).
+        National rental registration transferable via re-registration on closing. Listed
+        for sale by owner. Information based on owner records; prospective buyers should
+        conduct independent due diligence.
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>

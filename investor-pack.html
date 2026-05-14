@@ -613,49 +613,70 @@
     }
     .gallery-page-inner {
       padding: 14mm 18mm;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    /* Landscape gallery grids — A4 landscape is 297×210, plenty of horizontal room */
-    .gallery-grid-a {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+    /* New gallery system: photos at their natural aspect ratio, no cropping.
+       <img> elements with object-fit: contain. Layout adapts to photo count. */
+    .gallery-wrap {
+      flex: 1;
+      display: flex;
       gap: 8pt;
-      height: 158mm;
       margin-top: 10pt;
+      min-height: 0;
+      align-items: center;
+      justify-content: center;
     }
-    .gallery-grid-a .photo:nth-child(1) { grid-row: span 2; }
-
-    .gallery-grid-d {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 1fr;
+    .gallery-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    /* Single hero photo, fills the page */
+    .gallery-wrap.hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    /* Pair: 2 photos side by side, equal share */
+    .gallery-wrap.pair > img {
+      width: 50%;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    /* Trio variant A: 1 big left + 2 stacked right */
+    .gallery-wrap.trio-stack {
+      align-items: stretch;
+    }
+    .gallery-wrap.trio-stack > img.big {
+      flex: 1.6 1 0;
+      min-width: 0;
+      max-width: 60%;
+    }
+    .gallery-wrap.trio-stack > .stack {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
       gap: 8pt;
-      height: 158mm;
-      margin-top: 10pt;
     }
-
-    .gallery-grid-b {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 1fr 1fr;
-      gap: 8pt;
-      height: 158mm;
-      margin-top: 10pt;
+    .gallery-wrap.trio-stack > .stack img {
+      flex: 1 1 0;
+      min-height: 0;
+      width: 100%;
     }
-
-    .gallery-grid-c {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 1fr;
-      gap: 8pt;
-      height: 158mm;
-      margin-top: 10pt;
+    /* Trio inline: 3 photos in a row */
+    .gallery-wrap.trio > img {
+      flex: 1 1 0;
+      min-width: 0;
     }
-
-    .photo {
-      background-size: cover;
-      background-position: center;
-      background-color: var(--sand);
+    /* Portrait row: several portraits in a row */
+    .gallery-wrap.row > img {
+      flex: 0 1 auto;
+      max-width: calc((100% - 24pt) / 4);
+      height: 100%;
     }
 
     /* ─── CLOSING ─── */
@@ -1170,145 +1191,206 @@
   </section>
 
   <!-- ──────────────────────────── GALLERY PAGES ──────────────────────────── -->
+  <!-- All photos shown at their natural aspect ratio (object-fit: contain).
+       Layouts: .hero (1 photo), .pair (2 side-by-side), .trio (3 in a row),
+       .trio-stack (1 big + 2 stacked), .row (multiple portraits in a row). -->
 
-  <!-- Gallery 1 — Living -->
+  <!-- Living Room — hero -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
-      <p class="eyebrow">Living</p>
-      <div class="gallery-grid-a">
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-1.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-3.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-2.jpg');"></div>
+      <p class="eyebrow">Living Room</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-1.jpg" alt="Living room with sofa and terrace view" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>12</span>
-    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>12</span></div>
   </section>
 
-  <!-- Gallery 2 — Kitchen & Dining -->
+  <!-- Living — open plan + still-life detail -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
-      <p class="eyebrow">Kitchen &amp; Dining</p>
-      <div class="gallery-grid-d">
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-5.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-8.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-4.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-12.jpg');"></div>
+      <p class="eyebrow">Living · Open Plan &amp; Detail</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-3.jpg" alt="Living room with open terrace doors" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-2.jpg" alt="Living room detail with plants" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>13</span>
-    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>13</span></div>
   </section>
 
-  <!-- Gallery 3 — Kitchen detail -->
+  <!-- Dining & Entry — pair -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
-      <p class="eyebrow">Kitchen Detail</p>
-      <div class="gallery-grid-a">
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-9.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-10.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-11.jpg');"></div>
+      <p class="eyebrow">Dining &amp; Entry</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-4.jpg" alt="Dining area" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-12.jpg" alt="Dining and entryway" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>14</span>
-    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>14</span></div>
   </section>
 
-  <!-- Gallery 4 — Master bedroom -->
+  <!-- Kitchen — hero -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Kitchen</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-5.jpg" alt="Kitchen and dining" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>15</span></div>
+  </section>
+
+  <!-- Kitchen — open layout + shelving (pair) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Kitchen · Layout &amp; Shelving</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-8.jpg" alt="Kitchen alternate angle" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-9.jpg" alt="Kitchen with shelving" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>16</span></div>
+  </section>
+
+  <!-- Kitchen — detail (landscape + portrait) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Kitchen · Counters</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-10.jpg" alt="Kitchen detail with subway tile" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-11.jpg" alt="Kitchen counters portrait" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>17</span></div>
+  </section>
+
+  <!-- Master Bedroom — hero -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
       <p class="eyebrow">Master Bedroom</p>
-      <div class="gallery-grid-d">
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-13.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-14.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-15.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-16.jpg');"></div>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-13.jpg" alt="Master bedroom" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>15</span>
-    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>18</span></div>
   </section>
 
-  <!-- Gallery 5 — Second bedroom -->
+  <!-- Master — detail (landscape + portrait pillows) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Master · Detail</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-14.jpg" alt="Master bedroom detail" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-15.jpg" alt="Master bedroom pillows portrait" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>19</span></div>
+  </section>
+
+  <!-- Master — alts (pair) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Master · Alt Views</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-16.jpg" alt="Master bedroom alt angle" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-17.jpg" alt="Master bedroom with mirror" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>20</span></div>
+  </section>
+
+  <!-- Second Bedroom — pair -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
       <p class="eyebrow">Second Bedroom</p>
-      <div class="gallery-grid-d">
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-17.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-20.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-21.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-23.jpg');"></div>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-20.jpg" alt="Second bedroom" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-21.jpg" alt="Second bedroom with art" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>16</span>
-    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>21</span></div>
   </section>
 
-  <!-- Gallery 6 — Third bedroom + workspace -->
+  <!-- Second Bedroom — alt + safe (landscape + portrait) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Second Bedroom · Detail</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-23.jpg" alt="Second bedroom bed portrait" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-22.jpg" alt="In-room safe" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>22</span></div>
+  </section>
+
+  <!-- Third Bedroom — pair -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
       <p class="eyebrow">Third Bedroom &amp; Workspace</p>
-      <div class="gallery-grid-a">
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-25.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-27.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-22.jpg');"></div>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-25.jpg" alt="Third bedroom" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-27.jpg" alt="Third bedroom workspace" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>17</span>
-    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>23</span></div>
   </section>
 
-  <!-- Gallery 7 — Bathrooms -->
+  <!-- Bathrooms — hero -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
-      <p class="eyebrow">Bathrooms</p>
-      <div class="gallery-grid-a">
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-19.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-24.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-18.jpg');"></div>
+      <p class="eyebrow">En-Suite Bathroom</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-19.jpg" alt="En-suite bathroom" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>18</span>
-    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>24</span></div>
   </section>
 
-  <!-- Gallery 8 — Terrace & Neighbourhood -->
+  <!-- Bathrooms — pair -->
   <section class="page gallery-page">
     <div class="gallery-page-inner">
-      <p class="eyebrow">Terrace &amp; Neighbourhood</p>
-      <div class="gallery-grid-d">
-        <div class="photo" style="background-image:url('images/figueretes/extras/Boho-luxe-stage-+-plants-2.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-29.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-33.jpg');"></div>
-        <div class="photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-34.jpg');"></div>
+      <p class="eyebrow">Second Bathroom &amp; Entry</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-24.jpg" alt="Second bathroom" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-18.jpg" alt="Bathroom doorway" />
       </div>
     </div>
-    <div class="footer-mark">
-      <span class="brand">Figueretes</span>
-      <span>Ibiza · Spain</span>
-      <span>19</span>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>25</span></div>
+  </section>
+
+  <!-- Terrace — hero -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Private Terrace · 75m²</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/Boho-luxe-stage-+-plants-2.jpg" alt="Private terrace" />
+      </div>
     </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>26</span></div>
+  </section>
+
+  <!-- Terrace detail (portrait) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Terrace · Detail</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-29.jpg" alt="Terrace detail with wine and grapes" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>27</span></div>
+  </section>
+
+  <!-- Figueretes Beach — pair -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Figueretes Beach · Across the Street</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-33.jpg" alt="Figueretes Beach palm" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-34.jpg" alt="Figueretes Beach promenade" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>28</span></div>
   </section>
 
   <!-- ──────────────────────────── CLOSING ──────────────────────────── -->

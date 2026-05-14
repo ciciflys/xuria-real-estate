@@ -18,7 +18,7 @@
       --line:   rgba(26,26,24,0.12);
     }
 
-    @page { size: A4; margin: 0; }
+    @page { size: A4 landscape; margin: 0; }
 
     html, body {
       font-family: 'Montserrat', sans-serif;
@@ -30,9 +30,10 @@
     }
 
     .page {
-      width: 210mm;
-      min-height: 297mm;
+      width: 297mm;
+      height: 210mm;
       page-break-after: always;
+      page-break-inside: avoid;
       position: relative;
       overflow: hidden;
       background: #fff;
@@ -43,7 +44,7 @@
     .page.sand { background: var(--sand); }
 
     .page-inner {
-      padding: 22mm 20mm;
+      padding: 14mm 22mm;
       height: 100%;
     }
 
@@ -52,28 +53,28 @@
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 12pt;
+      margin-bottom: 8pt;
       font-weight: 500;
     }
     .heading {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       letter-spacing: 0.015em;
-      line-height: 1.18;
+      line-height: 1.15;
       color: var(--dark);
-      margin-bottom: 14pt;
+      margin-bottom: 10pt;
     }
     .page.dark .heading { color: #fff; }
-    .h-xl  { font-size: 44pt; }
-    .h-lg  { font-size: 28pt; }
-    .h-md  { font-size: 19pt; }
+    .h-xl  { font-size: 40pt; }
+    .h-lg  { font-size: 24pt; }
+    .h-md  { font-size: 18pt; }
 
     .lede {
-      font-size: 10.5pt;
-      line-height: 1.75;
+      font-size: 9.5pt;
+      line-height: 1.7;
       color: var(--mid);
-      max-width: 130mm;
-      margin-bottom: 18pt;
+      max-width: 150mm;
+      margin-bottom: 12pt;
     }
     .page.dark .lede { color: rgba(255,255,255,0.7); }
 
@@ -81,14 +82,14 @@
       width: 36pt;
       height: 1pt;
       background: var(--gold);
-      margin: 0 0 18pt;
+      margin: 0 0 12pt;
     }
 
     .footer-mark {
       position: absolute;
-      bottom: 12mm;
-      left: 20mm;
-      right: 20mm;
+      bottom: 10mm;
+      left: 22mm;
+      right: 22mm;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -117,18 +118,18 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to bottom, rgba(26,26,24,0.30) 0%, rgba(26,26,24,0.78) 100%),
-        url('images/figueretes/extras/Boho-luxe-stage-+-plants-2.jpg');
+        linear-gradient(to right, rgba(26,26,24,0.92) 0%, rgba(26,26,24,0.55) 45%, rgba(26,26,24,0.10) 100%),
+        url('images/figueretes/extras/FIGUERETAS-32-3.jpg');
       background-size: cover;
       background-position: center;
     }
     .cover-content {
       position: relative;
-      height: 297mm;
+      height: 210mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 22mm 20mm;
+      padding: 18mm 22mm;
     }
     .cover-top {
       display: flex;
@@ -152,43 +153,43 @@
       border: 1px solid rgba(201,169,110,0.5);
     }
     .cover-headline {
-      max-width: 150mm;
+      max-width: 145mm;
     }
     .cover-eyebrow {
       font-size: 8pt;
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 18pt;
+      margin-bottom: 14pt;
       font-weight: 500;
     }
     .cover-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 60pt;
+      font-size: 54pt;
       font-weight: 300;
       letter-spacing: 0.01em;
       line-height: 0.98;
       color: #fff;
-      margin-bottom: 18pt;
+      margin-bottom: 14pt;
     }
     .cover-title em {
       font-style: italic;
       color: rgba(255,255,255,0.78);
     }
     .cover-subtitle {
-      font-size: 11pt;
+      font-size: 10.5pt;
       letter-spacing: 0.04em;
-      line-height: 1.7;
+      line-height: 1.65;
       color: rgba(255,255,255,0.78);
       max-width: 130mm;
-      margin-bottom: 22pt;
+      margin-bottom: 18pt;
     }
     .cover-price {
       display: inline-block;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 32pt;
+      font-size: 28pt;
       color: #fff;
-      padding: 10pt 0;
+      padding: 8pt 0;
       border-top: 1px solid rgba(201,169,110,0.55);
       border-bottom: 1px solid rgba(201,169,110,0.55);
     }
@@ -215,29 +216,29 @@
     /* ─── STATS PAGE ─── */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 0;
       margin-top: 18pt;
       border-top: 1px solid var(--line);
     }
     .stat {
-      padding: 16pt 0;
+      padding: 14pt 14pt;
       border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+      flex-direction: column;
+      gap: 6pt;
     }
-    .stat:nth-child(odd) { padding-right: 24pt; border-right: 1px solid var(--line); }
-    .stat:nth-child(even) { padding-left: 24pt; }
+    .stat:nth-child(4n) { border-right: none; }
     .stat-label {
-      font-size: 7.5pt;
+      font-size: 7pt;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--mid);
     }
     .stat-value {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22pt;
+      font-size: 24pt;
       color: var(--dark);
       line-height: 1;
     }
@@ -256,9 +257,9 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      padding: 12pt 0;
+      padding: 8pt 0;
       border-bottom: 1px solid var(--line);
-      font-size: 9.5pt;
+      font-size: 9pt;
     }
     .property-list li span:first-child {
       font-size: 7pt;
@@ -269,7 +270,7 @@
     .property-list li span:last-child { color: var(--dark); }
     .property-photo {
       width: 100%;
-      aspect-ratio: 3/4;
+      height: 115mm;
       background-size: cover;
       background-position: center;
     }
@@ -317,6 +318,7 @@
       width: 100%;
       height: 100%;
       min-height: 130mm;
+      max-height: 158mm;
       background-size: cover;
       background-position: center;
     }
@@ -324,12 +326,12 @@
     /* ─── THESIS ─── */
     .thesis-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14pt;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12pt;
       margin-top: 14pt;
     }
     .thesis-card {
-      padding: 18pt 18pt;
+      padding: 16pt 14pt;
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.02);
     }
@@ -342,15 +344,15 @@
     }
     .thesis-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 16pt;
+      font-size: 14pt;
       font-weight: 400;
       line-height: 1.22;
       color: #fff;
       margin-bottom: 10pt;
     }
     .thesis-body {
-      font-size: 8.8pt;
-      line-height: 1.7;
+      font-size: 8.3pt;
+      line-height: 1.65;
       color: rgba(255,255,255,0.7);
     }
 
@@ -364,21 +366,21 @@
     .finance-card {
       background: var(--cream);
       border: 1px solid var(--line);
-      padding: 18pt;
+      padding: 14pt;
     }
     .finance-card h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 13pt;
+      font-size: 12pt;
       font-weight: 400;
-      margin-bottom: 12pt;
+      margin-bottom: 8pt;
     }
     .finance-row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      padding: 8pt 0;
+      padding: 6pt 0;
       border-bottom: 1px solid var(--line);
-      font-size: 9pt;
+      font-size: 8.5pt;
     }
     .finance-row:last-child { border-bottom: none; }
     .finance-row span:first-child { color: var(--mid); }
@@ -487,15 +489,15 @@
     .window-grid {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
-      gap: 28pt;
+      gap: 32pt;
       align-items: center;
       margin-top: 12pt;
-      min-height: 200mm;
+      min-height: 140mm;
     }
     .window-dates {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: 54pt;
+      font-size: 48pt;
       line-height: 1;
       color: #fff;
       letter-spacing: 0.01em;
@@ -540,7 +542,7 @@
     /* ─── INCLUDED ─── */
     .included-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 0 28pt;
       list-style: none;
       margin-top: 12pt;
@@ -566,8 +568,8 @@
     /* ─── REVIEWS ─── */
     .review-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14pt;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12pt;
       margin-top: 14pt;
     }
     .review-card {
@@ -610,44 +612,44 @@
       page-break-after: always;
     }
     .gallery-page-inner {
-      padding: 22mm 16mm;
+      padding: 14mm 18mm;
     }
+    /* Landscape gallery grids — A4 landscape is 297×210, plenty of horizontal room */
     .gallery-grid-a {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1.6fr 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       gap: 8pt;
-      height: 240mm;
-      margin-top: 14pt;
+      height: 158mm;
+      margin-top: 10pt;
     }
     .gallery-grid-a .photo:nth-child(1) { grid-row: span 2; }
 
+    .gallery-grid-d {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+      gap: 8pt;
+      height: 158mm;
+      margin-top: 10pt;
+    }
+
     .gallery-grid-b {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr 1fr;
       gap: 8pt;
-      height: 240mm;
-      margin-top: 14pt;
+      height: 158mm;
+      margin-top: 10pt;
     }
-    .gallery-grid-b .photo:nth-child(1) { grid-column: span 2; grid-row: span 2; }
 
     .gallery-grid-c {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr;
       gap: 8pt;
-      height: 240mm;
-      margin-top: 14pt;
-    }
-
-    .gallery-grid-d {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 8pt;
-      height: 240mm;
-      margin-top: 14pt;
+      height: 158mm;
+      margin-top: 10pt;
     }
 
     .photo {
@@ -674,13 +676,13 @@
     }
     .closing-inner {
       position: relative;
-      height: 297mm;
+      height: 210mm;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 22mm 20mm;
+      padding: 18mm 30mm;
     }
     .closing-mark {
       width: 36pt;
@@ -1151,7 +1153,7 @@
 
   <!-- ──────────────────────────── GALLERY DIVIDER ──────────────────────────── -->
   <section class="page dark">
-    <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:297mm;">
+    <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:210mm;">
       <p class="eyebrow">Gallery</p>
       <h2 class="heading h-xl" style="margin-bottom:20pt;">Inside the property.</h2>
       <span class="rule" style="margin:0 auto 20pt;"></span>

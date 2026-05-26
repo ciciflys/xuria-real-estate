@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Propiedad de Inversión Figueretes — Ibiza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:   #f5f0e8;
+      --cream:  #faf8f4;
+      --dark:   #1a1a18;
+      --gold:   #c9a96e;
+      --mid:    #6b6b60;
+      --line:   rgba(26,26,24,0.12);
+    }
+
+    @page { size: A4 landscape; margin: 0; }
+
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      font-weight: 300;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 297mm;
+      height: 210mm;
+      page-break-after: always;
+      page-break-inside: avoid;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+    }
+    .page:last-of-type { page-break-after: auto; }
+    .page.dark { background: var(--dark); color: #fff; }
+    .page.cream { background: var(--cream); }
+    .page.sand { background: var(--sand); }
+
+    .page-inner {
+      padding: 14mm 22mm;
+      height: 100%;
+    }
+
+    .eyebrow {
+      font-size: 7.5pt;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8pt;
+      font-weight: 500;
+    }
+    .heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      letter-spacing: 0.015em;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 10pt;
+    }
+    .page.dark .heading { color: #fff; }
+    .h-xl  { font-size: 40pt; }
+    .h-lg  { font-size: 24pt; }
+    .h-md  { font-size: 18pt; }
+
+    .lede {
+      font-size: 9.5pt;
+      line-height: 1.7;
+      color: var(--mid);
+      max-width: 150mm;
+      margin-bottom: 12pt;
+    }
+    .page.dark .lede { color: rgba(255,255,255,0.7); }
+
+    .rule {
+      width: 36pt;
+      height: 1pt;
+      background: var(--gold);
+      margin: 0 0 12pt;
+    }
+
+    .footer-mark {
+      position: absolute;
+      bottom: 10mm;
+      left: 22mm;
+      right: 22mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .page.dark .footer-mark { color: rgba(255,255,255,0.45); }
+    .footer-mark .brand {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.4em;
+      font-weight: 400;
+      font-size: 9pt;
+    }
+    .page.dark .footer-mark .brand { color: rgba(255,255,255,0.7); }
+
+    /* ─── COVER ─── */
+    .cover {
+      background: var(--dark);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(26,26,24,0.92) 0%, rgba(26,26,24,0.55) 45%, rgba(26,26,24,0.10) 100%),
+        url('images/figueretes/extras/FIGUERETAS-32-3.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .cover-content {
+      position: relative;
+      height: 210mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18mm 22mm;
+    }
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .cover-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 300;
+    }
+    .cover-tag {
+      font-size: 7pt;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 6pt 12pt;
+      border: 1px solid rgba(201,169,110,0.5);
+    }
+    .cover-headline {
+      max-width: 145mm;
+    }
+    .cover-eyebrow {
+      font-size: 8pt;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14pt;
+      font-weight: 500;
+    }
+    .cover-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 54pt;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 0.98;
+      color: #fff;
+      margin-bottom: 14pt;
+    }
+    .cover-title em {
+      font-style: italic;
+      color: rgba(255,255,255,0.78);
+    }
+    .cover-subtitle {
+      font-size: 10.5pt;
+      letter-spacing: 0.04em;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.78);
+      max-width: 130mm;
+      margin-bottom: 18pt;
+    }
+    .cover-price {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28pt;
+      color: #fff;
+      padding: 8pt 0;
+      border-top: 1px solid rgba(201,169,110,0.55);
+      border-bottom: 1px solid rgba(201,169,110,0.55);
+    }
+    .cover-price small {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 6.5pt;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4pt;
+    }
+    .cover-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ─── STATS PAGE ─── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 18pt;
+      border-top: 1px solid var(--line);
+    }
+    .stat {
+      padding: 14pt 14pt;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 6pt;
+    }
+    .stat:nth-child(4n) { border-right: none; }
+    .stat-label {
+      font-size: 7pt;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24pt;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 22pt;
+      margin-top: 18pt;
+    }
+    .property-list {
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .property-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8pt 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 9pt;
+    }
+    .property-list li span:first-child {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .property-list li span:last-child { color: var(--dark); }
+    .property-photo {
+      width: 100%;
+      height: 115mm;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ─── LOCATION ─── */
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24pt;
+      margin-top: 12pt;
+    }
+    .address-block {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15pt;
+      line-height: 1.45;
+      letter-spacing: 0.01em;
+      color: var(--dark);
+      margin-bottom: 18pt;
+      padding-bottom: 14pt;
+      border-bottom: 1px solid var(--line);
+    }
+    .location-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10pt;
+    }
+    .location-list li {
+      font-size: 9.5pt;
+      line-height: 1.6;
+      color: var(--mid);
+      padding-left: 16pt;
+      position: relative;
+    }
+    .location-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9pt;
+      width: 10pt;
+      height: 1pt;
+      background: var(--gold);
+    }
+    .location-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 130mm;
+      max-height: 158mm;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ─── THESIS ─── */
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12pt;
+      margin-top: 14pt;
+    }
+    .thesis-card {
+      padding: 16pt 14pt;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+    }
+    .thesis-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9pt;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 10pt;
+    }
+    .thesis-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      font-weight: 400;
+      line-height: 1.22;
+      color: #fff;
+      margin-bottom: 10pt;
+    }
+    .thesis-body {
+      font-size: 8.3pt;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ─── PERFORMANCE ─── */
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22pt;
+      margin-top: 14pt;
+    }
+    .finance-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 14pt;
+    }
+    .finance-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12pt;
+      font-weight: 400;
+      margin-bottom: 8pt;
+    }
+    .finance-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6pt 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 8.5pt;
+    }
+    .finance-row:last-child { border-bottom: none; }
+    .finance-row span:first-child { color: var(--mid); }
+    .finance-row.deduct span:last-child { color: #b08855; }
+    .finance-row.total {
+      border-top: 1px solid var(--gold);
+      border-bottom: none;
+      padding-top: 12pt;
+      margin-top: 4pt;
+    }
+    .finance-row.total span:first-child {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    .finance-row.total span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      color: var(--dark);
+    }
+    .callout {
+      margin-top: 12pt;
+      padding: 10pt 12pt;
+      background: rgba(201,169,110,0.12);
+      border-left: 2pt solid var(--gold);
+      font-size: 8.5pt;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ─── RATE CARD ─── */
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 12pt;
+    }
+    .rate-table th, .rate-table td {
+      text-align: left;
+      padding: 11pt 8pt;
+      border-bottom: 1px solid var(--line);
+    }
+    .rate-table th {
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .rate-table td.amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11pt;
+      color: var(--dark);
+      text-align: right;
+    }
+
+    /* ─── BOOKINGS ─── */
+    .bookings {
+      margin-top: 14pt;
+    }
+    .booking-row {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 12pt;
+      padding: 11pt 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      font-size: 9.5pt;
+    }
+    .booking-row.head {
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      padding: 8pt 0;
+    }
+    .booking-row.summary {
+      border-top: 1px solid var(--gold);
+      border-bottom: none;
+      padding-top: 12pt;
+    }
+    .booking-row.summary span:first-child {
+      font-size: 7pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .booking-row.summary span:not(:first-child) {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13pt;
+    }
+    .booking-row .gross { color: var(--mid); text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 11pt; }
+    .booking-row .net { color: var(--dark); text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 11pt; }
+    .booking-status {
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .booking-status.current { color: var(--gold); }
+
+    /* ─── PERSONAL USE PAGE ─── */
+    .window-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 32pt;
+      align-items: center;
+      margin-top: 12pt;
+      min-height: 140mm;
+    }
+    .window-dates {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 48pt;
+      line-height: 1;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    .window-dates em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+      font-size: 0.3em;
+      margin-top: 12pt;
+      letter-spacing: 0.04em;
+    }
+    .window-tag {
+      display: inline-block;
+      margin-top: 18pt;
+      padding: 5pt 10pt;
+      border: 1px solid rgba(201,169,110,0.4);
+      font-size: 7pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .window-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 22pt;
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 14pt;
+    }
+    .window-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .window-body p {
+      font-size: 9.5pt;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 9pt;
+    }
+
+    /* ─── INCLUDED ─── */
+    .included-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0 28pt;
+      list-style: none;
+      margin-top: 12pt;
+    }
+    .included-list li {
+      padding: 11pt 0;
+      padding-left: 22pt;
+      border-bottom: 1px solid var(--line);
+      font-size: 10pt;
+      line-height: 1.5;
+      color: var(--dark);
+      position: relative;
+    }
+    .included-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 11pt;
+      color: var(--gold);
+      font-size: 11pt;
+    }
+
+    /* ─── REVIEWS ─── */
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12pt;
+      margin-top: 14pt;
+    }
+    .review-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 16pt;
+    }
+    .review-stars {
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      font-size: 10pt;
+      margin-bottom: 10pt;
+    }
+    .review-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--dark);
+      margin-bottom: 12pt;
+    }
+    .review-attr {
+      padding-top: 10pt;
+      border-top: 1px solid var(--line);
+      font-size: 7.5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .review-attr strong {
+      display: block;
+      color: var(--dark);
+      font-weight: 500;
+      margin-bottom: 3pt;
+      font-size: 8pt;
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery-page {
+      page-break-after: always;
+    }
+    .gallery-page-inner {
+      padding: 14mm 18mm;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    /* New gallery system: photos at their natural aspect ratio, no cropping.
+       <img> elements with object-fit: contain. Layout adapts to photo count. */
+    .gallery-wrap {
+      flex: 1;
+      display: flex;
+      gap: 8pt;
+      margin-top: 10pt;
+      min-height: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    /* Single hero photo, fills the page */
+    .gallery-wrap.hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    /* Pair: 2 photos side by side, equal share */
+    .gallery-wrap.pair > img {
+      width: 50%;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    /* Trio variant A: 1 big left + 2 stacked right */
+    .gallery-wrap.trio-stack {
+      align-items: stretch;
+    }
+    .gallery-wrap.trio-stack > img.big {
+      flex: 1.6 1 0;
+      min-width: 0;
+      max-width: 60%;
+    }
+    .gallery-wrap.trio-stack > .stack {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8pt;
+    }
+    .gallery-wrap.trio-stack > .stack img {
+      flex: 1 1 0;
+      min-height: 0;
+      width: 100%;
+    }
+    /* Trio inline: 3 photos in a row */
+    .gallery-wrap.trio > img {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    /* Portrait row: several portraits in a row */
+    .gallery-wrap.row > img {
+      flex: 0 1 auto;
+      max-width: calc((100% - 24pt) / 4);
+      height: 100%;
+    }
+
+    /* ─── CLOSING ─── */
+    .closing {
+      background: var(--dark);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .closing-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(26,26,24,0.55) 0%, rgba(26,26,24,0.95) 100%),
+        url('images/figueretes/extras/FIGUERETAS-32-33.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .closing-inner {
+      position: relative;
+      height: 210mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 18mm 30mm;
+    }
+    .closing-mark {
+      width: 36pt;
+      height: 1pt;
+      background: var(--gold);
+      margin: 0 auto 22pt;
+    }
+    .closing-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 24pt;
+      line-height: 1.45;
+      max-width: 150mm;
+      margin-bottom: 22pt;
+    }
+    .closing-quote em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .closing-regulatory {
+      font-size: 7pt;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      max-width: 150mm;
+      font-style: italic;
+      margin-top: 30pt;
+    }
+    .closing-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16pt;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-top: 24pt;
+    }
+    .closing-tag {
+      font-size: 7.5pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 8pt;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ──────────────────────────── COVER ──────────────────────────── -->
+  <section class="page cover">
+    <div class="cover-bg"></div>
+    <div class="cover-content">
+      <div class="cover-top">
+        <p class="cover-brand">Figueretes</p>
+        <p class="cover-tag">Información de la Propiedad · 2026</p>
+      </div>
+      <div class="cover-headline">
+        <p class="cover-eyebrow">Figueretes &nbsp;·&nbsp; Ibiza</p>
+        <h1 class="cover-title">Ibiza<br><em>Propiedad de Inversión</em></h1>
+        <p class="cover-subtitle">
+          Vivienda llave en mano de 3 dormitorios con terraza privada de 75 m², frente a la
+          playa de Figueretes. €33.943 de ingresos netos por alquiler en 2025 con un 90 % de
+          ocupación.
+        </p>
+        <div class="cover-price">
+          <small>Precio de Venta</small>
+          €479.000
+        </div>
+      </div>
+      <div class="cover-bottom">
+        <span>Ibiza, España</span>
+        <span>Confidencial · Para Revisión del Inversor</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── AT A GLANCE ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">En Resumen</p>
+      <h2 class="heading h-lg">Los números que definen el activo.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        Un apartamento llave en mano en Ibiza, gestionado a distancia, con una terraza privada
+        de 75 m², histórico de alquiler consolidado y un calendario ya con ingresos confirmados
+        para 2026.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat"><span class="stat-label">Precio de Venta</span><span class="stat-value">€479.000</span></div>
+        <div class="stat"><span class="stat-label">Rentabilidad Bruta</span><span class="stat-value">7,3 %</span></div>
+        <div class="stat"><span class="stat-label">Rentabilidad Neta</span><span class="stat-value">5,8 %</span></div>
+        <div class="stat"><span class="stat-label">Ocupación 2025</span><span class="stat-value">90 %</span></div>
+        <div class="stat"><span class="stat-label">Noches Reservadas 2026</span><span class="stat-value">184</span></div>
+        <div class="stat"><span class="stat-label">Valoración Airbnb</span><span class="stat-value">5,0 / 5,0</span></div>
+        <div class="stat"><span class="stat-label">Reforma Integral</span><span class="stat-value">2022</span></div>
+        <div class="stat"><span class="stat-label">Ingresos Netos 2025</span><span class="stat-value">€33.943</span></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>01</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── PROPERTY ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">La Propiedad</p>
+      <h2 class="heading h-lg">Vivienda llave en mano en planta baja, a dos minutos del mar Balear.</h2>
+      <span class="rule"></span>
+
+      <div class="property-grid">
+        <ul class="property-list">
+          <li><span>Interior</span><span>94 m²</span></li>
+          <li><span>Terraza Privada en Escritura</span><span>75 m²</span></li>
+          <li><span>Dormitorios</span><span>3 (uno en suite)</span></li>
+          <li><span>Baños</span><span>2</span></li>
+          <li><span>Planta</span><span>Baja</span></li>
+          <li><span>Reforma</span><span>Integral en 2022</span></li>
+          <li><span>Mobiliario</span><span>Totalmente amueblado · llave en mano</span></li>
+          <li><span>Climatización</span><span>Calefacción y refrigeración clase A</span></li>
+          <li><span>Régimen</span><span>Alquiler temporal (mín. 32 noches, LAU)</span></li>
+        </ul>
+        <div class="property-photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-3.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>02</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── LOCATION ──────────────────────────── -->
+  <section class="page cream">
+    <div class="page-inner">
+      <p class="eyebrow">Ubicación</p>
+      <h2 class="heading h-lg">Figueretes, Ibiza.</h2>
+      <span class="rule"></span>
+
+      <div class="location-grid">
+        <div>
+          <p class="address-block">Avenida Pedro Matutes Noguera 16</p>
+          <ul class="location-list">
+            <li>Frente a la playa de Figueretes y al Paseo Marítimo</li>
+            <li>Restaurantes y cafeterías del paseo a pie de calle</li>
+            <li>A pie de Ibiza Ciudad, Dalt Vila y Marina Botafoch</li>
+            <li>Barrio activo todo el año — impulsa la demanda de estancias largas fuera de verano</li>
+            <li>8 minutos en coche al Aeropuerto de Ibiza</li>
+          </ul>
+        </div>
+        <div class="location-photo" style="background-image:url('images/figueretes/extras/FIGUERETAS-32-34.jpg');"></div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>03</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── INVESTMENT THESIS ──────────────────────────── -->
+  <section class="page dark">
+    <div class="page-inner">
+      <p class="eyebrow">Tesis de Inversión</p>
+      <h2 class="heading h-lg">Cuatro razones por las que este activo funciona.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        Un apartamento llave en mano, gestionado a distancia — totalmente equipado y pensado
+        para propietarios que buscan rentabilidad sin estar presentes en la isla.
+      </p>
+
+      <div class="thesis-grid">
+        <div class="thesis-card">
+          <p class="thesis-num">01</p>
+          <h3 class="thesis-title">Llave en mano desde el primer día.</h3>
+          <p class="thesis-body">
+            Vivienda completamente amueblada: sofá con TV, comedor para cuatro, cocina completa
+            con lavavajillas, horno y vitrocerámica, microondas, lavadora-secadora; tres camas
+            dobles (una abatible tipo Murphy que se convierte en escritorio); mobiliario y
+            decoración de terraza incluidos. El equipo de limpieza (150 € / cambio) y la recogida
+            de ropa (85 € / cambio) continúan con la nueva propiedad.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">02</p>
+          <h3 class="thesis-title">Gestión a distancia.</h3>
+          <p class="thesis-body">
+            Cerradura inteligente con código permite al nuevo propietario gestionarlo todo desde
+            cualquier parte del mundo. Sistemas ya probados durante varias temporadas. No
+            requiere presencia en la isla.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">03</p>
+          <h3 class="thesis-title">Registrada y transferible.</h3>
+          <p class="thesis-body">
+            Cuenta con el registro de alquiler temporal de España (mínimo 32 noches, regulado
+            por la Ley de Arrendamientos Urbanos) y opera en plena conformidad con la normativa
+            balear vigente. El registro se transfiere al nuevo propietario en el cierre — una
+            ventaja significativa en un mercado cada vez más restrictivo donde los nuevos
+            registros son difíciles de obtener.
+          </p>
+        </div>
+        <div class="thesis-card">
+          <p class="thesis-num">04</p>
+          <h3 class="thesis-title">Diseñada para estancias largas.</h3>
+          <p class="thesis-body">
+            Una estancia media de 50 noches supone unos 6 cambios de inquilino al año, frente
+            a los 30–50 de un alquiler por noches. Huéspedes de estancia larga y mayor calidad
+            — ejecutivos, familias con teletrabajo — eligen meses, no fines de semana. Menos
+            desgaste, menos ciclos de limpieza, flujo de caja predecible.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>04</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── 2025 PERFORMANCE ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">Rendimiento 2025</p>
+      <h2 class="heading h-lg">€33.943 de ingresos netos por alquiler con un 90 % de ocupación.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        Verificado con el histórico completo de reservas y el libro de gastos operativos. Se
+        entrega un dossier completo de rendimiento con la venta.
+      </p>
+
+      <div class="finance-grid">
+        <div class="finance-card">
+          <h3>Cuenta de Resultados 2025</h3>
+          <div class="finance-row"><span>Ingresos brutos</span><span>€34.994</span></div>
+          <div class="finance-row deduct"><span>Menos comisión de Airbnb (3 %)</span><span>−€1.051</span></div>
+          <div class="finance-row"><span>Ingresos netos por alquiler</span><span>€33.943</span></div>
+          <div class="finance-row deduct"><span>Menos gastos operativos</span><span>−€6.150</span></div>
+          <div class="finance-row total"><span>Beneficio Neto Operativo</span><span>€27.793</span></div>
+        </div>
+        <div class="finance-card">
+          <h3>Gastos Operativos (Anuales)</h3>
+          <div class="finance-row"><span>Electricidad</span><span>€2.027</span></div>
+          <div class="finance-row"><span>Agua</span><span>€320</span></div>
+          <div class="finance-row"><span>Alarma (con central)</span><span>€624</span></div>
+          <div class="finance-row"><span>Seguro de hogar</span><span>€427</span></div>
+          <div class="finance-row"><span>Internet</span><span>€565</span></div>
+          <div class="finance-row"><span>Cuotas de comunidad</span><span>€300</span></div>
+          <div class="finance-row"><span>IBI + basura</span><span>€481</span></div>
+          <div class="finance-row"><span>Limpieza + lavandería (6 cambios / año)</span><span>€1.410</span></div>
+          <div class="finance-row total"><span>Total</span><span>€6.150</span></div>
+          <div class="callout">Cuota de comunidad de 300 € al año — entre las más bajas del stock de apartamentos en Ibiza.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>05</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── SEASONAL RATES ──────────────────────────── -->
+  <section class="page sand">
+    <div class="page-inner">
+      <p class="eyebrow">Tarifas por Temporada</p>
+      <h2 class="heading h-lg">Precio mensual según la temporada.</h2>
+      <span class="rule"></span>
+
+      <table class="rate-table">
+        <thead>
+          <tr>
+            <th>Temporada</th>
+            <th>Meses</th>
+            <th style="text-align:right;">Tarifa Mensual (Bruta)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Verano alto</td><td>Jul – Ago</td><td class="amount">€7.000 – €7.500</td></tr>
+          <tr><td>Hombros altos</td><td>Jun, Sep</td><td class="amount">€5.500 – €6.000</td></tr>
+          <tr><td>Final de invierno</td><td>Abril – principios de mayo</td><td class="amount">€4.000 – €4.700</td></tr>
+          <tr><td>Temporada media</td><td>Mayo, Oct</td><td class="amount">€4.200 – €5.000</td></tr>
+          <tr><td>Temporada baja</td><td>Nov – Mar</td><td class="amount">€2.000 – €2.500</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>06</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── 2026 BOOKINGS ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">Calendario</p>
+      <h2 class="heading h-lg">Reservas confirmadas para 2026.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        Los ingresos se transfieren al nuevo propietario en la fecha de cierre. Más el
+        rendimiento habitual de alquiler invernal de 2.000–2.500 € al mes de noviembre a marzo.
+      </p>
+
+      <div class="bookings">
+        <div class="booking-row head">
+          <span>Periodo</span>
+          <span>Estado</span>
+          <span style="text-align:right;">Bruto</span>
+          <span style="text-align:right;">Neto</span>
+        </div>
+        <div class="booking-row">
+          <span>14 mar – 30 abr</span>
+          <span class="booking-status">Completada</span>
+          <span class="gross">€4.101</span>
+          <span class="net">€3.979</span>
+        </div>
+        <div class="booking-row">
+          <span>29 abr – 31 may</span>
+          <span class="booking-status current">En Curso</span>
+          <span class="gross">€3.951</span>
+          <span class="net">€3.832</span>
+        </div>
+        <div class="booking-row">
+          <span>31 may – 2 jul</span>
+          <span class="booking-status">Confirmada</span>
+          <span class="gross">€5.241</span>
+          <span class="net">€5.084</span>
+        </div>
+        <div class="booking-row">
+          <span>20 jul – 27 ago</span>
+          <span class="booking-status">Confirmada</span>
+          <span class="gross">€6.246</span>
+          <span class="net">€6.059</span>
+        </div>
+        <div class="booking-row">
+          <span>29 ago – 3 oct</span>
+          <span class="booking-status">Confirmada</span>
+          <span class="gross">€5.766</span>
+          <span class="net">€5.592</span>
+        </div>
+        <div class="booking-row summary">
+          <span>Total 2026</span>
+          <span></span>
+          <span style="text-align:right;">€25.305</span>
+          <span style="text-align:right;">€24.546</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>07</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── PERSONAL USE WINDOW ──────────────────────────── -->
+  <section class="page dark">
+    <div class="page-inner">
+      <p class="eyebrow">Una Ventana para el Nuevo Propietario</p>
+      <span class="rule"></span>
+
+      <div class="window-grid">
+        <div>
+          <div class="window-dates">
+            2 – 19 de julio
+            <em>17 días en plena temporada alta de Ibiza</em>
+          </div>
+          <span class="window-tag">2026 · Uso del Propietario</span>
+        </div>
+        <div>
+          <h3 class="window-headline">
+            Tome posesión, pase dos semanas en plena temporada alta y deje que el calendario
+            <em>pague el resto del año.</em>
+          </h3>
+          <div class="window-body">
+            <p>
+              Hay una ventana de 17 días en el calendario de 2026, entre reservas confirmadas
+              — deliberadamente reservada para el uso personal del propietario actual, y que
+              ahora pasa al siguiente. Si se ajusta bien la fecha de cierre, el nuevo
+              propietario puede disfrutar de dos semanas en la terraza durante el verano más
+              álgido de Ibiza, y luego devolver las llaves a un calendario con reservas
+              confirmadas hasta el 3 de octubre y alquiler de invierno estable a partir de
+              noviembre.
+            </p>
+            <p>
+              En términos simples, una vivienda que le acoge el primer día y genera ingresos
+              el resto del año.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>08</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── WHAT'S INCLUDED ──────────────────────────── -->
+  <section class="page">
+    <div class="page-inner">
+      <p class="eyebrow">Lo que Incluye la Venta</p>
+      <h2 class="heading h-lg">Todo lo necesario para operar desde el primer día.</h2>
+      <span class="rule"></span>
+
+      <ul class="included-list">
+        <li>Totalmente amueblada y equipada (inventario completo bajo solicitud)</li>
+        <li>Equipo de limpieza y lavandería ya establecido (presentación incluida)</li>
+        <li>Sistema de cerradura inteligente con código</li>
+        <li>Las reservas confirmadas para 2026 se transfieren al nuevo propietario en el cierre</li>
+        <li>Dossier de rendimiento con histórico completo de reservas</li>
+        <li>Material de marketing y anuncio (fotografías profesionales, textos y guía de precios)</li>
+      </ul>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>09</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── REVIEWS ──────────────────────────── -->
+  <section class="page sand">
+    <div class="page-inner">
+      <p class="eyebrow">Reseñas de Huéspedes</p>
+      <h2 class="heading h-lg">5,0 a lo largo de 13 estancias en Airbnb.</h2>
+      <span class="rule"></span>
+      <p class="lede">
+        100 % de reseñas de cinco estrellas, desde mayo de 2023 hasta hoy. Selección de testimonios a continuación.
+      </p>
+
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">«Este alojamiento fue absolutamente perfecto. La ubicación es fantástica — 3 minutos andando a la playa, 8 al puerto deportivo, y solo 20 al centro. No puedo recomendarlo más — es perfecto.»</p>
+          <div class="review-attr"><strong>Sophia</strong>Escondido, California · Mayo 2023</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">«Nos alojamos un mes en agosto. La casa estaba limpia, en una ubicación estupenda, fácil acceso. Espacios amplios, baños eficientes y excelente aire acondicionado. Solo cosas buenas — gracias por una estancia preciosa.»</p>
+          <div class="review-attr"><strong>Quattroemme</strong>Septiembre 2023</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">«No podríamos haber estado más contentos. Cada paso, desde la primera consulta hasta el check-out, fue muy fácil. El apartamento fue perfecto para una estancia larga. Camas comodísimas y zona muy tranquila — dormimos genial. Sin duda volveremos.»</p>
+          <div class="review-attr"><strong>Dan</strong>Marzo 2024</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">«Si buscas el alojamiento perfecto en Ibiza — deja de buscar, lo has encontrado. Las camas son comodísimas. Dormí mejor aquí que en casa. De los mejores anfitriones que he tenido, y he estado en Airbnbs por todo el mundo.»</p>
+          <div class="review-attr"><strong>Shelley</strong>Julio 2024</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">«Impecable. Todo igual que en las fotos. Cuatro personas pueden alojarse aquí un mes perfectamente y muy cómodos. La ubicación es genial, muy bien comunicada con el aeropuerto. Honestamente, un 100/10.»</p>
+          <div class="review-attr"><strong>Marie Luisa</strong>Mayo 2026 · Más reciente</div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">«Apartamento precioso en una ubicación inmejorable. Solo a 2 minutos de la playa. Las camas son muy cómodas — probablemente la mejor cama en la que he dormido. Muy recomendado.»</p>
+          <div class="review-attr"><strong>Nathan</strong>Febrero 2024</div>
+        </article>
+      </div>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>10</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── GALLERY DIVIDER ──────────────────────────── -->
+  <section class="page dark">
+    <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:210mm;">
+      <p class="eyebrow">Galería</p>
+      <h2 class="heading h-xl" style="margin-bottom:20pt;">Por dentro.</h2>
+      <span class="rule" style="margin:0 auto 20pt;"></span>
+      <p class="lede" style="text-align:center;max-width:130mm;margin:0 auto;">
+        Veintiocho imágenes — interior, terraza y barrio. Las páginas siguientes recorren
+        cada estancia y el entorno inmediato.
+      </p>
+    </div>
+    <div class="footer-mark">
+      <span class="brand">Figueretes</span>
+      <span>Ibiza · España</span>
+      <span>11</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── GALLERY PAGES ──────────────────────────── -->
+  <!-- All photos shown at their natural aspect ratio (object-fit: contain).
+       Layouts: .hero (1 photo), .pair (2 side-by-side), .trio (3 in a row),
+       .trio-stack (1 big + 2 stacked), .row (multiple portraits in a row). -->
+
+  <!-- Living Room — hero -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Salón</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-1.jpg" alt="Living room with sofa and terrace view" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>12</span></div>
+  </section>
+
+  <!-- Living — open plan + still-life detail -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Salón · Vista Abierta y Detalle</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-3.jpg" alt="Living room with open terrace doors" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-2.jpg" alt="Living room detail with plants" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>13</span></div>
+  </section>
+
+  <!-- Dining & Entry — pair -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Comedor y Entrada</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-4.jpg" alt="Dining area" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-12.jpg" alt="Dining and entryway" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>14</span></div>
+  </section>
+
+  <!-- Kitchen — hero -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Cocina</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-5.jpg" alt="Kitchen and dining" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>15</span></div>
+  </section>
+
+  <!-- Kitchen — open layout + shelving (pair) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Cocina · Distribución y Estantería</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-8.jpg" alt="Kitchen alternate angle" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-9.jpg" alt="Kitchen with shelving" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>16</span></div>
+  </section>
+
+  <!-- Kitchen — detail (landscape + portrait) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Cocina · Encimera</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-10.jpg" alt="Kitchen detail with subway tile" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-11.jpg" alt="Kitchen counters portrait" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>17</span></div>
+  </section>
+
+  <!-- Master Bedroom — hero -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Dormitorio Principal</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-13.jpg" alt="Master bedroom" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>18</span></div>
+  </section>
+
+  <!-- Master — detail (landscape + portrait pillows) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Dormitorio Principal · Detalle</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-14.jpg" alt="Master bedroom detail" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-15.jpg" alt="Master bedroom pillows portrait" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>19</span></div>
+  </section>
+
+  <!-- Master — alts (pair) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Dormitorio Principal · Otras Vistas</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-16.jpg" alt="Master bedroom alt angle" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-17.jpg" alt="Master bedroom with mirror" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>20</span></div>
+  </section>
+
+  <!-- Second Bedroom — pair -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Segundo Dormitorio</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-20.jpg" alt="Second bedroom" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-21.jpg" alt="Second bedroom with art" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>21</span></div>
+  </section>
+
+  <!-- Second Bedroom — alt + safe (landscape + portrait) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Segundo Dormitorio · Detalle</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-23.jpg" alt="Second bedroom bed portrait" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-22.jpg" alt="In-room safe" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>22</span></div>
+  </section>
+
+  <!-- Third Bedroom — pair -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Tercer Dormitorio y Zona de Trabajo</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-25.jpg" alt="Third bedroom" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-27.jpg" alt="Third bedroom workspace" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>23</span></div>
+  </section>
+
+  <!-- Bathrooms — hero -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Baño En Suite</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-19.jpg" alt="En-suite bathroom" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>24</span></div>
+  </section>
+
+  <!-- Bathrooms — pair -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Segundo Baño y Entrada</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-24.jpg" alt="Second bathroom" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-18.jpg" alt="Bathroom doorway" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>25</span></div>
+  </section>
+
+  <!-- Terrace — hero -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Terraza Privada · 75 m²</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/Boho-luxe-stage-+-plants-2.jpg" alt="Private terrace" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>26</span></div>
+  </section>
+
+  <!-- Terrace detail (portrait) -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Terraza · Detalle</p>
+      <div class="gallery-wrap hero">
+        <img src="images/figueretes/extras/FIGUERETAS-32-29.jpg" alt="Terrace detail with wine and grapes" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>27</span></div>
+  </section>
+
+  <!-- Figueretes Beach — pair -->
+  <section class="page gallery-page">
+    <div class="gallery-page-inner">
+      <p class="eyebrow">Playa de Figueretes · Enfrente</p>
+      <div class="gallery-wrap pair">
+        <img src="images/figueretes/extras/FIGUERETAS-32-33.jpg" alt="Figueretes Beach palm" />
+        <img src="images/figueretes/extras/FIGUERETAS-32-34.jpg" alt="Figueretes Beach promenade" />
+      </div>
+    </div>
+    <div class="footer-mark"><span class="brand">Figueretes</span><span>Ibiza · Spain</span><span>28</span></div>
+  </section>
+
+  <!-- ──────────────────────────── CLOSING ──────────────────────────── -->
+  <section class="page closing">
+    <div class="closing-bg"></div>
+    <div class="closing-inner">
+      <span class="closing-mark"></span>
+      <p class="closing-quote">
+        «Las mejores propiedades nunca se encuentran sin más — se buscan, se comprenden
+        y, finalmente, <em>se viven.</em>»
+      </p>
+      <span class="closing-mark"></span>
+      <p class="closing-brand">Figueretes</p>
+      <p class="closing-tag">Ibiza · España</p>
+      <p class="closing-regulatory">
+        La propiedad opera bajo el régimen de alquiler temporal de España (LAU, mínimo
+        32 noches). El registro nacional de alquiler es transferible mediante reinscripción
+        en el cierre. Venta directa por el propietario. Información basada en los registros
+        del propietario; los posibles compradores deberán realizar su propia due diligence
+        independiente.
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>

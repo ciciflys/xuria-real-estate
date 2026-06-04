@@ -86,6 +86,34 @@
     }
     .nav-cta:hover { background: var(--gold); color: var(--dark) !important; }
 
+    /* Language toggle — pill-styled, persistently gold so it stands out from the
+       text-only nav links. Same hover treatment as nav-cta for visual consistency. */
+    .nav-lang {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(201,169,110,0.4);
+      padding: 6px 14px;
+      color: var(--gold) !important;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .nav-lang::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      background: radial-gradient(circle at center, transparent 30%, currentColor 30%, currentColor 33%, transparent 33%, transparent 60%, currentColor 60%, currentColor 63%, transparent 63%);
+      flex-shrink: 0;
+    }
+    .nav-lang:hover {
+      background: var(--gold);
+      color: var(--dark) !important;
+      border-color: var(--gold);
+    }
+    nav.scrolled .nav-lang { color: var(--gold) !important; }
+    nav.scrolled .nav-lang:hover { color: var(--dark) !important; }
+
     /* ── HERO ── */
     .hero {
       position: relative;
@@ -1283,7 +1311,7 @@
       <li><a href="#performance">Performance</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#reviews">Reviews</a></li>
-      <li><a href="figueretes-es.html" style="font-weight:500;">ES</a></li>
+      <li><a href="figueretes-es.html" class="nav-lang">Español</a></li>
       <li><a href="#enquire" class="nav-cta">Investor Pack</a></li>
     </ul>
   </nav>

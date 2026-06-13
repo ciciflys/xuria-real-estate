@@ -1,16 +1,19 @@
 #!/bin/bash
-# Generates four PDFs from two HTML source files:
+# Generates the Figueretes property PDFs from two HTML source files.
 #
 #   English source: investor-pack.html
-#     → figueretes-property.pdf            (private, €479,000 / 7.3% / 5.8%)
-#     → figueretes-property-agency.pdf     (agency,  €499,000 / 7.0% / 5.6%)
+#     → figueretes-property.pdf            (€479,000 / 7.3% / 5.8%)
+#     → figueretes-property-agency.pdf     (copy — same €479,000; broker commission
+#                                            is included in the price, so the agency
+#                                            and private versions are identical)
 #
 #   Spanish source: investor-pack-es.html
-#     → figueretes-property-es.pdf         (private ES, €479.000 / 7,3 % / 5,8 %)
-#     → figueretes-property-agency-es.pdf  (agency  ES, €499.000 / 7,0 % / 5,6 %)
+#     → figueretes-property-es.pdf         (€479.000 / 7,3 % / 5,8 %)
+#     → figueretes-property-agency-es.pdf  (copy — same €479.000)
 #
-# The agency variants are produced by sed-substituting price + 2 yield values into
-# a temporary copy of the source, so the single source file stays canonical.
+# The "-agency" filenames are retained because the discreet "For agencies" /
+# "Para agencias" footer links and any bookmarked broker URLs point at them.
+# Their content is identical to the public PDFs.
 
 set -e
 cd "$(dirname "$0")"
@@ -27,41 +30,13 @@ render() {
     "file://$(pwd)/$src" > /dev/null 2>&1
 }
 
-agency_swap_en() {
-  local src="$1"
-  local tmp="$2"
-  sed -e 's/€479,000/€499,000/g' \
-      -e 's|>7\.3%<|>7.0%<|g' \
-      -e 's|>5\.8%<|>5.6%<|g' \
-      "$src" > "$tmp"
-}
-
-agency_swap_es() {
-  local src="$1"
-  local tmp="$2"
-  # Spanish uses '.' as thousands separator and ',' as decimal, plus a non-breaking
-  # space before % — match the exact patterns used in investor-pack-es.html.
-  sed -e 's/€479\.000/€499.000/g' \
-      -e 's|>7,3 %<|>7,0 %<|g' \
-      -e 's|>5,8 %<|>5,6 %<|g' \
-      "$src" > "$tmp"
-}
-
-echo "→ EN private  (€479,000)…"
+echo "→ EN  (€479,000)…"
 render "investor-pack.html" "figueretes-property.pdf"
+cp "figueretes-property.pdf" "figueretes-property-agency.pdf"
 
-echo "→ EN agency   (€499,000)…"
-agency_swap_en "investor-pack.html" "investor-pack-agency.html"
-render "investor-pack-agency.html" "figueretes-property-agency.pdf"
-rm "investor-pack-agency.html"
-
-echo "→ ES private  (€479.000)…"
+echo "→ ES  (€479.000)…"
 render "investor-pack-es.html" "figueretes-property-es.pdf"
-
-echo "→ ES agency   (€499.000)…"
-agency_swap_es "investor-pack-es.html" "investor-pack-agency-es.html"
-render "investor-pack-agency-es.html" "figueretes-property-agency-es.pdf"
-rm "investor-pack-agency-es.html"
+cp "figueretes-property-es.pdf" "figueretes-property-agency-es.pdf"
 
 echo
 echo "✓ Done."

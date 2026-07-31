@@ -1303,6 +1303,94 @@
 </head>
 <body>
 
+  <!-- ── ACCESS GATE (client-side; keeps casual visitors out — not cryptographic security) ── -->
+  <style>
+    .pw-gate {
+      position: fixed; inset: 0; z-index: 2000;
+      background: #1a1a18;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .pw-card { max-width: 420px; width: 100%; text-align: center; }
+    .pw-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 300; letter-spacing: 0.4em;
+      text-transform: uppercase; color: #fff; margin-bottom: 32px;
+    }
+    .pw-eyebrow {
+      font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: #c9a96e; margin-bottom: 18px;
+    }
+    .pw-text {
+      font-size: 0.82rem; line-height: 1.8; font-weight: 300;
+      color: rgba(255,255,255,0.6); margin-bottom: 32px;
+    }
+    .pw-form { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+    .pw-input {
+      width: 100%; background: transparent; border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      padding: 12px 4px; text-align: center;
+      font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 300;
+      letter-spacing: 0.3em; color: #fff; outline: none; transition: border-color 0.3s;
+    }
+    .pw-input:focus { border-color: #c9a96e; }
+    .pw-input::placeholder { color: rgba(255,255,255,0.3); letter-spacing: 0.2em; }
+    .pw-submit {
+      background: #c9a96e; color: #1a1a18; border: none;
+      padding: 14px 44px; font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.28em;
+      text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 24px;
+    }
+    .pw-submit:hover { background: #fff; }
+    .pw-error {
+      margin-top: 22px; font-size: 0.7rem; letter-spacing: 0.1em;
+      color: #d8a07a; opacity: 0; transition: opacity 0.3s;
+    }
+    .pw-error.show { opacity: 1; }
+  </style>
+  <div class="pw-gate" id="pw-gate">
+    <div class="pw-card">
+      <div class="pw-logo">Xuria</div>
+      <p class="pw-eyebrow">Listado Privado</p>
+      <p class="pw-text">Esta página está disponible por invitación. Introduzca su código de acceso para continuar.</p>
+      <form class="pw-form" id="pw-form">
+        <input class="pw-input" type="password" id="pw-input" placeholder="Código de acceso" autocomplete="off" inputmode="numeric" />
+        <button class="pw-submit" type="submit">Entrar</button>
+      </form>
+      <p class="pw-error" id="pw-error">Código incorrecto — inténtelo de nuevo.</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = 'fig_access';
+      var CODE = 'MjAyMzAw'; // base64 del código de acceso — ofuscación ligera, es una barrera de cliente
+      var gate = document.getElementById('pw-gate');
+      try { if (localStorage.getItem(KEY) === '1') { gate.parentNode.removeChild(gate); return; } } catch (e) {}
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      var form  = document.getElementById('pw-form');
+      var input = document.getElementById('pw-input');
+      var error = document.getElementById('pw-error');
+      input.focus();
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var ok = false;
+        try { ok = (btoa(input.value.trim()) === CODE); } catch (e2) { ok = false; }
+        if (ok) {
+          try { localStorage.setItem(KEY, '1'); } catch (e3) {}
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+          gate.parentNode.removeChild(gate);
+        } else {
+          error.classList.add('show');
+          input.value = '';
+          input.focus();
+        }
+      });
+    })();
+  </script>
+
   <!-- NAV -->
   <nav id="nav">
     <a class="nav-logo" href="index.html">Xuria</a>

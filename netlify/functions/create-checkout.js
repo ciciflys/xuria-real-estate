@@ -13,9 +13,9 @@ const { getStore } = require('@netlify/blobs');
 
 // Pricing — keep in sync with the display values in candavy.html.
 // OWNER: adjust here, or override with Netlify env vars.
-const NIGHTLY_RATE = Number(process.env.CANDAVY_NIGHTLY_RATE || 200); // €/night
-const CLEANING_FEE = Number(process.env.CANDAVY_CLEANING_FEE || 60);  // € flat
-const MIN_NIGHTS   = Number(process.env.CANDAVY_MIN_NIGHTS   || 3);
+const NIGHTLY_RATE = Number(process.env.CANDAVY_NIGHTLY_RATE || 1200); // €/night ← OWNER: set real rate
+const CLEANING_FEE = Number(process.env.CANDAVY_CLEANING_FEE || 300);  // € flat (from the listing)
+const MIN_NIGHTS   = Number(process.env.CANDAVY_MIN_NIGHTS   || 7);    // Saturday-to-Saturday = 7-night min
 const CURRENCY     = 'eur';
 
 exports.handler = async (event) => {

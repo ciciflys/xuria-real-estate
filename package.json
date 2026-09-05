@@ -1,0 +1,11 @@
+{
+  "name": "xuria-candavy-functions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serverless functions for the Can Davy direct-booking flow (Stripe checkout, Airbnb iCal availability sync, booking store).",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0",
+    "node-ical": "^0.20.1",
+    "stripe": "^17.5.0"
+  }
+}

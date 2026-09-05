@@ -1,0 +1,23 @@
+# Netlify configuration.
+#
+# The site is static HTML served straight from the repo root (publish = ".").
+# There is NO build step for the pages themselves.
+#
+# The only added capability is serverless Functions (used by /candavy for the
+# booking flow). Netlify auto-installs the deps in package.json and bundles the
+# functions in netlify/functions/. This does not affect the existing static
+# pages (index.html, figueretes*.html, etc.) — they continue to deploy as-is.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Pretty URL for the Stripe webhook is not needed; functions are reachable at
+# /.netlify/functions/<name>. The booking iCal feed is exposed at a clean path:
+[[redirects]]
+  from = "/candavy/calendar.ics"
+  to = "/.netlify/functions/ical"
+  status = 200

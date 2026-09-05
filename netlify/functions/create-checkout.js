@@ -1,21 +1,20 @@
 // POST /.netlify/functions/create-checkout
-// Body: { checkin:"YYYY-MM-DD", checkout:"YYYY-MM-DD", guests:"2" }
-// Validates the request, RE-CHECKS availability server-side, computes the
-// authoritative price (never trust the client), creates a Stripe Checkout
-// session, and returns { url } for the browser to redirect to.
+// Body: { checkin:"YYYY-MM-DD", checkout:"YYYY-MM-DD", guests:"6" }
+// Validates the request against the OPEN_WINDOWS rules and booked dates,
+// computes the authoritative price server-side (never trust the client),
+// creates a Stripe Checkout session, and returns { url }.
 //
-// Requires env var STRIPE_SECRET_KEY. Until it is set the function returns 503
-// and the page falls back to a WhatsApp enquiry.
+// Requires env var STRIPE_SECRET_KEY. Until set the function returns 503 and
+// the page falls back to a WhatsApp enquiry.
 
 const Stripe = require('stripe');
 const ical = require('node-ical');
 const { getStore } = require('@netlify/blobs');
+const { OPEN_WINDOWS } = require('./lib/rules');
 
 // Pricing — keep in sync with the display values in candavy.html.
-// OWNER: adjust here, or override with Netlify env vars.
 const NIGHTLY_RATE = Number(process.env.CANDAVY_NIGHTLY_RATE || 2400); // €/night
-const CLEANING_FEE = Number(process.env.CANDAVY_CLEANING_FEE || 300);  // € flat (from the listing)
-const MIN_NIGHTS   = Number(process.env.CANDAVY_MIN_NIGHTS   || 7);    // Saturday-to-Saturday = 7-night min
+const CLEANING_FEE = Number(process.env.CANDAVY_CLEANING_FEE || 300);  // € flat
 const CURRENCY     = 'eur';
 
 exports.handler = async (event) => {
@@ -32,9 +31,13 @@ exports.handler = async (event) => {
   if (!isDate(checkin) || !isDate(checkout)) return json(400, { message: 'Invalid dates' });
 
   const nights = nightsBetween(checkin, checkout);
-  if (nights < MIN_NIGHTS) return json(400, { message: `Minimum ${MIN_NIGHTS} nights` });
+  if (nights < 1) return json(400, { message: 'Invalid dates' });
 
-  // Server-side availability re-check
+  // Must fall inside a single open window and satisfy its rules.
+  const rule = validateWindow(checkin, checkout, nights);
+  if (rule.error) return json(400, { message: rule.error });
+
+  // Not already booked
   if (await hasConflict(checkin, checkout)) {
     return json(409, { message: 'Those dates are no longer available.' });
   }
@@ -69,12 +72,26 @@ exports.handler = async (event) => {
   }
 };
 
+// Returns { error } if the stay breaks the window rules, else {}.
+function validateWindow(checkin, checkout, nights) {
+  const w = OPEN_WINDOWS.find(function (win) {
+    return checkin >= win.from && checkout <= win.to;
+  });
+  if (!w) return { error: 'Those dates are not available.' };
+  if (nights < w.minNights) return { error: 'Minimum ' + w.minNights + ' nights for these dates.' };
+  if (w.saturdayOnly) {
+    if (dow(checkin) !== 6 || dow(checkout) !== 6) {
+      return { error: 'These dates are Saturday-to-Saturday only.' };
+    }
+  }
+  return {};
+}
+
 async function hasConflict(checkin, checkout) {
   const start = new Date(checkin + 'T00:00:00Z');
   const end   = new Date(checkout + 'T00:00:00Z');
   const ranges = [];
 
-  // direct bookings
   try {
     const store = getStore('candavy-bookings');
     const { blobs } = await store.list();
@@ -86,7 +103,6 @@ async function hasConflict(checkin, checkout) {
     }
   } catch (e) {}
 
-  // airbnb ical
   const url = process.env.AIRBNB_ICAL_URL;
   if (url) {
     try {
@@ -100,7 +116,6 @@ async function hasConflict(checkin, checkout) {
     } catch (e) {}
   }
 
-  // overlap test ([start,end) vs [s,e))
   return ranges.some(function (r) { return start < r[1] && end > r[0]; });
 }
 
@@ -108,6 +123,7 @@ function isDate(s) { return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(
 function nightsBetween(a, b) {
   return Math.round((new Date(b + 'T00:00:00Z') - new Date(a + 'T00:00:00Z')) / 86400000);
 }
+function dow(s) { return new Date(s + 'T00:00:00Z').getUTCDay(); }
 function json(code, obj) {
   return { statusCode: code, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(obj) };
 }

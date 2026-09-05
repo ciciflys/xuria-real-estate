@@ -548,6 +548,8 @@
     <a class="nav-logo" href="#">Xuria</a>
     <ul class="nav-links">
       <li><a href="#markets">Markets</a></li>
+      <li><a href="candavy.html">Can Davy</a></li>
+      <li><a href="#" class="soon" data-name="Villa Solus">Villa Solus</a></li>
       <li><a href="#contact">Enquire</a></li>
     </ul>
   </nav>
@@ -736,12 +738,37 @@
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+  <!-- Coming-soon toast -->
+  <div id="soon-toast" style="position:fixed;left:50%;bottom:40px;transform:translateX(-50%) translateY(20px);background:#1a1a18;color:#fff;padding:16px 28px;font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(201,169,110,0.4);opacity:0;pointer-events:none;transition:opacity 0.35s,transform 0.35s;z-index:200;">
+    <span id="soon-toast-text"></span>
+  </div>
+
   <script>
     // ── NAV scroll ──
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
+
+    // ── "Coming soon" links ──
+    (function () {
+      var toast = document.getElementById('soon-toast');
+      var toastText = document.getElementById('soon-toast-text');
+      var hideTimer;
+      document.querySelectorAll('.soon').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          toastText.textContent = (a.getAttribute('data-name') || 'This') + ' — coming soon';
+          toast.style.opacity = '1';
+          toast.style.transform = 'translateX(-50%) translateY(0)';
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(20px)';
+          }, 2600);
+        });
+      });
+    })();
 
     // ── EmailJS ──
     // SETUP STEPS (takes ~5 minutes):

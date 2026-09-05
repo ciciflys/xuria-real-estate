@@ -312,8 +312,8 @@
           <li><span>Bathrooms</span><span>4 full + rooftop half</span></li>
           <li><span>Location</span><span>Ibiza Town</span></li>
           <li><span>Rating</span><span>5.0 · 18 reviews</span></li>
-          <li><span>Stays</span><span>Saturday to Saturday</span></li>
-          <li><span>Minimum</span><span>7 nights</span></li>
+          <li><span>Availability</span><span>By season</span></li>
+          <li><span>Minimum stay</span><span>From 4 nights</span></li>
         </ul>
       </div>
     </div>
@@ -324,10 +324,10 @@
     <div class="booking-inner">
       <div class="booking-left">
         <p class="section-label">Reserve</p>
-        <h2>Your week at Can Davy.</h2>
+        <h2>Reserve your dates.</h2>
         <p>
-          Can Davy is let on a weekly basis, Saturday to Saturday. Choose your arrival and
-          length of stay, and reserve securely by card.
+          Availability and minimum stay vary by season — the calendar shows what's open.
+          Choose your dates and reserve securely by card.
         </p>
         <ul class="booking-perks">
           <li>The entire villa, exclusively yours</li>
@@ -339,30 +339,19 @@
 
       <div class="booking-card">
         <h3>Can Davy</h3>
-        <p class="from">Weekly stays · from €<span class="rate-week">—</span> / week · Ibiza Town</p>
+        <p class="from">€2,400 / night · Ibiza Town</p>
 
         <div class="field">
-          <label for="arrival">Arrival (Saturdays)</label>
-          <input type="text" id="arrival" placeholder="Choose a Saturday" readonly />
+          <label for="dates">Select your dates</label>
+          <input type="text" id="dates" placeholder="Add check-in → check-out" readonly />
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="weeks">Length of stay</label>
-            <select id="weeks">
-              <option value="1">1 week</option>
-              <option value="2">2 weeks</option>
-              <option value="3">3 weeks</option>
-              <option value="4">4 weeks</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="guests">Guests</label>
-            <select id="guests">
-              <option value="2">2</option>
-              <option value="4">4</option>
-              <option value="6" selected>6</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="guests">Guests</label>
+          <select id="guests">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6" selected>6</option>
+          </select>
         </div>
 
         <div class="price-breakdown" id="breakdown">
@@ -371,7 +360,7 @@
           <div class="price-row total"><span>Total</span><span id="grand-total">—</span></div>
         </div>
 
-        <button class="book-btn" id="book-btn" disabled>Select a Saturday to continue</button>
+        <button class="book-btn" id="book-btn" disabled>Select your dates</button>
         <p class="book-fine">
           <!-- OWNER: confirm how you want the deposit + housekeeping handled -->
           A €2,000 refundable security deposit and daily housekeeping (€40/day) are arranged separately.
@@ -397,66 +386,76 @@
     // ── BOOKING CONFIG (display only — create-checkout.js recomputes the authoritative
     //    price server-side). Keep NIGHTLY_RATE / CLEANING_FEE in sync with create-checkout.js. ──
     var NIGHTLY_RATE = 2400;  // € per night
-    var CLEANING_FEE = 300;   // € flat (from the listing)
+    var CLEANING_FEE = 300;   // € flat
     var CURRENCY     = '€';
-    var NIGHTS_PER_WEEK = 7;
 
-    document.querySelector('.rate-week').textContent = (NIGHTLY_RATE * NIGHTS_PER_WEEK).toLocaleString();
     document.getElementById('cleaning-fee').textContent = CURRENCY + CLEANING_FEE;
 
-    var arrivalDate = null, picker;
+    var WINDOWS = [], BOOKED = [], range = [], picker;
 
-    // Fetch blocked dates, then init a Saturday-only arrival picker.
+    // Availability = whitelist of open windows (each with its own rules) minus booked dates.
     fetch('/.netlify/functions/availability')
-      .then(function (r) { return r.ok ? r.json() : { blocked: [] }; })
-      .catch(function () { return { blocked: [] }; })
+      .then(function (r) { return r.ok ? r.json() : { windows: [], booked: [] }; })
+      .catch(function () { return { windows: [], booked: [] }; })
       .then(initPicker);
 
+    function ymd(d) {
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function inWindow(s) { return WINDOWS.some(function (w) { return s >= w.from && s <= w.to; }); }
+    function inBooked(s) { return BOOKED.some(function (b) { return s >= b.from && s <= b.to; }); }
+    function windowFor(ci, co) { return WINDOWS.find(function (w) { return ci >= w.from && co <= w.to; }); }
+    function nightsBetween(a, b) { return Math.round((b - a) / 86400000); }
+
     function initPicker(data) {
-      var blocked = (data && data.blocked) || [];
-      picker = flatpickr('#arrival', {
-        minDate: 'today',
-        dateFormat: 'M j, Y',
-        disable: [
-          function (d) { return d.getDay() !== 6; }   // Saturdays only (day 6)
-        ].concat(blocked),
-        onChange: function (dates) { arrivalDate = dates[0] || null; updatePrice(); }
+      WINDOWS = (data && data.windows) || [];
+      BOOKED  = (data && data.booked)  || [];
+      picker = flatpickr('#dates', {
+        mode: 'range', minDate: 'today', showMonths: 1, dateFormat: 'M j, Y',
+        // Disable anything outside an open window, or already booked. Range selection
+        // can't cross a disabled day, so a stay stays inside a single window.
+        disable: [ function (d) { var s = ymd(d); return !inWindow(s) || inBooked(s); } ],
+        onChange: function (dates) { range = dates; updatePrice(); }
       });
     }
 
-    document.getElementById('weeks').addEventListener('change', updatePrice);
+    function status(msg, color) {
+      var st = document.getElementById('book-status');
+      st.style.display = 'block'; st.style.color = color; st.textContent = msg;
+    }
 
     function updatePrice() {
       var btn = document.getElementById('book-btn');
-      var breakdown = document.getElementById('breakdown');
+      var bd  = document.getElementById('breakdown');
       document.getElementById('book-status').style.display = 'none';
-      if (!arrivalDate) { breakdown.classList.remove('show'); btn.disabled = true; btn.textContent = 'Select a Saturday to continue'; return; }
-      var weeks = parseInt(document.getElementById('weeks').value, 10);
-      var nights = weeks * NIGHTS_PER_WEEK;
-      var nightsTotal = nights * NIGHTLY_RATE;
-      var grand = nightsTotal + CLEANING_FEE;
+      if (range.length < 2) { bd.classList.remove('show'); btn.disabled = true; btn.textContent = 'Select your dates'; return; }
+
+      var ci = ymd(range[0]), co = ymd(range[1]);
+      var w = windowFor(ci, co);
+      var nights = nightsBetween(range[0], range[1]);
+      var err = null;
+      if (!w) err = 'Please choose dates within one available window.';
+      else if (nights < w.minNights) err = 'Minimum ' + w.minNights + ' nights for these dates.';
+      else if (w.saturdayOnly && (range[0].getDay() !== 6 || range[1].getDay() !== 6)) err = 'These dates are Saturday-to-Saturday only.';
+
+      if (err) { bd.classList.remove('show'); btn.disabled = true; btn.textContent = 'Adjust dates'; status(err, '#b0603a'); return; }
+
+      var nightsTotal = nights * NIGHTLY_RATE, grand = nightsTotal + CLEANING_FEE;
       document.getElementById('nights-label').textContent = CURRENCY + NIGHTLY_RATE.toLocaleString() + ' × ' + nights + ' nights';
       document.getElementById('nights-total').textContent = CURRENCY + nightsTotal.toLocaleString();
-      document.getElementById('grand-total').textContent = CURRENCY + grand.toLocaleString();
-      breakdown.classList.add('show');
+      document.getElementById('grand-total').textContent  = CURRENCY + grand.toLocaleString();
+      bd.classList.add('show');
       btn.disabled = false; btn.textContent = 'Reserve & Pay';
     }
 
-    function fmt(d) {
-      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-    }
-    function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
-
     document.getElementById('book-btn').addEventListener('click', function () {
-      if (!arrivalDate) return;
-      var btn = this, status = document.getElementById('book-status');
-      var weeks = parseInt(document.getElementById('weeks').value, 10);
-      var checkout = addDays(arrivalDate, weeks * NIGHTS_PER_WEEK);
+      if (range.length < 2) return;
+      var btn = this;
       btn.disabled = true; btn.textContent = 'Redirecting to secure checkout…';
 
       fetch('/.netlify/functions/create-checkout', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ checkin: fmt(arrivalDate), checkout: fmt(checkout), guests: document.getElementById('guests').value })
+        body: JSON.stringify({ checkin: ymd(range[0]), checkout: ymd(range[1]), guests: document.getElementById('guests').value })
       })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
       .then(function (res) {
@@ -464,8 +463,9 @@
         else { throw new Error((res.body && res.body.message) || 'Unavailable'); }
       })
       .catch(function () {
-        status.style.display = 'block'; status.style.color = '#d8a07a';
-        status.innerHTML = 'Online reservation is being finalised. Please ' +
+        var st = document.getElementById('book-status');
+        st.style.display = 'block'; st.style.color = '#b0603a';
+        st.innerHTML = 'Online reservation is being finalised. Please ' +
           '<a href="https://wa.me/34686108095" target="_blank" rel="noopener" style="color:var(--gold);">message us on WhatsApp</a> ' +
           'to confirm these dates — we\'ll hold them for you right away.';
         btn.disabled = false; btn.textContent = 'Reserve & Pay';

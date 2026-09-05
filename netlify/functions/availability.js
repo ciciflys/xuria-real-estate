@@ -1,15 +1,16 @@
 // GET /.netlify/functions/availability
-// Returns { blocked: [ {from:"YYYY-MM-DD", to:"YYYY-MM-DD"}, ... ] } for the
-// front-end date picker. Blocked dates come from two sources:
-//   1. Direct bookings we've taken (stored in Netlify Blobs)
-//   2. The Airbnb iCal feed (dates already booked on the platform) — env AIRBNB_ICAL_URL
-// Fails open: if a source is unavailable it's skipped, so the picker still works.
+// Returns { windows: [...], booked: [ {from,to}, ... ] } for the date picker.
+//   windows — the OPEN availability windows (whitelist) with their rules
+//   booked  — date ranges already taken (direct bookings + Airbnb iCal), which
+//             block dates *inside* an open window
+// Fails open: if a booked source is unavailable it's skipped.
 
 const ical = require('node-ical');
 const { getStore } = require('@netlify/blobs');
+const { OPEN_WINDOWS } = require('./lib/rules');
 
 exports.handler = async () => {
-  const blocked = [];
+  const booked = [];
 
   // 1) Direct bookings
   try {
@@ -18,10 +19,10 @@ exports.handler = async () => {
     for (const b of blobs) {
       const rec = await store.get(b.key, { type: 'json' });
       if (rec && rec.checkin && rec.checkout) {
-        blocked.push({ from: rec.checkin, to: minusOneDay(rec.checkout) });
+        booked.push({ from: rec.checkin, to: minusOneDay(rec.checkout) });
       }
     }
-  } catch (e) { /* store empty / not configured — ignore */ }
+  } catch (e) { /* store empty / not configured */ }
 
   // 2) Airbnb iCal
   const url = process.env.AIRBNB_ICAL_URL;
@@ -31,16 +32,16 @@ exports.handler = async () => {
       for (const k in data) {
         const ev = data[k];
         if (ev && ev.type === 'VEVENT' && ev.start && ev.end) {
-          blocked.push({ from: ymd(ev.start), to: ymd(addDays(ev.end, -1)) });
+          booked.push({ from: ymd(ev.start), to: ymd(addDays(ev.end, -1)) });
         }
       }
-    } catch (e) { /* fetch/parse failed — fail open */ }
+    } catch (e) { /* fail open */ }
   }
 
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=300' },
-    body: JSON.stringify({ blocked })
+    body: JSON.stringify({ windows: OPEN_WINDOWS, booked })
   };
 };
 

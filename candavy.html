@@ -308,7 +308,7 @@
         <ul class="facts">
           <li><span>Guests</span><span>6</span></li>
           <li><span>Bedrooms</span><span>4 (all en-suite)</span></li>
-          <li><span>Beds</span><span>4 king · 1 queen</span></li>
+          <li><span>Beds</span><span>3 king · 1 queen</span></li>
           <li><span>Bathrooms</span><span>4 full + rooftop half</span></li>
           <li><span>Location</span><span>Ibiza Town</span></li>
           <li><span>Rating</span><span>5.0 · 18 reviews</span></li>
@@ -339,7 +339,6 @@
 
       <div class="booking-card">
         <h3>Can Davy</h3>
-        <!-- OWNER: confirm the nightly rate — placeholder below (NIGHTLY_RATE in the script). -->
         <p class="from">Weekly stays · from €<span class="rate-week">—</span> / week · Ibiza Town</p>
 
         <div class="field">
@@ -396,8 +395,8 @@
     window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
     // ── BOOKING CONFIG (display only — create-checkout.js recomputes the authoritative
-    //    price server-side). OWNER: set the real nightly rate; must match the function. ──
-    var NIGHTLY_RATE = 1200;  // € per night  ← OWNER: replace with the real rate
+    //    price server-side). Keep NIGHTLY_RATE / CLEANING_FEE in sync with create-checkout.js. ──
+    var NIGHTLY_RATE = 2400;  // € per night
     var CLEANING_FEE = 300;   // € flat (from the listing)
     var CURRENCY     = '€';
     var NIGHTS_PER_WEEK = 7;

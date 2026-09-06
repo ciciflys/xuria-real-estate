@@ -191,6 +191,63 @@
     .book-note a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); }
     .book-status { margin-top: 14px; font-size: 0.75rem; line-height: 1.6; display: none; }
 
+    /* ── ENQUIRE MODAL ── */
+    .enquire-overlay {
+      position: fixed; inset: 0; z-index: 200; display: none;
+      align-items: center; justify-content: center; padding: 24px;
+      background: rgba(26,26,24,0.62); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    }
+    .enquire-overlay.open { display: flex; }
+    .enquire-modal {
+      background: var(--cream); color: var(--dark); width: 100%; max-width: 440px;
+      padding: 42px 38px 38px; position: relative; box-shadow: 0 24px 70px rgba(0,0,0,0.4);
+      max-height: 92vh; overflow-y: auto;
+    }
+    .enquire-close {
+      position: absolute; top: 14px; right: 18px; background: none; border: none;
+      font-size: 1.5rem; line-height: 1; color: var(--mid); cursor: pointer; padding: 4px;
+    }
+    .enquire-close:hover { color: var(--dark); }
+    .enquire-modal .eq-label { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .enquire-modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; margin-bottom: 8px; }
+    .eq-context { font-size: 0.76rem; line-height: 1.65; color: var(--mid); margin-bottom: 22px; }
+    .eq-context.hide { display: none; }
+    .eq-wa {
+      display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; box-sizing: border-box;
+      background: #25d366; color: #fff; border: none; padding: 15px; text-decoration: none;
+      font-family: 'Montserrat', sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: background 0.3s;
+    }
+    .eq-wa:hover { background: #1da851; }
+    .eq-wa svg { width: 17px; height: 17px; fill: #fff; flex-shrink: 0; }
+    .eq-or { text-align: center; font-size: 0.56rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--mid); margin: 20px 0; position: relative; }
+    .eq-or::before, .eq-or::after { content: ''; position: absolute; top: 50%; width: 30%; height: 1px; background: var(--line); }
+    .eq-or::before { left: 0; }
+    .eq-or::after { right: 0; }
+    .eq-field { margin-bottom: 14px; }
+    .eq-field label { display: block; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid); margin-bottom: 7px; }
+    .eq-field input, .eq-field textarea {
+      width: 100%; box-sizing: border-box; background: #fff; border: 1px solid var(--line); padding: 12px 14px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 300; color: var(--dark);
+    }
+    .eq-field textarea { resize: vertical; min-height: 74px; }
+    .eq-field input:focus, .eq-field textarea:focus { border-color: var(--gold); outline: none; }
+    .eq-send {
+      display: block; width: 100%; box-sizing: border-box; margin-top: 4px;
+      background: var(--gold); color: var(--dark); border: none; padding: 15px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.25em;
+      text-transform: uppercase; cursor: pointer; transition: background 0.3s, color 0.3s;
+    }
+    .eq-send:hover { background: var(--dark); color: #fff; }
+    .eq-send:disabled { opacity: 0.55; cursor: default; }
+    .eq-status { margin-top: 12px; font-size: 0.74rem; line-height: 1.6; display: none; }
+    .enquire-body.hide { display: none; }
+    .eq-success { display: none; text-align: center; padding: 12px 0 4px; }
+    .eq-success.show { display: block; }
+    .eq-success .tick { font-size: 2rem; color: var(--gold); line-height: 1; }
+    .eq-success h3 { margin: 12px 0 8px; }
+    .eq-success p { font-size: 0.82rem; line-height: 1.75; color: var(--mid); }
+
     /* ── FOOTER ── */
     footer { background: var(--dark); color: rgba(255,255,255,0.4); padding: 40px 52px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.06); }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
@@ -393,7 +450,38 @@
     <span class="footer-copy" style="color:rgba(255,255,255,0.25);">Managed by Xuria</span>
   </footer>
 
+  <!-- ENQUIRE MODAL -->
+  <div class="enquire-overlay" id="enquire-overlay">
+    <div class="enquire-modal" role="dialog" aria-modal="true" aria-labelledby="eq-title">
+      <button class="enquire-close" id="enquire-close" aria-label="Close">&times;</button>
+      <div class="enquire-body" id="enquire-body">
+        <p class="eq-label">Book Direct</p>
+        <h3 id="eq-title">Enquire to book</h3>
+        <p class="eq-context hide" id="eq-context"></p>
+        <a class="eq-wa" id="eq-wa" href="https://wa.me/34686108095" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Message on WhatsApp
+        </a>
+        <p class="eq-or">or send a message</p>
+        <form id="eq-form" novalidate>
+          <div class="eq-field"><label for="eq-name">Name</label><input type="text" id="eq-name" autocomplete="name" required /></div>
+          <div class="eq-field"><label for="eq-email">Email</label><input type="email" id="eq-email" autocomplete="email" required /></div>
+          <div class="eq-field"><label for="eq-msg">Message</label><textarea id="eq-msg" placeholder="Your dates and any questions"></textarea></div>
+          <button type="submit" class="eq-send" id="eq-send">Send enquiry</button>
+          <p class="eq-status" id="eq-status"></p>
+        </form>
+      </div>
+      <div class="eq-success" id="eq-success">
+        <div class="tick">✓</div>
+        <h3>Thank you<span id="eq-fname"></span></h3>
+        <p>Your enquiry has reached us — we'll confirm availability and share booking details shortly.</p>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+  <!-- EmailJS SDK (same account as the Xuria site → xuriare@gmail.com) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     var nav = document.getElementById('nav');
     window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 60); });
@@ -436,8 +524,17 @@
       st.style.display = 'block'; st.style.color = color; st.textContent = msg;
     }
 
-    function setDirectLink(text) {
-      document.getElementById('direct-btn').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text);
+    // Current enquiry, shared by the WhatsApp deep-link and the email form.
+    var enquiryText = '';
+    function setEnquiry(text, context) {
+      enquiryText = text;
+      document.getElementById('eq-wa').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text);
+      var ctx = document.getElementById('eq-context');
+      if (context) { ctx.textContent = context; ctx.classList.remove('hide'); }
+      else { ctx.textContent = ''; ctx.classList.add('hide'); }
+      // Pre-fill the message box until the guest starts typing their own note.
+      var msg = document.getElementById('eq-msg');
+      if (msg && !msg.dataset.touched) msg.value = text;
     }
 
     function updatePrice() {
@@ -445,7 +542,7 @@
       document.getElementById('book-status').style.display = 'none';
       if (range.length < 2) {
         bd.classList.remove('show');
-        setDirectLink('Hi, I\'d like to enquire about booking Can Davy direct.');
+        setEnquiry('Hi, I\'d like to enquire about booking Can Davy direct.', '');
         return;
       }
 
@@ -466,15 +563,89 @@
       document.getElementById('grand-total').textContent  = CURRENCY + grand.toLocaleString();
       bd.classList.add('show');
 
-      setDirectLink(
-        'Hi, I\'d like to enquire about booking Can Davy direct for ' + ci + ' → ' + co +
-        ' (' + nights + ' nights, ' + document.getElementById('guests').value + ' guests). ' +
-        'Estimated total ' + CURRENCY + grand.toLocaleString() + '.'
+      var datesStr = document.getElementById('dates').value;   // e.g. "Sep 20, 2026 → Sep 28, 2026"
+      var guests   = document.getElementById('guests').value;
+      setEnquiry(
+        'Hi, I\'d like to enquire about booking Can Davy direct for ' + datesStr +
+        ' (' + nights + ' nights, ' + guests + ' guests). ' +
+        'Estimated total ' + CURRENCY + grand.toLocaleString() + '.',
+        datesStr + '  ·  ' + nights + ' nights  ·  ' + guests + ' guests  ·  est. ' + CURRENCY + grand.toLocaleString()
       );
     }
 
     document.getElementById('guests').addEventListener('change', updatePrice);
-    setDirectLink('Hi, I\'d like to enquire about booking Can Davy direct.');
+    setEnquiry('Hi, I\'d like to enquire about booking Can Davy direct.', '');
+
+    // ── ENQUIRE MODAL (WhatsApp or email) ──
+    (function () {
+      var overlay = document.getElementById('enquire-overlay');
+      var body    = document.getElementById('enquire-body');
+      var success = document.getElementById('eq-success');
+
+      function open(e) {
+        if (e) e.preventDefault();
+        body.classList.remove('hide');
+        success.classList.remove('show');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document.getElementById('direct-btn').addEventListener('click', open);
+      document.getElementById('enquire-close').addEventListener('click', close);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+      });
+
+      // Email form → EmailJS (same account as the Xuria site → xuriare@gmail.com)
+      var EMAILJS_PUBLIC_KEY  = 'OtOMxVtD7z8qdogiD';
+      var EMAILJS_SERVICE_ID  = 'service_seeu75b';
+      var EMAILJS_TEMPLATE_ID = 'template_dr2p5gc';
+      if (typeof emailjs !== 'undefined') emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+      var form = document.getElementById('eq-form');
+      var btn  = document.getElementById('eq-send');
+      var st   = document.getElementById('eq-status');
+      var msg  = document.getElementById('eq-msg');
+      msg.addEventListener('input', function () { msg.dataset.touched = '1'; });
+
+      function fail(text) { st.style.display = 'block'; st.style.color = '#b0603a'; st.textContent = text; }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name  = document.getElementById('eq-name').value.trim();
+        var email = document.getElementById('eq-email').value.trim();
+        if (!name || !email) { fail('Name and email are required.'); return; }
+
+        btn.textContent = 'Sending…'; btn.disabled = true; st.style.display = 'none';
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          name:      name,
+          email:     email,
+          phone:     '—',
+          country:   '—',
+          market:    'Can Davy — Direct Booking Enquiry',
+          message:   (msg.value.trim() || enquiryText || '(no message)'),
+          send_pack: 'No',
+          source:    'Can Davy Villa'
+        })
+        .then(function () {
+          var fn = name.split(/\s+/)[0];
+          document.getElementById('eq-fname').textContent = fn ? ', ' + fn : '';
+          body.classList.add('hide');
+          success.classList.add('show');
+          btn.textContent = 'Send enquiry'; btn.disabled = false;
+          form.reset(); delete msg.dataset.touched;
+        })
+        .catch(function () {
+          fail('Something went wrong — please WhatsApp us or email xuriare@gmail.com.');
+          btn.textContent = 'Send enquiry'; btn.disabled = false;
+        });
+      });
+    })();
   </script>
 </body>
 </html>

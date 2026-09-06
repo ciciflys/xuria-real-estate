@@ -15,7 +15,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <!-- flatpickr: date picker (loaded from cdnjs) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" />
@@ -69,7 +69,7 @@
     .hero-bg {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(to bottom, rgba(26,26,24,0.32) 0%, rgba(26,26,24,0.6) 100%),
+        linear-gradient(to bottom, rgba(26,26,24,0.42) 0%, rgba(26,26,24,0.66) 100%),
         url('images/hero.jpg');
       background-size: cover; background-position: center;
     }
@@ -78,12 +78,13 @@
       font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px;
     }
     .hero-title {
-      font-family: 'Bodoni Moda', 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 6rem);
-      font-weight: 500; line-height: 1.0; letter-spacing: 0.01em; margin-bottom: 26px;
+      font-family: 'Playfair Display', 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 500; line-height: 1.02; letter-spacing: 0.01em; margin-bottom: 26px;
     }
     .hero-sub {
-      font-size: 0.85rem; letter-spacing: 0.05em; line-height: 1.85;
-      color: rgba(255,255,255,0.8); max-width: 680px; margin: 0 auto 20px;
+      font-size: 1.02rem; letter-spacing: 0.02em; line-height: 1.75;
+      color: rgba(255,255,255,0.95); max-width: 660px; margin: 0 auto 20px;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.35);
     }
     .hero-meta {
       font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
@@ -356,8 +357,11 @@
         <div class="field">
           <label for="guests">Guests</label>
           <select id="guests">
+            <option value="1">1</option>
             <option value="2">2</option>
+            <option value="3">3</option>
             <option value="4">4</option>
+            <option value="5">5</option>
             <option value="6" selected>6</option>
           </select>
         </div>

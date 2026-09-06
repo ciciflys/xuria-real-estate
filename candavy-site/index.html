@@ -466,7 +466,7 @@
         <form id="eq-form" novalidate>
           <div class="eq-field"><label for="eq-name">Name</label><input type="text" id="eq-name" autocomplete="name" required /></div>
           <div class="eq-field"><label for="eq-email">Email</label><input type="email" id="eq-email" autocomplete="email" required /></div>
-          <div class="eq-field"><label for="eq-msg">Message</label><textarea id="eq-msg" placeholder="Your dates and any questions"></textarea></div>
+          <div class="eq-field"><label for="eq-msg">Message <span style="text-transform:none;letter-spacing:0;color:var(--mid);">(optional)</span></label><textarea id="eq-msg" placeholder="Any questions or special requests — your dates are already included"></textarea></div>
           <button type="submit" class="eq-send" id="eq-send">Send enquiry</button>
           <p class="eq-status" id="eq-status"></p>
         </form>
@@ -525,16 +525,16 @@
     }
 
     // Current enquiry, shared by the WhatsApp deep-link and the email form.
-    var enquiryText = '';
+    // enquirySummary is the structured dates/guests/estimate line — captured from
+    // the calendar state, so it's always sent with the email regardless of the note.
+    var enquiryText = '', enquirySummary = 'No specific dates selected';
     function setEnquiry(text, context) {
       enquiryText = text;
+      enquirySummary = context || 'No specific dates selected';
       document.getElementById('eq-wa').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text);
       var ctx = document.getElementById('eq-context');
       if (context) { ctx.textContent = context; ctx.classList.remove('hide'); }
       else { ctx.textContent = ''; ctx.classList.add('hide'); }
-      // Pre-fill the message box until the guest starts typing their own note.
-      var msg = document.getElementById('eq-msg');
-      if (msg && !msg.dataset.touched) msg.value = text;
     }
 
     function updatePrice() {
@@ -610,7 +610,6 @@
       var btn  = document.getElementById('eq-send');
       var st   = document.getElementById('eq-status');
       var msg  = document.getElementById('eq-msg');
-      msg.addEventListener('input', function () { msg.dataset.touched = '1'; });
 
       function fail(text) { st.style.display = 'block'; st.style.color = '#b0603a'; st.textContent = text; }
 
@@ -622,13 +621,18 @@
 
         btn.textContent = 'Sending…'; btn.disabled = true; st.style.display = 'none';
 
+        // Dates/guests/estimate come from the calendar (enquirySummary) — the guest
+        // never has to retype them; the optional note is appended if they wrote one.
+        var note = msg.value.trim();
+        var composed = 'Requested: ' + enquirySummary + (note ? '  —  Note: ' + note : '');
+
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           name:      name,
           email:     email,
           phone:     '—',
           country:   '—',
           market:    'Can Davy — Direct Booking Enquiry',
-          message:   (msg.value.trim() || enquiryText || '(no message)'),
+          message:   composed,
           send_pack: 'No',
           source:    'Can Davy Villa'
         })
@@ -638,7 +642,7 @@
           body.classList.add('hide');
           success.classList.add('show');
           btn.textContent = 'Send enquiry'; btn.disabled = false;
-          form.reset(); delete msg.dataset.touched;
+          form.reset();
         })
         .catch(function () {
           fail('Something went wrong — please WhatsApp us or email xuriare@gmail.com.');

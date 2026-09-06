@@ -1,0 +1,3 @@
+# Can Davy now lives on its own domain. Forward the old xuriare.com path.
+/candavy       https://candavy.com          301!
+/candavy/*     https://candavy.com/:splat   301!

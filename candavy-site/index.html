@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Can Davy — Luxury Villa · Ibiza Town</title>
+  <meta name="description" content="Can Davy — a modern luxury villa in the heart of Ibiza Town. Private pool, rooftop Jacuzzi with sea views, cinema, spa. Sleeps six." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Can Davy — Luxury Villa · Ibiza Town" />
+  <meta property="og:description" content="A modern luxury villa in the heart of Ibiza Town. Private 15m pool, rooftop Jacuzzi with sea views, cinema, spa. Sleeps six." />
+  <meta property="og:image" content="https://candavy.com/images/hero.jpg" />
+  <meta property="og:url" content="https://candavy.com" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- flatpickr: date picker (loaded from cdnjs) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:  #f5f0e8;
+      --cream: #faf8f4;
+      --dark:  #1a1a18;
+      --gold:  #c9a96e;
+      --mid:   #6b6b60;
+      --line:  rgba(26,26,24,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--dark); font-weight: 300; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 52px; background: transparent; transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250,248,244,0.96); backdrop-filter: blur(10px);
+      padding: 16px 52px; border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300;
+      letter-spacing: 0.3em; text-transform: uppercase; color: #fff; text-decoration: none; transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--dark); }
+    .nav-links { display: flex; gap: 36px; align-items: center; list-style: none; }
+    .nav-links a {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-book { border: 1px solid rgba(201,169,110,0.7); padding: 10px 24px; color: var(--gold) !important; }
+    .nav-book:hover { background: var(--gold); color: var(--dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: 100vh; min-height: 680px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      overflow: hidden; background: var(--dark); text-align: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(26,26,24,0.32) 0%, rgba(26,26,24,0.6) 100%),
+        url('images/hero.jpg');
+      background-size: cover; background-position: center;
+    }
+    .hero-content { position: relative; color: #fff; padding: 0 24px; max-width: 940px; }
+    .hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px;
+    }
+    .hero-title {
+      font-family: 'Bodoni Moda', 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 500; line-height: 1.0; letter-spacing: 0.01em; margin-bottom: 26px;
+    }
+    .hero-sub {
+      font-size: 0.85rem; letter-spacing: 0.05em; line-height: 1.85;
+      color: rgba(255,255,255,0.8); max-width: 680px; margin: 0 auto 20px;
+    }
+    .hero-meta {
+      font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); margin-bottom: 40px;
+    }
+    .hero-meta .star { color: var(--gold); }
+    .hero-cta {
+      display: inline-block; padding: 16px 46px; background: var(--gold); color: var(--dark);
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none;
+      border: 1px solid var(--gold); transition: background 0.3s, color 0.3s;
+    }
+    .hero-cta:hover { background: transparent; color: var(--gold); }
+    .hero-scroll {
+      position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+    }
+
+    /* ── INTRO ── */
+    .intro { padding: 110px 52px; max-width: 820px; margin: 0 auto; text-align: center; }
+    .intro .label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .intro h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+      font-weight: 300; line-height: 1.3; margin-bottom: 26px;
+    }
+    .intro p { font-size: 0.88rem; line-height: 1.95; color: var(--mid); }
+
+    /* ── FEATURES ── */
+    .features { background: var(--dark); color: #fff; padding: 100px 52px; }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-head { text-align: center; margin-bottom: 60px; }
+    .features-head .label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .features-head h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,3.4vw,2.6rem); font-weight: 300; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.08); }
+    .feature { background: var(--dark); padding: 40px 32px; }
+    .feature h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: #fff; margin-bottom: 12px;
+    }
+    .feature p { font-size: 0.78rem; line-height: 1.75; color: rgba(255,255,255,0.6); }
+
+    /* ── GALLERY ── */
+    .section { padding: 100px 52px; max-width: 1160px; margin: 0 auto; }
+    .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,3.4vw,2.6rem); font-weight: 300; letter-spacing: 0.02em; margin-bottom: 40px; }
+    .gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-auto-rows: 210px; gap: 10px; }
+    .gallery-cell { background: var(--sand); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
+    .gallery-cell.big { grid-column: 1; grid-row: span 2; }
+    .gallery-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-placeholder { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); text-align: center; padding: 12px; }
+
+    /* ── DETAILS ── */
+    .details { background: var(--sand); }
+    .details-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: start; }
+    .facts { list-style: none; border-top: 1px solid var(--line); }
+    .facts li { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 0.85rem; }
+    .facts li span:first-child { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); }
+    .amenities { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+    .amenities li { font-size: 0.82rem; color: var(--dark); padding-left: 20px; position: relative; line-height: 1.6; }
+    .amenities li::before { content: '·'; position: absolute; left: 4px; color: var(--gold); font-size: 1.3rem; top: -3px; }
+
+    /* ── BOOKING ── */
+    .booking { background: var(--dark); color: #fff; padding: 100px 52px; }
+    .booking-inner { max-width: 940px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .booking-left .section-label { color: var(--gold); }
+    .booking-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,3.4vw,2.6rem); font-weight: 300; margin-bottom: 22px; }
+    .booking-left p { font-size: 0.85rem; line-height: 1.9; color: rgba(255,255,255,0.65); margin-bottom: 18px; }
+    .booking-perks { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+    .booking-perks li { font-size: 0.78rem; color: rgba(255,255,255,0.8); padding-left: 24px; position: relative; }
+    .booking-perks li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); }
+
+    .booking-card { background: var(--cream); color: var(--dark); padding: 34px; }
+    .booking-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; }
+    .booking-card .from { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--mid); margin-bottom: 26px; }
+    .field { margin-bottom: 18px; }
+    .field label { display: block; font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+    .field input, .field select {
+      width: 100%; background: #fff; border: 1px solid var(--line); padding: 12px 14px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 300; color: var(--dark);
+      outline: none; transition: border-color 0.3s;
+    }
+    .field input:focus, .field select:focus { border-color: var(--gold); }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .price-breakdown { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 16px; display: none; }
+    .price-breakdown.show { display: block; }
+    .price-row { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--mid); padding: 6px 0; }
+    .price-row.total { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 14px; color: var(--dark); font-size: 1rem; }
+    .price-row.total span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; }
+    .book-btn {
+      display: block; width: 100%; box-sizing: border-box; margin-top: 8px;
+      background: var(--gold); color: var(--dark); border: none; padding: 16px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.25em;
+      text-transform: uppercase; text-align: center; text-decoration: none; cursor: pointer; transition: background 0.3s, color 0.3s;
+    }
+    .book-btn:hover { background: var(--dark); color: #fff; }
+    .book-or { text-align: center; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin: 14px 0 12px; }
+    .book-direct {
+      display: block; width: 100%; box-sizing: border-box; text-align: center; text-decoration: none;
+      padding: 14px; border: 1px solid var(--line); color: var(--dark);
+      font-family: 'Montserrat', sans-serif; font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .book-direct:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
+    .book-fine { margin-top: 14px; font-size: 0.68rem; line-height: 1.6; color: var(--mid); text-align: center; }
+    .book-note { margin-top: 12px; font-size: 0.72rem; line-height: 1.6; color: var(--mid); text-align: center; }
+    .book-note a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); }
+    .book-status { margin-top: 14px; font-size: 0.75rem; line-height: 1.6; display: none; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); color: rgba(255,255,255,0.4); padding: 40px 52px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .footer-copy { font-size: 0.58rem; letter-spacing: 0.15em; }
+
+    .flatpickr-day.flatpickr-disabled { text-decoration: line-through; opacity: 0.35; }
+
+    @media (max-width: 820px) {
+      .details-inner, .booking-inner { grid-template-columns: 1fr; gap: 40px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-cell.big { grid-column: span 2; grid-row: span 1; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+    @media (max-width: 560px) {
+      nav { padding: 18px 22px; }
+      .section, .intro, .features, .booking { padding-left: 22px; padding-right: 22px; }
+      .amenities { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">Can Davy</a>
+    <ul class="nav-links">
+      <li><a href="#villa">The Villa</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#book" class="nav-book">Reserve</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Ibiza Town &nbsp;·&nbsp; Private Villa</p>
+      <h1 class="hero-title">Can Davy</h1>
+      <p class="hero-sub">
+        A modern luxury villa in the heart of Ibiza Town — private pool, rooftop
+        Jacuzzi, cinema and spa. Four en-suite bedrooms, sleeps six.
+      </p>
+      <p class="hero-meta"><span class="star">★</span> 5.0 &nbsp;·&nbsp; 18 Reviews</p>
+      <a class="hero-cta" href="#book">Check Availability</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro" id="villa">
+    <p class="label">The Villa</p>
+    <h2>A refined interpretation of conscious luxury.</h2>
+    <p>
+      Can Davy blends clean, open-plan architecture with the warmth of organic materials and
+      high-end amenities — solar-powered, energy-efficient, and thoughtfully designed throughout.
+      Set on a peaceful residential street minutes from Ibiza Town, it offers rare walkable access
+      to the beach, dining and shops. Expansive glass doors dissolve the line between inside and
+      out, opening to a shaded terrace and saltwater pool, while the rooftop above takes in views
+      over the sea and Dalt Vila — a private sanctuary of style, wellness and ease, for six.
+    </p>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-inner">
+      <div class="features-head">
+        <p class="label">What Sets It Apart</p>
+        <h2>Every indulgence, under one roof.</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature"><h3>15m Saltwater Pool</h3><p>A private pool at the heart of the villa, framed for long Ibiza afternoons.</p></div>
+        <div class="feature"><h3>Rooftop Jacuzzi</h3><p>A rooftop terrace and Jacuzzi with sweeping views over Ibiza Town and the sea.</p></div>
+        <div class="feature"><h3>Rooftop Kitchen &amp; Fire-Pit</h3><p>A full outdoor kitchen, two dining areas and a fire-pit, wrapped in sea and old-town views.</p></div>
+        <div class="feature"><h3>Cinema Room</h3><p>A retractable 200-inch drop-down screen with Sonos surround sound for films after dark.</p></div>
+        <div class="feature"><h3>Spa &amp; Sauna</h3><p>A dedicated spa room with sauna, plus a gym — wellness without leaving home.</p></div>
+        <div class="feature"><h3>Fully Private</h3><p>Four en-suite bedrooms, gated parking, and every amenity for exclusive use.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="gallery">
+    <p class="section-label">Gallery</p>
+    <h2 class="section-heading">A look inside.</h2>
+    <div class="gallery-grid">
+      <div class="gallery-cell big"><img src="images/1.jpg" alt="Rooftop lounge and pool" loading="lazy" /></div>
+      <div class="gallery-cell"><img src="images/2.jpg" alt="Poolside loungers with sea views" loading="lazy" /></div>
+      <div class="gallery-cell"><img src="images/3.jpg" alt="Rooftop Jacuzzi with sea views" loading="lazy" /></div>
+      <div class="gallery-cell"><img src="images/4.jpg" alt="Rooftop dining terrace" loading="lazy" /></div>
+      <div class="gallery-cell"><img src="images/5.jpg" alt="Open-plan living and kitchen" loading="lazy" /></div>
+      <div class="gallery-cell big"><img src="images/6.jpg" alt="Bedroom with terrace views" loading="lazy" /></div>
+      <div class="gallery-cell"><img src="images/7.jpg" alt="Feature staircase and pool" loading="lazy" /></div>
+      <div class="gallery-cell"><img src="images/8.jpg" alt="Spa room with sauna" loading="lazy" /></div>
+      <div class="gallery-cell"><img src="images/9.jpg" alt="Private gym" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="section details" style="max-width:none;">
+    <div class="details-inner">
+      <div>
+        <p class="section-label">The Space</p>
+        <h2 class="section-heading" style="margin-bottom:24px;">Four en-suite bedrooms. Six guests.</h2>
+        <p class="section-label" style="margin-top:4px;">Amenities</p>
+        <ul class="amenities">
+          <li>15m saltwater pool</li>
+          <li>Rooftop Jacuzzi &amp; fire-pit</li>
+          <li>Rooftop outdoor kitchen</li>
+          <li>200-inch cinema screen</li>
+          <li>Sonos surround sound</li>
+          <li>Spa room with sauna</li>
+          <li>Private outdoor gym</li>
+          <li>Central air conditioning</li>
+          <li>Siemens fully-equipped kitchen</li>
+          <li>Two outdoor dining areas</li>
+          <li>Solar-powered · energy efficient</li>
+          <li>Gated parking for two</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="facts">
+          <li><span>Guests</span><span>6</span></li>
+          <li><span>Bedrooms</span><span>4 (all en-suite)</span></li>
+          <li><span>Beds</span><span>3 king · 1 queen</span></li>
+          <li><span>Bathrooms</span><span>4 full + rooftop half</span></li>
+          <li><span>Location</span><span>Ibiza Town</span></li>
+          <li><span>Rating</span><span>5.0 · 18 reviews</span></li>
+          <li><span>Availability</span><span>By season</span></li>
+          <li><span>Minimum stay</span><span>From 4 nights</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="book">
+    <div class="booking-inner">
+      <div class="booking-left">
+        <p class="section-label">Reserve</p>
+        <h2>Check dates &amp; book.</h2>
+        <p>
+          Availability and minimum stay vary by season — the calendar shows what's open.
+          Book instantly on Airbnb, or enquire to book direct.
+        </p>
+        <ul class="booking-perks">
+          <li>The entire villa, exclusively yours</li>
+          <li>Instant booking &amp; secure payment on Airbnb</li>
+          <li>Direct bookings by bank transfer</li>
+          <li>A direct line to your host throughout</li>
+        </ul>
+      </div>
+
+      <div class="booking-card">
+        <h3>Can Davy</h3>
+        <p class="from">€2,400 / night · Ibiza Town</p>
+
+        <div class="field">
+          <label for="dates">Select your dates</label>
+          <input type="text" id="dates" placeholder="Add check-in → check-out" readonly />
+        </div>
+        <div class="field">
+          <label for="guests">Guests</label>
+          <select id="guests">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6" selected>6</option>
+          </select>
+        </div>
+
+        <div class="price-breakdown" id="breakdown">
+          <div class="price-row"><span id="nights-label">—</span><span id="nights-total">—</span></div>
+          <div class="price-row"><span>Cleaning fee</span><span id="cleaning-fee">€300</span></div>
+          <div class="price-row total"><span>Estimated total</span><span id="grand-total">—</span></div>
+        </div>
+
+        <p class="book-status" id="book-status"></p>
+
+        <a class="book-btn" id="airbnb-btn" href="https://www.airbnb.com/rooms/1454344604485468535" target="_blank" rel="noopener">Book on Airbnb</a>
+
+        <p class="book-or">or</p>
+
+        <a class="book-direct" id="direct-btn" href="https://wa.me/34686108095" target="_blank" rel="noopener">Enquire to book direct</a>
+        <p class="book-fine">
+          Direct bookings are by bank transfer. Message us with your dates and we'll confirm
+          availability and share payment details. A €2,000 refundable deposit and daily
+          housekeeping (€40/day) are arranged separately.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Can Davy</div>
+    <p class="footer-copy">© 2026 Can Davy · Ibiza Town</p>
+    <span class="footer-copy" style="color:rgba(255,255,255,0.25);">Managed by Xuria</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+  <script>
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 60); });
+
+    // ── BOOKING (display / estimate only) ──
+    var NIGHTLY_RATE = 2400;  // € per night
+    var CLEANING_FEE = 300;   // € flat
+    var CURRENCY     = '€';
+    var WHATSAPP     = '34686108095';
+
+    // Open availability windows (edit here to open/close dates).
+    //   minNights     minimum nights   |   saturdayOnly true → Saturday-to-Saturday only
+    var WINDOWS = [
+      { from: '2026-09-21', to: '2026-09-28', minNights: 4, saturdayOnly: false }, // Sep 21–28
+      { from: '2026-10-25', to: '2026-11-01', minNights: 4, saturdayOnly: false }, // last week of October
+      { from: '2027-07-17', to: '2027-09-04', minNights: 7, saturdayOnly: true }   // last 2 wks July + all August
+    ];
+
+    document.getElementById('cleaning-fee').textContent = CURRENCY + CLEANING_FEE;
+
+    var range = [], picker;
+
+    function ymd(d) {
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function inWindow(s) { return WINDOWS.some(function (w) { return s >= w.from && s <= w.to; }); }
+    function windowFor(ci, co) { return WINDOWS.find(function (w) { return ci >= w.from && co <= w.to; }); }
+    function nightsBetween(a, b) { return Math.round((b - a) / 86400000); }
+
+    picker = flatpickr('#dates', {
+      mode: 'range', minDate: 'today', showMonths: 1, dateFormat: 'M j, Y',
+      // Only dates inside an open window are selectable; a range can't cross a
+      // disabled day, so a stay stays within a single window.
+      disable: [ function (d) { return !inWindow(ymd(d)); } ],
+      onChange: function (dates) { range = dates; updatePrice(); }
+    });
+
+    function status(msg, color) {
+      var st = document.getElementById('book-status');
+      st.style.display = 'block'; st.style.color = color; st.textContent = msg;
+    }
+
+    function setDirectLink(text) {
+      document.getElementById('direct-btn').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text);
+    }
+
+    function updatePrice() {
+      var bd = document.getElementById('breakdown');
+      document.getElementById('book-status').style.display = 'none';
+      if (range.length < 2) {
+        bd.classList.remove('show');
+        setDirectLink('Hi, I\'d like to enquire about booking Can Davy direct.');
+        return;
+      }
+
+      var ci = ymd(range[0]), co = ymd(range[1]);
+      var w = windowFor(ci, co);
+      var nights = nightsBetween(range[0], range[1]);
+      var err = null;
+      if (!w) err = 'Please choose dates within one available window.';
+      else if (nights < w.minNights) err = 'Minimum ' + w.minNights + ' nights for these dates.';
+      else if (w.saturdayOnly && (range[0].getDay() !== 6 || range[1].getDay() !== 6)) err = 'These dates are Saturday-to-Saturday only.';
+
+      if (err) { bd.classList.remove('show'); status(err, '#b0603a'); return; }
+
+      var nightsTotal = nights * NIGHTLY_RATE, grand = nightsTotal + CLEANING_FEE;
+      document.getElementById('nights-label').textContent = CURRENCY + NIGHTLY_RATE.toLocaleString() + ' × ' + nights + ' nights';
+      document.getElementById('nights-total').textContent = CURRENCY + nightsTotal.toLocaleString();
+      document.getElementById('grand-total').textContent  = CURRENCY + grand.toLocaleString();
+      bd.classList.add('show');
+
+      setDirectLink(
+        'Hi, I\'d like to enquire about booking Can Davy direct for ' + ci + ' → ' + co +
+        ' (' + nights + ' nights, ' + document.getElementById('guests').value + ' guests). ' +
+        'Estimated total ' + CURRENCY + grand.toLocaleString() + '.'
+      );
+    }
+
+    document.getElementById('guests').addEventListener('change', updatePrice);
+    setDirectLink('Hi, I\'d like to enquire about booking Can Davy direct.');
+  </script>
+</body>
+</html>

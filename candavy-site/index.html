@@ -236,7 +236,6 @@
         A modern luxury villa in the heart of Ibiza Town — private pool, rooftop
         Jacuzzi, cinema and spa. Four en-suite bedrooms, sleeps six.
       </p>
-      <p class="hero-meta"><span class="star">★</span> 5.0 &nbsp;·&nbsp; 18 Reviews</p>
       <a class="hero-cta" href="#book">Check Availability</a>
     </div>
     <div class="hero-scroll">Scroll</div>
@@ -267,7 +266,7 @@
         <div class="feature"><h3>15m Saltwater Pool</h3><p>A private pool at the heart of the villa, framed for long Ibiza afternoons.</p></div>
         <div class="feature"><h3>Rooftop Jacuzzi</h3><p>A rooftop terrace and Jacuzzi with sweeping views over Ibiza Town and the sea.</p></div>
         <div class="feature"><h3>Rooftop Kitchen &amp; Fire-Pit</h3><p>A full outdoor kitchen, two dining areas and a fire-pit, wrapped in sea and old-town views.</p></div>
-        <div class="feature"><h3>Cinema Room</h3><p>A retractable 200-inch drop-down screen with Sonos surround sound for films after dark.</p></div>
+        <div class="feature"><h3>Cinema Living Room</h3><p>The main living room doubles as a private cinema — a retractable 200-inch projector screen alongside a large TV, with Sonos surround sound.</p></div>
         <div class="feature"><h3>Spa &amp; Sauna</h3><p>A dedicated spa room with sauna, plus a gym — wellness without leaving home.</p></div>
         <div class="feature"><h3>Fully Private</h3><p>Four en-suite bedrooms, gated parking, and every amenity for exclusive use.</p></div>
       </div>
@@ -302,7 +301,7 @@
           <li>15m saltwater pool</li>
           <li>Rooftop Jacuzzi &amp; fire-pit</li>
           <li>Rooftop outdoor kitchen</li>
-          <li>200-inch cinema screen</li>
+          <li>200-inch living-room projector</li>
           <li>Sonos surround sound</li>
           <li>Spa room with sauna</li>
           <li>Private outdoor gym</li>
@@ -320,7 +319,6 @@
           <li><span>Beds</span><span>3 king · 1 queen</span></li>
           <li><span>Bathrooms</span><span>4 full + rooftop half</span></li>
           <li><span>Location</span><span>Ibiza Town</span></li>
-          <li><span>Rating</span><span>5.0 · 18 reviews</span></li>
           <li><span>Availability</span><span>By season</span></li>
           <li><span>Minimum stay</span><span>From 4 nights</span></li>
         </ul>
@@ -348,7 +346,7 @@
 
       <div class="booking-card">
         <h3>Can Davy</h3>
-        <p class="from">€2,400 / night · Ibiza Town</p>
+        <p class="from">From €1,700 / night · Ibiza Town</p>
 
         <div class="field">
           <label for="dates">Select your dates</label>
@@ -401,17 +399,17 @@
     window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
     // ── BOOKING (display / estimate only) ──
-    var NIGHTLY_RATE = 2400;  // € per night
+    var NIGHTLY_RATE = 2400;  // € per night (default / fallback)
     var CLEANING_FEE = 300;   // € flat
     var CURRENCY     = '€';
     var WHATSAPP     = '34686108095';
 
-    // Open availability windows (edit here to open/close dates).
-    //   minNights     minimum nights   |   saturdayOnly true → Saturday-to-Saturday only
+    // Open availability windows (edit here to open/close dates or change rates).
+    //   minNights  minimum nights  |  saturdayOnly true → Sat-to-Sat only  |  rate  €/night for this window
     var WINDOWS = [
-      { from: '2026-09-21', to: '2026-09-28', minNights: 4, saturdayOnly: false }, // Sep 21–28
-      { from: '2026-10-25', to: '2026-11-01', minNights: 4, saturdayOnly: false }, // last week of October
-      { from: '2027-07-17', to: '2027-09-04', minNights: 7, saturdayOnly: true }   // last 2 wks July + all August
+      { from: '2026-09-20', to: '2026-09-28', minNights: 4, saturdayOnly: false, rate: 2000 }, // Sep 20–28
+      { from: '2026-10-24', to: '2026-11-01', minNights: 4, saturdayOnly: false, rate: 1700 }, // last week of October
+      { from: '2027-07-17', to: '2027-09-04', minNights: 7, saturdayOnly: true,  rate: 2400 }  // last 2 wks July + all August
     ];
 
     document.getElementById('cleaning-fee').textContent = CURRENCY + CLEANING_FEE;
@@ -461,8 +459,9 @@
 
       if (err) { bd.classList.remove('show'); status(err, '#b0603a'); return; }
 
-      var nightsTotal = nights * NIGHTLY_RATE, grand = nightsTotal + CLEANING_FEE;
-      document.getElementById('nights-label').textContent = CURRENCY + NIGHTLY_RATE.toLocaleString() + ' × ' + nights + ' nights';
+      var rate = w.rate || NIGHTLY_RATE;
+      var nightsTotal = nights * rate, grand = nightsTotal + CLEANING_FEE;
+      document.getElementById('nights-label').textContent = CURRENCY + rate.toLocaleString() + ' × ' + nights + ' nights';
       document.getElementById('nights-total').textContent = CURRENCY + nightsTotal.toLocaleString();
       document.getElementById('grand-total').textContent  = CURRENCY + grand.toLocaleString();
       bd.classList.add('show');

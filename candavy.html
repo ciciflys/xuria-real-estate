@@ -171,12 +171,20 @@
     .price-row.total { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 14px; color: var(--dark); font-size: 1rem; }
     .price-row.total span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; }
     .book-btn {
-      width: 100%; margin-top: 22px; background: var(--gold); color: var(--dark); border: none; padding: 16px;
+      display: block; width: 100%; box-sizing: border-box; margin-top: 8px;
+      background: var(--gold); color: var(--dark); border: none; padding: 16px;
       font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.25em;
-      text-transform: uppercase; cursor: pointer; transition: background 0.3s;
+      text-transform: uppercase; text-align: center; text-decoration: none; cursor: pointer; transition: background 0.3s, color 0.3s;
     }
-    .book-btn:hover:not(:disabled) { background: var(--dark); color: #fff; }
-    .book-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .book-btn:hover { background: var(--dark); color: #fff; }
+    .book-or { text-align: center; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin: 14px 0 12px; }
+    .book-direct {
+      display: block; width: 100%; box-sizing: border-box; text-align: center; text-decoration: none;
+      padding: 14px; border: 1px solid var(--line); color: var(--dark);
+      font-family: 'Montserrat', sans-serif; font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .book-direct:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
     .book-fine { margin-top: 14px; font-size: 0.68rem; line-height: 1.6; color: var(--mid); text-align: center; }
     .book-note { margin-top: 12px; font-size: 0.72rem; line-height: 1.6; color: var(--mid); text-align: center; }
     .book-note a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); }
@@ -324,15 +332,15 @@
     <div class="booking-inner">
       <div class="booking-left">
         <p class="section-label">Reserve</p>
-        <h2>Reserve your dates.</h2>
+        <h2>Check dates &amp; book.</h2>
         <p>
           Availability and minimum stay vary by season — the calendar shows what's open.
-          Choose your dates and reserve securely by card.
+          Book instantly on Airbnb, or enquire to book direct.
         </p>
         <ul class="booking-perks">
           <li>The entire villa, exclusively yours</li>
-          <li>Secure card payment</li>
-          <li>Instant confirmation once reserved</li>
+          <li>Instant booking &amp; secure payment on Airbnb</li>
+          <li>Direct bookings by bank transfer</li>
           <li>A direct line to your host throughout</li>
         </ul>
       </div>
@@ -357,16 +365,21 @@
         <div class="price-breakdown" id="breakdown">
           <div class="price-row"><span id="nights-label">—</span><span id="nights-total">—</span></div>
           <div class="price-row"><span>Cleaning fee</span><span id="cleaning-fee">€300</span></div>
-          <div class="price-row total"><span>Total</span><span id="grand-total">—</span></div>
+          <div class="price-row total"><span>Estimated total</span><span id="grand-total">—</span></div>
         </div>
 
-        <button class="book-btn" id="book-btn" disabled>Select your dates</button>
-        <p class="book-fine">
-          <!-- OWNER: confirm how you want the deposit + housekeeping handled -->
-          A €2,000 refundable security deposit and daily housekeeping (€40/day) are arranged separately.
-        </p>
-        <p class="book-note">Questions first? <a href="https://wa.me/34686108095" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
         <p class="book-status" id="book-status"></p>
+
+        <a class="book-btn" id="airbnb-btn" href="https://www.airbnb.com/rooms/1454344604485468535" target="_blank" rel="noopener">Book on Airbnb</a>
+
+        <p class="book-or">or</p>
+
+        <a class="book-direct" id="direct-btn" href="https://wa.me/34686108095" target="_blank" rel="noopener">Enquire to book direct</a>
+        <p class="book-fine">
+          Direct bookings are by bank transfer. Message us with your dates and we'll confirm
+          availability and share payment details. A €2,000 refundable deposit and daily
+          housekeeping (€40/day) are arranged separately.
+        </p>
       </div>
     </div>
   </section>
@@ -383,52 +396,56 @@
     var nav = document.getElementById('nav');
     window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
-    // ── BOOKING CONFIG (display only — create-checkout.js recomputes the authoritative
-    //    price server-side). Keep NIGHTLY_RATE / CLEANING_FEE in sync with create-checkout.js. ──
+    // ── BOOKING (display / estimate only) ──
     var NIGHTLY_RATE = 2400;  // € per night
     var CLEANING_FEE = 300;   // € flat
     var CURRENCY     = '€';
+    var WHATSAPP     = '34686108095';
+
+    // Open availability windows (edit here to open/close dates).
+    //   minNights     minimum nights   |   saturdayOnly true → Saturday-to-Saturday only
+    var WINDOWS = [
+      { from: '2026-09-21', to: '2026-09-28', minNights: 4, saturdayOnly: false }, // Sep 21–28
+      { from: '2026-10-25', to: '2026-11-01', minNights: 4, saturdayOnly: false }, // last week of October
+      { from: '2027-07-17', to: '2027-09-04', minNights: 7, saturdayOnly: true }   // last 2 wks July + all August
+    ];
 
     document.getElementById('cleaning-fee').textContent = CURRENCY + CLEANING_FEE;
 
-    var WINDOWS = [], BOOKED = [], range = [], picker;
-
-    // Availability = whitelist of open windows (each with its own rules) minus booked dates.
-    fetch('/.netlify/functions/availability')
-      .then(function (r) { return r.ok ? r.json() : { windows: [], booked: [] }; })
-      .catch(function () { return { windows: [], booked: [] }; })
-      .then(initPicker);
+    var range = [], picker;
 
     function ymd(d) {
       return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
     }
     function inWindow(s) { return WINDOWS.some(function (w) { return s >= w.from && s <= w.to; }); }
-    function inBooked(s) { return BOOKED.some(function (b) { return s >= b.from && s <= b.to; }); }
     function windowFor(ci, co) { return WINDOWS.find(function (w) { return ci >= w.from && co <= w.to; }); }
     function nightsBetween(a, b) { return Math.round((b - a) / 86400000); }
 
-    function initPicker(data) {
-      WINDOWS = (data && data.windows) || [];
-      BOOKED  = (data && data.booked)  || [];
-      picker = flatpickr('#dates', {
-        mode: 'range', minDate: 'today', showMonths: 1, dateFormat: 'M j, Y',
-        // Disable anything outside an open window, or already booked. Range selection
-        // can't cross a disabled day, so a stay stays inside a single window.
-        disable: [ function (d) { var s = ymd(d); return !inWindow(s) || inBooked(s); } ],
-        onChange: function (dates) { range = dates; updatePrice(); }
-      });
-    }
+    picker = flatpickr('#dates', {
+      mode: 'range', minDate: 'today', showMonths: 1, dateFormat: 'M j, Y',
+      // Only dates inside an open window are selectable; a range can't cross a
+      // disabled day, so a stay stays within a single window.
+      disable: [ function (d) { return !inWindow(ymd(d)); } ],
+      onChange: function (dates) { range = dates; updatePrice(); }
+    });
 
     function status(msg, color) {
       var st = document.getElementById('book-status');
       st.style.display = 'block'; st.style.color = color; st.textContent = msg;
     }
 
+    function setDirectLink(text) {
+      document.getElementById('direct-btn').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text);
+    }
+
     function updatePrice() {
-      var btn = document.getElementById('book-btn');
-      var bd  = document.getElementById('breakdown');
+      var bd = document.getElementById('breakdown');
       document.getElementById('book-status').style.display = 'none';
-      if (range.length < 2) { bd.classList.remove('show'); btn.disabled = true; btn.textContent = 'Select your dates'; return; }
+      if (range.length < 2) {
+        bd.classList.remove('show');
+        setDirectLink('Hi, I\'d like to enquire about booking Can Davy direct.');
+        return;
+      }
 
       var ci = ymd(range[0]), co = ymd(range[1]);
       var w = windowFor(ci, co);
@@ -438,39 +455,23 @@
       else if (nights < w.minNights) err = 'Minimum ' + w.minNights + ' nights for these dates.';
       else if (w.saturdayOnly && (range[0].getDay() !== 6 || range[1].getDay() !== 6)) err = 'These dates are Saturday-to-Saturday only.';
 
-      if (err) { bd.classList.remove('show'); btn.disabled = true; btn.textContent = 'Adjust dates'; status(err, '#b0603a'); return; }
+      if (err) { bd.classList.remove('show'); status(err, '#b0603a'); return; }
 
       var nightsTotal = nights * NIGHTLY_RATE, grand = nightsTotal + CLEANING_FEE;
       document.getElementById('nights-label').textContent = CURRENCY + NIGHTLY_RATE.toLocaleString() + ' × ' + nights + ' nights';
       document.getElementById('nights-total').textContent = CURRENCY + nightsTotal.toLocaleString();
       document.getElementById('grand-total').textContent  = CURRENCY + grand.toLocaleString();
       bd.classList.add('show');
-      btn.disabled = false; btn.textContent = 'Reserve & Pay';
+
+      setDirectLink(
+        'Hi, I\'d like to enquire about booking Can Davy direct for ' + ci + ' → ' + co +
+        ' (' + nights + ' nights, ' + document.getElementById('guests').value + ' guests). ' +
+        'Estimated total ' + CURRENCY + grand.toLocaleString() + '.'
+      );
     }
 
-    document.getElementById('book-btn').addEventListener('click', function () {
-      if (range.length < 2) return;
-      var btn = this;
-      btn.disabled = true; btn.textContent = 'Redirecting to secure checkout…';
-
-      fetch('/.netlify/functions/create-checkout', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ checkin: ymd(range[0]), checkout: ymd(range[1]), guests: document.getElementById('guests').value })
-      })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
-      .then(function (res) {
-        if (res.ok && res.body.url) { window.location = res.body.url; }
-        else { throw new Error((res.body && res.body.message) || 'Unavailable'); }
-      })
-      .catch(function () {
-        var st = document.getElementById('book-status');
-        st.style.display = 'block'; st.style.color = '#b0603a';
-        st.innerHTML = 'Online reservation is being finalised. Please ' +
-          '<a href="https://wa.me/34686108095" target="_blank" rel="noopener" style="color:var(--gold);">message us on WhatsApp</a> ' +
-          'to confirm these dates — we\'ll hold them for you right away.';
-        btn.disabled = false; btn.textContent = 'Reserve & Pay';
-      });
-    });
+    document.getElementById('guests').addEventListener('change', updatePrice);
+    setDirectLink('Hi, I\'d like to enquire about booking Can Davy direct.');
   </script>
 </body>
 </html>
